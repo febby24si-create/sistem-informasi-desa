@@ -40,6 +40,12 @@ class DatabaseSeeder extends Seeder
 
         // Create Anggota Lembaga
         $this->createAnggotaLembaga($lembagas, $jabatans, $wargas);
+
+        $this->call([
+            RwRtSeeder::class, // Tambahkan ini
+            UserSeeder::class,
+            // ... seeder lainnya
+        ]);
     }
 
     private function clearData(): void

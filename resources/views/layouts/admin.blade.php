@@ -112,6 +112,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - User Information -->
+                        @auth
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -135,12 +136,19 @@
                                 </a>
                             </div>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                        </li>
+                        @endauth
                     </ul>
                 </nav>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @include('partials.alert') {{-- NOMOR 9: Partial Alert --}}
+                    @include('partials.alert')
                     
                     @yield('content')
                 </div>
@@ -163,6 +171,7 @@
     </a>
 
     <!-- Logout Modal-->
+    @auth
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -194,6 +203,7 @@
             </div>
         </div>
     </div>
+    @endauth
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

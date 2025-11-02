@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LembagaDesa;
 use Illuminate\Http\Request;
+use App\Models\JabatanLembaga;
 
 class LembagaDesaController extends Controller
 {
@@ -28,6 +29,21 @@ class LembagaDesaController extends Controller
 
         LembagaDesa::create($request->all());
 
+        // BUAT JABATAN OTOMATIS saat lembaga dibuat
+        // $defaultJabatans = [
+        //     ['nama_jabatan' => 'Ketua', 'level' => 'Ketua'],
+        //     ['nama_jabatan' => 'Sekretaris', 'level' => 'Sekretaris'],
+        //     ['nama_jabatan' => 'Bendahara', 'level' => 'Bendahara'],
+        //     ['nama_jabatan' => 'Anggota', 'level' => 'Anggota'],
+        // ];
+
+        // foreach ($defaultJabatans as $jabatan) {
+        //     JabatanLembaga::create([
+        //         'lembaga_id' => $lembaga->id,
+        //         'nama_jabatan' => $jabatan['nama_jabatan'],
+        //         'level' => $jabatan['level'],
+        //     ]);
+        // }
         return redirect()->route('admin.lembaga.index')
             ->with('success', 'Lembaga desa berhasil ditambahkan.');
     }

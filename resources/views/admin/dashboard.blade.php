@@ -11,9 +11,15 @@
             <i class="fas fa-tachometer-alt"></i> Dashboard
         </h1>
         <div>
-            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#logoutModal">
+            @auth
+            <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#logoutModal">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>
+            @else
+            <a href="{{ route('login') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            @endauth
         </div>
     </div>
 
@@ -145,9 +151,15 @@
                             </a>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#logoutModal">
+                            @auth
+                            <a href="#" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
+                            @else
+                            <a href="{{ route('login') }}" class="btn btn-primary btn-block">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -180,10 +192,17 @@
                     <hr>
                     <div class="text-center">
                         <p class="mb-1"><strong>Login sebagai:</strong></p>
+                        @auth
                         <span class="badge badge-{{ Auth::user()->role == 'admin' ? 'success' : 'info' }}">
                             <i class="fas fa-user"></i> 
-                            {{ Auth::user()->nama_lengkap }} ({{ Auth::user()->role }})
+                            {{ Auth::user()->name }} ({{ Auth::user()->role }})
                         </span>
+                        @else
+                        <span class="badge badge-warning">
+                            <i class="fas fa-user"></i> 
+                            Belum Login
+                        </span>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -191,6 +210,7 @@
     </div>
 
     <!-- User Session Info -->
+    @auth
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
@@ -202,12 +222,12 @@
                 <div class="card-body">
                     <div class="row text-center">
                         <div class="col-md-4">
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ Auth::user()->nama_lengkap }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ Auth::user()->name }}</div>
                             <small class="text-muted">Nama Pengguna</small>
                         </div>
                         <div class="col-md-4">
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ Auth::user()->username }}</div>
-                            <small class="text-muted">Username</small>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ Auth::user()->email }}</div>
+                            <small class="text-muted">Email</small>
                         </div>
                         <div class="col-md-4">
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -222,6 +242,7 @@
             </div>
         </div>
     </div>
+    @endauth
 </div>
 
 <style>

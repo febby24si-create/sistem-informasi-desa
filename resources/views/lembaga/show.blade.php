@@ -185,8 +185,15 @@
                 </div>
             </div>
 
+            <!-- Add this in the button section -->
             <div class="row mt-4">
                 <div class="col-12 text-right">
+                    <a href="{{ route('admin.lembaga.jabatan.index', $lembaga->id) }}" class="btn btn-info">
+                        <i class="fas fa-tags"></i> Kelola Jabatan
+                    </a>
+                    <a href="{{ route('admin.lembaga.anggota.index', $lembaga->id) }}" class="btn btn-success">
+                        <i class="fas fa-users"></i> Kelola Anggota
+                    </a>
                     <a href="{{ route('admin.lembaga.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Kembali
                     </a>

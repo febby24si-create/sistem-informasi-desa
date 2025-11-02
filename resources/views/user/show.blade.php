@@ -1,4 +1,3 @@
-<!-- resources/views/user/show.blade.php -->
 @extends('layouts.admin')
 
 @section('title', 'Detail User')
@@ -18,12 +17,12 @@
                 <div class="col-md-6">
                     <table class="table table-bordered">
                         <tr>
-                            <th width="30%">Username</th>
-                            <td>{{ $user->username }}</td>
+                            <th width="30%">Nama</th>
+                            <td>{{ $user->name }}</td>
                         </tr>
                         <tr>
-                            <th>Nama Lengkap</th>
-                            <td>{{ $user->nama_lengkap }}</td>
+                            <th>Email</th>
+                            <td>{{ $user->email }}</td>
                         </tr>
                         <tr>
                             <th>Role</th>

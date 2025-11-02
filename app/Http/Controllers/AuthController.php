@@ -11,31 +11,34 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
+        // Jika sudah login, redirect ke dashboard
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('auth.login');
     }
 
     public function showRegisterForm()
     {
+        // Jika sudah login, redirect ke dashboard
+        if (Auth::check()) {
+            return redirect()->route('admin.dashboard');
+        }
         return view('auth.register');
     }
+
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // Cari user berdasarkan email
-        $user = User::where('email', $request->email)->first();
-
-        // Cek jika user ditemukan dan password cocok
-        if ($user && Hash::check($request->password, $user->password)) {
-            // Login user
-            Auth::login($user);
+        // Coba login dengan credentials
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-
-            return redirect()->intended('/admin/dashboard')
-                ->with('success', 'Login berhasil! Selamat datang ' . $user->name);
+            return redirect()->route('admin.dashboard')
+                ->with('success', 'Login berhasil! Selamat datang ' . Auth::user()->name);
         }
 
         return back()->withErrors([
@@ -53,21 +56,25 @@ class AuthController extends Controller
         ]);
 
         try {
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => $request->password, // Akan di-hash otomatis
                 'role' => $request->role,
             ]);
 
-            return redirect()->route('login')
-                ->with('success', 'Registrasi berhasil! Silakan login.');
+            // Auto login setelah registrasi
+            Auth::login($user);
+
+            return redirect()->route('admin.dashboard')
+                ->with('success', 'Registrasi berhasil! Selamat datang ' . $user->name);
         } catch (\Exception $e) {
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+
     public function logout(Request $request)
     {
         Auth::logout();

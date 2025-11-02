@@ -25,7 +25,7 @@
             <!-- Form Pencarian -->
             <form action="{{ route('admin.user.index') }}" method="GET" class="mb-4">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari berdasarkan username atau nama lengkap..." 
+                    <input type="text" class="form-control" placeholder="Cari berdasarkan nama atau email..." 
                            name="search" value="{{ request('search') }}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit">
@@ -39,8 +39,8 @@
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
-                            <th>Username</th>
-                            <th>Nama Lengkap</th>
+                            <th>Nama</th>
+                            <th>Email</th>
                             <th>Role</th>
                             <th>Tanggal Dibuat</th>
                             <th>Status</th>
@@ -51,9 +51,9 @@
                         @foreach($users as $user)
                         <tr>
                             <td>
-                                <strong>{{ $user->username }}</strong>
+                                <strong>{{ $user->name }}</strong>
                             </td>
-                            <td>{{ $user->nama_lengkap }}</td>
+                            <td>{{ $user->email }}</td>
                             <td>
                                 @if($user->role == 'admin')
                                     <span class="badge badge-success">

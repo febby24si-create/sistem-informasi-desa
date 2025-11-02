@@ -73,30 +73,38 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
+                <div class="col-md-6">
+                    <div class="form-group">
                             <label for="rw_id">RW</label>
-                            <select class="form-control" id="rw_id" name="rw_id">
+                            <select class="form-control @error('rw_id') is-invalid @enderror" 
+                                    id="rw_id" name="rw_id">
                                 <option value="">Pilih RW</option>
                                 @foreach($rws as $rw)
                                     <option value="{{ $rw->id }}" {{ old('rw_id') == $rw->id ? 'selected' : '' }}>
-                                        {{ $rw->nomor_rw }}
+                                        RW {{ $rw->nomor_rw }}
                                     </option>
                                 @endforeach
                             </select>
+                            @error('rw_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="rt_id">RT</label>
-                            <select class="form-control" id="rt_id" name="rt_id">
+                            <select class="form-control @error('rt_id') is-invalid @enderror" 
+                                    id="rt_id" name="rt_id">
                                 <option value="">Pilih RT</option>
                                 @foreach($rts as $rt)
                                     <option value="{{ $rt->id }}" {{ old('rt_id') == $rt->id ? 'selected' : '' }}>
-                                        {{ $rt->nomor_rt }}
+                                        RT {{ $rt->nomor_rt }} (RW {{ $rt->rw->nomor_rw }})
                                     </option>
                                 @endforeach
                             </select>
+                            @error('rt_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
