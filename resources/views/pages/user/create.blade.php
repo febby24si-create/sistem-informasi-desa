@@ -10,12 +10,12 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            @include('partials.alert')
-            
+            @include('layouts.partials.alert')
+
             <form action="{{ route('admin.user.store') }}" method="POST">
                 @csrf
-                
-                @include('partials.form', ['fields' => [
+
+                @include('layouts.partials.form', ['fields' => [
                     [
                         'name' => 'name',
                         'label' => 'Nama Lengkap',
