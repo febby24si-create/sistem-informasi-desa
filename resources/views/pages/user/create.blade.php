@@ -32,6 +32,7 @@
                         'help' => 'Email akan digunakan untuk login ke sistem'
                     ],
                     [
+                        
                         'name' => 'password',
                         'label' => 'Password',
                         'type' => 'password',
