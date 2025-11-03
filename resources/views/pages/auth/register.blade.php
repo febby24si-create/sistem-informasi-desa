@@ -98,7 +98,7 @@
                                 <p class="text-muted small">Lengkapi data di bawah untuk membuat akun baru</p>
                             </div>
 
-                            @include('partials.alert')
+                            @include('layouts.partials.alert')
 
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
