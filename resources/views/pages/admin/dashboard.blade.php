@@ -194,12 +194,12 @@
                         <p class="mb-1"><strong>Login sebagai:</strong></p>
                         @auth
                         <span class="badge badge-{{ Auth::user()->role == 'admin' ? 'success' : 'info' }}">
-                            <i class="fas fa-user"></i> 
+                            <i class="fas fa-user"></i>
                             {{ Auth::user()->name }} ({{ Auth::user()->role }})
                         </span>
                         @else
                         <span class="badge badge-warning">
-                            <i class="fas fa-user"></i> 
+                            <i class="fas fa-user"></i>
                             Belum Login
                         </span>
                         @endauth

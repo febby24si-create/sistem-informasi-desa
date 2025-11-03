@@ -30,14 +30,14 @@ class WargaController extends Controller
             ->orderBy('nama')
             ->paginate(10);
 
-        return view('warga.index', compact('wargas'));
+        return view('pages.warga.index', compact('wargas'));
     }
 
     public function create()
     {
         $rws = Rw::all();
         $rts = Rt::all();
-        return view('warga.create', compact('rws', 'rts'));
+        return view('pages.warga.create', compact('rws', 'rts'));
     }
 
     public function store(Request $request)
@@ -60,7 +60,7 @@ class WargaController extends Controller
 
     public function show(Warga $warga)
     {
-        return view('warga.show', compact('warga'));
+        return view('pages.warga.show', compact('warga'));
     }
 
     public function edit($id)
@@ -70,7 +70,7 @@ class WargaController extends Controller
             $rws = Rw::all();
             $rts = Rt::all();
 
-            return view('warga.edit', compact('warga', 'rws', 'rts'));
+            return view('pages.warga.edit', compact('warga', 'rws', 'rts'));
         } catch (\Exception $e) {
             return redirect()->route('admin.warga.index')
                 ->with('error', 'Data warga tidak ditemukan.');

@@ -21,12 +21,12 @@ class UserController extends Controller
             ->orderBy('name')
             ->paginate(10);
 
-        return view('user.index', compact('users'));
+        return view('pages.user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('user.create');
+        return view('pages.user.create');
     }
 
     public function store(Request $request)
@@ -64,12 +64,12 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('user.show', compact('user'));
+        return view('pages.user.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        return view('pages.user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)

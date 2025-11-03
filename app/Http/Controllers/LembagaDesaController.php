@@ -11,12 +11,12 @@ class LembagaDesaController extends Controller
     public function index()
     {
         $lembagas = LembagaDesa::withCount(['anggotas', 'jabatans'])->with('anggotas', 'jabatans')->get();
-        return view('lembaga.index', compact('lembagas'));
+        return view('pages.lembaga.index', compact('lembagas'));
     }
 
     public function create()
     {
-        return view('lembaga.create');
+        return view('pages.lembaga.create');
     }
 
     public function store(Request $request)
@@ -51,12 +51,12 @@ class LembagaDesaController extends Controller
     public function show(LembagaDesa $lembaga)
     {
         $lembaga->load(['jabatans', 'anggotas.warga', 'anggotas.jabatan']);
-        return view('lembaga.show', compact('lembaga'));
+        return view('pages.lembaga.show', compact('lembaga'));
     }
 
     public function edit(LembagaDesa $lembaga)
     {
-        return view('lembaga.edit', compact('lembaga'));
+        return view('pages.lembaga.edit', compact('lembaga'));
     }
 
     public function update(Request $request, LembagaDesa $lembaga)
