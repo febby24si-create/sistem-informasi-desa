@@ -19,6 +19,10 @@ class DashboardController extends Controller
             'totalRt' => Rt::count(),
         ];
 
+<<<<<<< HEAD
         return view('layouts.admin.dashboard', $data);
+=======
+        return view('pages.admin.dashboard', $data);
+>>>>>>> 8c3c1d42a26caacfcc4638c5d88e7c1d654465bc
     }
 }

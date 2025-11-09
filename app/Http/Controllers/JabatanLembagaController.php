@@ -13,13 +13,13 @@ class JabatanLembagaController extends Controller
         $lembaga = LembagaDesa::findOrFail($lembaga_id);
         $jabatans = JabatanLembaga::where('lembaga_id', $lembaga_id)->get();
 
-        return view('jabatan_lembaga.index', compact('lembaga', 'jabatans'));
+        return view('pages.jabatan_lembaga.index', compact('lembaga', 'jabatans'));
     }
 
     public function create($lembaga_id)
     {
         $lembaga = LembagaDesa::findOrFail($lembaga_id);
-        return view('jabatan_lembaga.create', compact('lembaga'));
+        return view('pages.jabatan_lembaga.create', compact('lembaga'));
     }
 
     public function store(Request $request, $lembaga_id)

@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="SIPEDES - Sistem Informasi Pemerintahan Desa">
+<meta name="author" content="">
+<title>SIPEDES - @yield('title', 'Dashboard')</title>
+
+>>>>>>> 8c3c1d42a26caacfcc4638c5d88e7c1d654465bc
 <!-- Bootstrap Core CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -8,9 +18,36 @@
 <!-- SB Admin 2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
 
+<<<<<<< HEAD
 <!-- Dashboard-->
 <link href="{{ asset('assets/css/style.dashboard.css') }}" rel="stylesheet">
 
 <!-- Tampilan-->
 <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+=======
+<style>
+    .badge-pink {
+        background-color: #e83e8c;
+        color: white;
+    }
+    .badge-light {
+        background-color: #f8f9fa;
+        color: #6c757d;
+        border: 1px solid #dee2e6;
+    }
+    .dashboard-card {
+        transition: transform 0.3s ease;
+    }
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+    }
+    .quick-action-btn {
+        transition: all 0.3s ease;
+    }
+    .quick-action-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+</style>
+>>>>>>> 8c3c1d42a26caacfcc4638c5d88e7c1d654465bc
