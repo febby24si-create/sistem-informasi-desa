@@ -1,5 +1,5 @@
 <!-- resources/views/lembaga/anggota_index.blade.php -->
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Anggota Lembaga')
 

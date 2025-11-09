@@ -12,19 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
         $users = User::orderBy('name')->paginate(10);
-=======
-        $search = $request->get('search');
-
-        $users = User::when($search, function ($query) use ($search) {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
-        })
-            ->orderBy('name')
-            ->paginate(10);
-
->>>>>>> 8c3c1d42a26caacfcc4638c5d88e7c1d654465bc
         return view('pages.user.index', compact('users'));
     }
 

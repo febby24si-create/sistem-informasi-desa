@@ -269,9 +269,6 @@
     @endauth
 </div>
 
-<<<<<<<< HEAD:resources/views/layouts/admin/dashboard.blade.php
-
-========
 <style>
 .badge-pink {
     background-color: #e83e8c;
@@ -283,5 +280,4 @@
     border: 1px solid #dee2e6;
 }
 </style>
->>>>>>>> 8c3c1d42a26caacfcc4638c5d88e7c1d654465bc:resources/views/pages/admin/dashboard.blade.php
 @endsection

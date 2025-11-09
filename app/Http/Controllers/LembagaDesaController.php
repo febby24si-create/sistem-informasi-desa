@@ -56,11 +56,7 @@ class LembagaDesaController extends Controller
 
     public function edit(LembagaDesa $lembaga)
     {
-<<<<<<< HEAD
         return view('pages.lembaga.anggota_edit', compact('lembaga'));
-=======
-        return view('pages.lembaga.edit', compact('lembaga'));
->>>>>>> 8c3c1d42a26caacfcc4638c5d88e7c1d654465bc
     }
 
     public function update(Request $request, LembagaDesa $lembaga)
