@@ -13,7 +13,7 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar Warga</h6>
+                    <h6 class="h4 mb-0 text-gray-800">Daftar Warga</h6>
                 </div>
                 <div class="col-md-6 text-right">
                     <a href="{{ route('admin.warga.create') }}" class="btn btn-primary btn-sm">

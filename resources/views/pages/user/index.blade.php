@@ -12,7 +12,7 @@
         <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar User Sistem</h6>
+                    <h6 class="h4  mb-0 text-gray-800">Daftar User Sistem</h6>
                 </div>
                 <div class="col-md-6 text-right">
                     <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm">
