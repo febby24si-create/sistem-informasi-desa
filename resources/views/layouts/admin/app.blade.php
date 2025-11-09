@@ -38,6 +38,12 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/628708230676?text=Halo%20Admin%20SIPEDES,%20saya%20ingin%20bertanya." 
+        class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp whatsapp-icon"></i>
+    </a>
+
 
     <!-- Logout Modal-->
     @auth

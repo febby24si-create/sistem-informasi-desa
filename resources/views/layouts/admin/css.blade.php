@@ -13,3 +13,6 @@
 
 <!-- Custom Theme Desa Modern -->
 <link href="{{ asset('assets/css/style.dashboard.css') }}" rel="stylesheet">
+
+<!-- Whatsaap -->
+<link href="{{ asset('assets/css/whatsaap.css') }}" rel="stylesheet">
