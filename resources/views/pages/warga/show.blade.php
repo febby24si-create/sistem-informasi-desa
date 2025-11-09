@@ -1,5 +1,5 @@
 <!-- resources/views/warga/show.blade.php -->
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Detail Warga')
 

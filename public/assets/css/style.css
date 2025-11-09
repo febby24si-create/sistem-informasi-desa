@@ -1,0 +1,154 @@
+body {
+    background: #f4f9f4;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Heading style */
+h1.h3 {
+    color: #14532d;
+    font-weight: 600;
+}
+
+/* Card Style */
+.card {
+    border: none;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+}
+
+/* Border */
+.border-left-primary {
+    border-left: 5px solid #2f80ed !important;
+}
+.border-left-success {
+    border-left: 5px solid #16a34a !important;
+}
+.border-left-info {
+    border-left: 5px solid #0ea5e9 !important;
+}
+.border-left-warning {
+    border-left: 5px solid #eab308 !important;
+}
+
+/* Typography in cards */
+.card-body .text-xs {
+    color: #6b7280;
+    font-weight: 500;
+}
+.text-gray-800 {
+    color: #1e293b !important;
+}
+
+/* Badges */
+.badge {
+    border-radius: 30px;
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    font-weight: 500;
+}
+.badge-primary { background: #2f80ed; }
+.badge-success { background: #16a34a; }
+.badge-warning { background: #eab308; color: #fff; }
+.badge-info { background: #0ea5e9; }
+.badge-pink { background: #ec4899; }
+.badge-secondary { background: #6b7280; }
+
+/* Buttons - nuansa modern */
+.btn {
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}
+.btn-primary {
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+}
+.btn-success {
+    background: linear-gradient(90deg, #16a34a, #15803d);
+}
+.btn-info {
+    background: linear-gradient(90deg, #0ea5e9, #0284c7);
+}
+.btn-danger {
+    background: linear-gradient(90deg, #dc2626, #b91c1c);
+}
+
+/* Card header (judul section) */
+.card-header {
+    background: linear-gradient(90deg, #16a34a, #22c55e);
+    color: #fff !important;
+    border-radius: 16px 16px 0 0;
+}
+.card-header h6 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Logout/Login btn on header */
+.btn-sm {
+    border-radius: 8px;
+}
+
+/* Section spacing */
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+/* Footer */
+footer.sticky-footer {
+    background: #14532d !important;
+    color: #e5e7eb;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+}
+
+/* Sidebar modernized */
+.sidebar {
+    background: linear-gradient(180deg, #166534 0%, #15803d 100%);
+    box-shadow: 2px 0 12px rgba(0,0,0,0.15);
+}
+.sidebar .nav-link {
+    color: #e5e7eb !important;
+    transition: all 0.3s;
+}
+.sidebar .nav-item.active,
+.sidebar .nav-link:hover {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    transform: translateX(4px);
+}
+.sidebar .sidebar-heading {
+    color: #cbd5e1;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sidebar-brand {
+    background-color: rgba(255,255,255,0.1);
+    padding: 20px 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 16px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .card-body .h5 {
+        font-size: 1.25rem;
+    }
+}

@@ -1,5 +1,5 @@
 <!-- resources/views/lembaga/show.blade.php -->
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Detail Lembaga Desa')
 

@@ -1,0 +1,84 @@
+.badge-pink {
+    background-color: #e83e8c;
+    color: white;
+}
+.badge-light {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+}
+
+
+/* === HERO BANNER STRUKTUR & LEMBAGA DESA === */
+.hero-banner {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, rgba(21,128,61,0.85), rgba(22,163,74,0.8));
+    color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+
+/* Gambar latar pemandangan kantor desa */
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    filter: blur(3px);
+    z-index: 1;
+}
+
+/* Lapisan gradasi lembut di atas gambar */
+.hero-banner::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, rgba(22,101,52,0.85), rgba(30,166,90,0.6));
+    z-index: 2;
+}
+
+/* Konten di atas lapisan */
+.hero-banner .hero-text,
+.hero-banner .hero-image {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-banner .highlight-text {
+    color: #bbf7d0; /* hijau pastel lembut */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.hero-banner img {
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    transition: transform 0.4s ease;
+}
+.hero-banner img:hover {
+    transform: scale(1.05);
+}
+
+/* Tombol modern */
+.hero-banner .btn {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+.hero-banner .btn:hover {
+    transform: translateY(-2px);
+    background-color: #f0fdf4;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .hero-banner {
+        text-align: center;
+        padding: 1.5rem;
+    }
+    .hero-banner img {
+        width: 110px;
+        margin-top: 10px;
+    }
+}

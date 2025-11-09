@@ -10,23 +10,15 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->get('search');
-
-        $users = User::when($search, function ($query) use ($search) {
-            $query->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
-        })
-            ->orderBy('name')
-            ->paginate(10);
-
-        return view('user.index', compact('users'));
+        $users = User::orderBy('name')->paginate(10);
+        return view('pages.user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('user.create');
+        return view('pages.user.create');
     }
 
     public function store(Request $request)
@@ -64,12 +56,12 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('user.show', compact('user'));
+        return view('pages.user.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        return view('user.edit', compact('user'));
+        return view('pages.user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)

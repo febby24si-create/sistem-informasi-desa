@@ -31,7 +31,7 @@
                                 <p class="text-muted mb-4">Buat Akun Baru - Sistem Informasi Pemerintahan Desa</p>
                             </div>
                             
-                            @include('partials.alert')
+                            @include('pages.partials.alert')
 
                             <form class="user" method="POST" action="{{ route('register') }}">
                                 @csrf
@@ -91,10 +91,10 @@
                                     @error('role')
                                         <div class="text-danger small">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">
+                                    {{-- <small class="form-text text-muted">
                                         <strong>Administrator:</strong> Akses penuh sistem<br>
                                         <strong>Operator:</strong> Akses input data terbatas
-                                    </small>
+                                    </small> --}}
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-user btn-block">

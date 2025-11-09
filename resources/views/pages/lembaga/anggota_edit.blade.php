@@ -10,7 +10,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            @include('partials.alert')
+            @include('pages.partials.alert')
 
             <form action="{{ route('admin.lembaga.anggota.update', [$lembaga->id, $anggota->id]) }}" method="POST">
                 @csrf

@@ -15,7 +15,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->route('admin.dashboard');
         }
-        return view('auth.login');
+        return view('pages.auth.login');
     }
 
     public function showRegisterForm()
@@ -24,7 +24,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->route('admin.dashboard');
         }
-        return view('auth.register');
+        return view('pages.auth.register');
     }
 
     public function login(Request $request)

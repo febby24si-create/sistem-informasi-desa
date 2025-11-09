@@ -1,5 +1,5 @@
 <!-- resources/views/warga/index.blade.php -->
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Data Warga')
 
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="card-body">
-            <!-- Form Pencarian -->
+            {{-- <!-- Form Pencarian -->
             <form action="{{ route('admin.warga.index') }}" method="GET" class="mb-4">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cari berdasarkan nama, NIK, atau alamat..." 
@@ -34,7 +34,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
 
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">

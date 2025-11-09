@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Tambah User')
 
@@ -10,12 +10,12 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            @include('partials.alert')
+            @include('pages.partials.alert')
             
             <form action="{{ route('admin.user.store') }}" method="POST">
                 @csrf
                 
-                @include('partials.form', ['fields' => [
+                @include('pages.partials.form', ['fields' => [
                     [
                         'name' => 'name',
                         'label' => 'Nama Lengkap',

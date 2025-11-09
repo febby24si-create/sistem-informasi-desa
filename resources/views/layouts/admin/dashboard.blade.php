@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Dashboard')
 @section('page_title', 'Dashboard SIPEDES')
@@ -22,6 +22,30 @@
             @endauth
         </div>
     </div>
+    <!-- Hero Banner Desa Digital -->
+<!-- Hero Banner Struktur & Lembaga Desa -->
+<div class="hero-banner mb-4 p-4 rounded-4 shadow-sm d-flex align-items-center justify-content-between flex-wrap">
+    <div class="hero-text">
+        <h2 class="fw-bold text-white mb-2">
+            Selamat Datang di <span class="highlight-text">Sistem Informasi Pemerintahan Desa</span>
+        </h2>
+        <p class="mb-3 text-white-50">
+            Pantau dan kelola <strong>struktur organisasi</strong> serta <strong>lembaga desa</strong> dengan mudah dan transparan.
+        </p>
+        @auth
+        <a href="{{ route('admin.lembaga.index') }}" class="btn btn-light btn-sm fw-semibold">
+            <i class="fas fa-sitemap"></i> Kelola Lembaga Desa
+        </a>
+        @else
+        <a href="{{ route('login') }}" class="btn btn-light btn-sm fw-semibold">
+            <i class="fas fa-sign-in-alt"></i> Masuk ke Sistem
+        </a>
+        @endauth
+    </div>
+    <div class="hero-image text-end mt-3 mt-md-0">
+        <img src="https://cdn-icons-png.flaticon.com/512/4149/4149670.png" alt="Struktur Desa" width="150">
+    </div>
+</div>
 
     <!-- Content Row -->
     <div class="row">
@@ -130,7 +154,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="fas fa-bolt"></i> Quick Actions
+                        <i class="fas fa-bolt"></i> Aksi
                     </h6>
                 </div>
                 <div class="card-body">
@@ -152,9 +176,9 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             @auth
-                            <a href="#" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                            {{-- <a href="#" class="btn btn-danger btn-block" data-bs-toggle="modal" data-bs-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
+                            </a> --}}
                             @else
                             <a href="{{ route('login') }}" class="btn btn-primary btn-block">
                                 <i class="fas fa-sign-in-alt"></i> Login
@@ -166,11 +190,11 @@
             </div>
         </div>
 
-        <div class="col-lg-6 mb-4">
+        {{-- <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="fas fa-info-circle"></i> Sistem Status
+                        <i class="fas fa-info-circle"></i> Info Status Sistem
                     </h6>
                 </div>
                 <div class="card-body">
@@ -206,7 +230,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <!-- User Session Info -->
@@ -245,15 +269,5 @@
     @endauth
 </div>
 
-<style>
-.badge-pink {
-    background-color: #e83e8c;
-    color: white;
-}
-.badge-light {
-    background-color: #f8f9fa;
-    color: #6c757d;
-    border: 1px solid #dee2e6;
-}
-</style>
+
 @endsection

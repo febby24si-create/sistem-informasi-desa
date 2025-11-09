@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Edit User')
 
@@ -10,13 +10,13 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            @include('partials.alert')
+            @include('pages.partials.alert')
             
             <form action="{{ route('admin.user.update', $user->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 
-                @include('partials.form', ['fields' => [
+                @include('pages.partials.form', ['fields' => [
                     [
                         'name' => 'name',
                         'label' => 'Nama Lengkap',

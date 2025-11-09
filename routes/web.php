@@ -16,7 +16,7 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Root route - redirect ke login
+// redirect ke login
 Route::get('/', function () {
     return redirect('/login');
 });
@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    // Warga Routes
+    // Warga 
     Route::prefix('warga')->group(function () {
         Route::get('/', [WargaController::class, 'index'])->name('admin.warga.index');
         Route::get('/create', [WargaController::class, 'create'])->name('admin.warga.create');
@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{warga}', [WargaController::class, 'destroy'])->name('admin.warga.destroy');
     });
 
-    // Lembaga Desa Routes
+    // Lembaga Desa 
     Route::prefix('lembaga')->group(function () {
         Route::get('/', [LembagaDesaController::class, 'index'])->name('admin.lembaga.index');
         Route::get('/create', [LembagaDesaController::class, 'create'])->name('admin.lembaga.create');
@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{lembaga}', [LembagaDesaController::class, 'update'])->name('admin.lembaga.update');
         Route::delete('/{lembaga}', [LembagaDesaController::class, 'destroy'])->name('admin.lembaga.destroy');
 
-        // Anggota Lembaga Routes
+        // Anggota Lembaga 
         Route::prefix('{lembaga_id}/anggota')->group(function () {
             Route::get('/', [AnggotaLembagaController::class, 'index'])->name('admin.lembaga.anggota.index');
             Route::get('/create', [AnggotaLembagaController::class, 'create'])->name('admin.lembaga.anggota.create');
@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/{id}', [AnggotaLembagaController::class, 'destroy'])->name('admin.lembaga.anggota.destroy');
         });
 
-        // Jabatan Lembaga Routes
+        // Jabatan Lembaga 
         Route::prefix('{lembaga_id}/jabatan')->group(function () {
             Route::get('/', [JabatanLembagaController::class, 'index'])->name('admin.lembaga.jabatan.index');
             Route::get('/create', [JabatanLembagaController::class, 'create'])->name('admin.lembaga.jabatan.create');
@@ -67,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 
-    // User Management Routes
+    // User 
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');

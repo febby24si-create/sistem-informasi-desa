@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title', 'Manajemen User')
 
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="card-body">
-            <!-- Form Pencarian -->
+            {{-- <!-- Form Pencarian -->
             <form action="{{ route('admin.user.index') }}" method="GET" class="mb-4">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cari berdasarkan nama atau email..." 
@@ -33,7 +33,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
 
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
