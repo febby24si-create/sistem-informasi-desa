@@ -9,9 +9,14 @@ class UpdateUsersTableForAuth extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            // Tambah kolom baru
-            $table->string('name')->after('id');
-            $table->string('email')->after('name');
+            // Cek dulu, hanya tambahkan jika belum ada
+            if (!Schema::hasColumn('users', 'name')) {
+                $table->string('name')->after('id');
+            }
+
+            if (!Schema::hasColumn('users', 'email')) {
+                $table->string('email')->after('name');
+            }
 
             // Hapus kolom lama (jika ada)
             if (Schema::hasColumn('users', 'username')) {
@@ -26,12 +31,23 @@ class UpdateUsersTableForAuth extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            // Kembalikan kolom lama
-            $table->string('username')->unique();
-            $table->string('nama_lengkap');
+            // Tambah kembali kolom lama
+            if (!Schema::hasColumn('users', 'username')) {
+                $table->string('username')->unique();
+            }
 
-            // Hapus kolom baru
-            $table->dropColumn(['name', 'email']);
+            if (!Schema::hasColumn('users', 'nama_lengkap')) {
+                $table->string('nama_lengkap');
+            }
+
+            // Hapus kolom baru jika ada
+            if (Schema::hasColumn('users', 'name')) {
+                $table->dropColumn('name');
+            }
+
+            if (Schema::hasColumn('users', 'email')) {
+                $table->dropColumn('email');
+            }
         });
     }
 }
