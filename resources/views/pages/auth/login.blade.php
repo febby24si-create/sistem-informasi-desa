@@ -139,7 +139,7 @@
             background:url('https://images.unsplash.com/photo-1596457226670-7b2a9efefb2b?auto=format&fit=crop&w=900&q=80') no-repeat center center;
             background-size: cover;
             position: relative;
-            color: #000000;
+            color: #ffffff;
             text-align: center;
             padding: 40px 25px;
             display: flex;
@@ -153,7 +153,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 90, 60, 0.5);
+            background: rgba(0, 90, 60, 0.7);
             animation: overlayFade 1.5s ease-out 0.5s forwards;
             opacity: 0;
         }
@@ -185,7 +185,7 @@
 
         .logo-container i {
             font-size: 60px;
-            color: rgb(0, 0, 0);
+            color: #ffffff;
             filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.6));
             margin-bottom: 12px;
             transition: all 0.5s ease;
@@ -198,7 +198,7 @@
 
         .login-left h3 {
             font-weight: 700;
-            color: #000000;
+            color: #ffffff;
             margin-bottom: 8px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             letter-spacing: 0.5px;
@@ -206,7 +206,7 @@
         }
 
         .login-left p {
-            color: #000000;
+            color: #ffffff;
             font-size: 13px;
             line-height: 1.5;
             margin-bottom: 5px;
@@ -235,6 +235,7 @@
             transition: all 0.3s ease;
             background: #ffffff1a;
             font-size: 12px;
+            color: #ffffff;
         }
 
         .feature-item:hover {
@@ -249,11 +250,10 @@
 
         .login-right {
             padding: 35px 30px;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            backdrop-filter: blur(5px);
         }
 
         .login-header {
@@ -263,12 +263,11 @@
 
         .login-header h4 {
             font-weight: 700;
-            color: rgb(0, 0, 0);
+            color: #333;
             margin-bottom: 6px;
             position: relative;
             display: inline-block;
             font-size: 22px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .login-header h4::after {
@@ -279,19 +278,18 @@
             transform: translateX(-50%);
             width: 40px;
             height: 3px;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.5));
+            background: linear-gradient(to right, #333, #ddd);
             border-radius: 3px;
         }
 
         .login-header p {
-            color: rgba(0, 0, 0, 0.9);
+            color: #666;
             font-size: 14px;
             margin-top: 15px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, rgba(0, 8, 255, 0.9), rgba(103, 0, 0, 0.7));
+            background: linear-gradient(135deg, #4e73df, #224abe);
             border: none;
             border-radius: 8px;
             padding: 10px;
@@ -301,14 +299,14 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            color: var(--primary-dark);
+            color: white;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.9));
-            color: var(--primary-dark);
+            background: linear-gradient(135deg, #3a5fc8, #1c3d94);
+            color: white;
         }
 
         .btn-primary:active {
@@ -317,68 +315,70 @@
 
         .form-control {
             transition: all 0.3s ease;
-            border: 2px solid rgba(0, 0, 0, 0.3);
+            border: 2px solid #e0e0e0;
             border-radius: 8px;
             padding: 10px 12px;
-            background: rgba(255, 255, 255, 0.1);
+            background: #ffffff;
             font-size: 14px;
-            color: rgb(3, 2, 2);
+            color: #333;
         }
 
         .form-control::placeholder {
-            color: rgba(0, 0, 0, 0.7);
+            color: #999;
         }
 
         .form-control:focus {
-            border-color: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.2);
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
             transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.15);
-            color: rgb(0, 0, 0);
+            background: #ffffff;
+            color: #333;
         }
 
         .form-control:hover {
-            border-color: rgba(0, 0, 0, 0.4);
+            border-color: #b8b8b8;
         }
 
         .alert {
             padding: 10px 15px;
             font-size: 14px;
             margin-bottom: 15px;
-            background: rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgb(0, 0, 0);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #333;
             border-radius: 8px;
         }
 
         .alert-success {
             background: rgba(40, 167, 69, 0.2);
             border-color: rgba(40, 167, 69, 0.3);
+            color: #155724;
         }
 
         .alert-danger {
             background: rgba(220, 53, 69, 0.2);
             border-color: rgba(220, 53, 69, 0.3);
+            color: #721c24;
         }
 
         .text-muted {
-            color: rgba(255, 255, 255, 0.7) !important;
+            color: #6c757d !important;
         }
 
         .small {
-            color: rgba(255, 255, 255, 0.8);
+            color: #6c757d;
         }
 
         hr {
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 0, 0, 0.1);
         }
 
         a {
-            color: rgba(0, 0, 0, 0.9);
+            color: #4e73df;
         }
 
         a:hover {
-            color: rgb(0, 0, 0);
+            color: #224abe;
         }
 
         /* Animasi Keyframes */
@@ -546,12 +546,12 @@
         .divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .divider span {
             padding: 0 10px;
-            color: rgba(255, 255, 255, 0.7);
+            color: #6c757d;
             font-size: 13px;
         }
 
@@ -588,6 +588,46 @@
             
             body {
                 padding: 10px;
+            }
+            
+            .login-card {
+                margin: 10px 0;
+            }
+            
+            .login-left {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .login-left, .login-right {
+                padding: 20px 15px;
+            }
+            
+            .logo-container i {
+                font-size: 50px;
+            }
+            
+            .login-left h3 {
+                font-size: 20px;
+            }
+            
+            .login-header h4 {
+                font-size: 18px;
+            }
+            
+            .login-header p {
+                font-size: 13px;
+            }
+            
+            .form-control {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            
+            .btn-primary {
+                padding: 8px;
+                font-size: 14px;
             }
         }
     </style>
@@ -640,12 +680,9 @@
                                 <hr class="border-light my-3">
 
                                 <p class="small text-center mt-2">
-                                    <p class="small text-center mt-2">
-                                        SIPEDES (Sistem Informasi Pemerintahan Desa) adalah platform digital yang membantu pemerintah desa
-                                        dalam mengelola administrasi, data warga, dan pelayanan publik secara efisien serta transparan.
-                                        Mendukung terwujudnya desa modern dan terintegrasi.
-                                    </p>
-
+                                    SIPEDES (Sistem Informasi Pemerintahan Desa) adalah platform digital yang membantu pemerintah desa
+                                    dalam mengelola administrasi, data warga, dan pelayanan publik secara efisien serta transparan.
+                                    Mendukung terwujudnya desa modern dan terintegrasi.
                                 </p>
                             </div>
                         </div>
