@@ -4,7 +4,7 @@
 @section('title', 'Data Warga')
 
 @section('content')
-<div class="container-fluid">
+
     <h1 class="h3 mb-4 text-gray-800">
         <i class="fas fa-users"></i> Data Warga
     </h1>
@@ -133,10 +133,9 @@
                 <div>
                     Showing {{ $wargas->firstItem() }} to {{ $wargas->lastItem() }} of {{ $wargas->total() }} results
                 </div>
-                {{ $wargas->links() }}
+                {{ $wargas->links('pagination::bootstrap-5') }}
             </div>
             @endif
         </div>
-    </div>
 </div>
 @endsection

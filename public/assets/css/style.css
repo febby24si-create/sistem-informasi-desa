@@ -341,3 +341,49 @@
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, var(--primary-dark), #1e3a8a);
 }
+/* Custom Fix for Fixed Sidebar */
+.sidebar {
+    /* * Mengatur posisi agar sidebar selalu terlihat di viewport
+     * Ini menimpa pengaturan default 'position: sticky' atau 'position: relative'
+     */
+    position: fixed; 
+    
+    /* Menentukan lokasi sidebar: dari atas ke bawah, menempel di kiri */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    
+    /* Memungkinkan scrolling internal jika menu sidebar panjang */
+    overflow-y: auto; 
+    
+    /* Memastikan sidebar berada di atas konten utama saat scrolling */
+    z-index: 1030;
+}
+/* KODE TAMBAHAN UNTUK MENGATASI LEBAR KONTEN/SCROLL HORIZONTAL */
+#content-wrapper {
+    /* Mendorong konten utama ke kanan agar tidak tertutup sidebar. 
+       225px adalah lebar default sidebar SB Admin 2. */
+    margin-left: 225px; 
+    
+    /* Tambahkan transisi agar pergeseran halus saat sidebar di-toggle (dikecilkan) */
+    transition: margin-left 0.15s ease-in-out; 
+}
+
+/* Aturan untuk menyesuaikan konten saat sidebar dikecilkan/di-toggle */
+.sidebar.toggled #content-wrapper {
+    /* 104px atau 100px adalah lebar default sidebar saat dikecilkan */
+    margin-left: 104px; 
+}
+
+/* Pastikan header juga tergeser dengan benar */
+.topbar {
+    /* Header (navbar) juga harus digeser sejauh lebar sidebar */
+    margin-left: 225px;
+    width: calc(100% - 225px); /* Sesuaikan lebar agar tidak ada scroll berlebih */
+    transition: margin-left 0.15s ease-in-out, width 0.15s ease-in-out;
+}
+
+.sidebar.toggled .topbar {
+    margin-left: 104px; 
+    width: calc(100% - 104px);
+}
