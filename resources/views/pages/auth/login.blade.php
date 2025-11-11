@@ -20,14 +20,18 @@
 
     <style>
         :root {
-            --primary: #000000;
-            --primary-dark: #17a673;
-            --secondary: #4e73df;
-            --accent: #36b9cc;
-            --dark: #2e3a59;
+            --primary: #2c3e50;
+            --primary-dark: #1a252f;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --dark: #2c3e50;
             --light: #f8f9fc;
             --gray: #6c757d;
             --white: #ffffff;
+            --blue-dark: #2c3e50;
+            --blue-light: #3498db;
+            --purple: #9b59b6;
+            --teal: #1abc9c;
         }
 
         * {
@@ -35,7 +39,7 @@
         }
 
         body {
-            background:url('https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80') center/cover no-repeat fixed;
+            background: linear-gradient(135deg, #1a2a3a, #2c3e50, #34495e);
             animation: backgroundShift 20s ease-in-out infinite;
             min-height: 100vh;
             display: flex;
@@ -61,8 +65,8 @@
             display: block;
             width: 20px;
             height: 20px;
-            background: rgba(182, 175, 175, 0.1);
-            animation: float 15s linear infinite;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 25s linear infinite;
             bottom: -150px;
             border-radius: 50%;
         }
@@ -73,6 +77,7 @@
             height: 80px;
             animation-delay: 0s;
             animation-duration: 20s;
+            background: rgba(52, 152, 219, 0.2);
         }
 
         .bg-animation span:nth-child(2) {
@@ -81,6 +86,7 @@
             height: 20px;
             animation-delay: 2s;
             animation-duration: 12s;
+            background: rgba(155, 89, 182, 0.2);
         }
 
         .bg-animation span:nth-child(3) {
@@ -89,6 +95,7 @@
             height: 60px;
             animation-delay: 4s;
             animation-duration: 18s;
+            background: rgba(26, 188, 156, 0.2);
         }
 
         .bg-animation span:nth-child(4) {
@@ -97,6 +104,7 @@
             height: 60px;
             animation-delay: 0s;
             animation-duration: 18s;
+            background: rgba(52, 152, 219, 0.2);
         }
 
         .bg-animation span:nth-child(5) {
@@ -105,6 +113,7 @@
             height: 40px;
             animation-delay: 0s;
             animation-duration: 15s;
+            background: rgba(155, 89, 182, 0.2);
         }
 
         .login-container {
@@ -117,26 +126,27 @@
             border-radius: 18px;
             overflow: hidden;
             box-shadow: 
-                0 12px 28px rgba(0, 0, 0, 0.2),
-                0 4px 12px rgba(0, 0, 0, 0.1);
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             animation: cardEntrance 1s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .login-card:hover {
             transform: translateY(-5px);
             box-shadow: 
-                0 16px 32px rgba(0, 0, 0, 0.25),
-                0 8px 16px rgba(0, 0, 0, 0.15);
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 10px 20px rgba(0, 0, 0, 0.25);
         }
 
         .login-left {
-            background:url('https://images.unsplash.com/photo-1596457226670-7b2a9efefb2b?auto=format&fit=crop&w=900&q=80') no-repeat center center;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.9)), 
+                        url('https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
             background-size: cover;
             position: relative;
             color: #ffffff;
@@ -153,7 +163,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 90, 60, 0.7);
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(52, 73, 94, 0.9));
             animation: overlayFade 1.5s ease-out 0.5s forwards;
             opacity: 0;
         }
@@ -184,11 +194,14 @@
         }
 
         .logo-container i {
-            font-size: 60px;
+            font-size: 70px;
             color: #ffffff;
             filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.6));
             margin-bottom: 12px;
             transition: all 0.5s ease;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .logo-container:hover i {
@@ -246,11 +259,12 @@
         .feature-item i {
             margin-right: 8px;
             font-size: 14px;
+            color: #3498db;
         }
 
         .login-right {
             padding: 35px 30px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -263,7 +277,7 @@
 
         .login-header h4 {
             font-weight: 700;
-            color: #333;
+            color: var(--blue-dark);
             margin-bottom: 6px;
             position: relative;
             display: inline-block;
@@ -278,7 +292,7 @@
             transform: translateX(-50%);
             width: 40px;
             height: 3px;
-            background: linear-gradient(to right, #333, #ddd);
+            background: linear-gradient(to right, var(--blue-dark), var(--blue-light));
             border-radius: 3px;
         }
 
@@ -288,39 +302,42 @@
             margin-top: 15px;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #4e73df, #224abe);
-            border: none;
-            border-radius: 8px;
-            padding: 10px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
+        /* Form styling improvements */
+        .form-group {
+            margin-bottom: 1.5rem;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            color: white;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #3a5fc8, #1c3d94);
-            color: white;
+        .form-label {
+            font-weight: 500;
+            color: var(--blue-dark);
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 14px;
         }
 
-        .btn-primary:active {
-            transform: translateY(-1px);
+        .input-group {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--blue-light);
+            z-index: 5;
         }
 
         .form-control {
             transition: all 0.3s ease;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
-            padding: 10px 12px;
+            padding: 10px 12px 10px 40px;
             background: #ffffff;
             font-size: 14px;
             color: #333;
+            height: 48px;
         }
 
         .form-control::placeholder {
@@ -328,8 +345,8 @@
         }
 
         .form-control:focus {
-            border-color: #4e73df;
-            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+            border-color: var(--blue-light);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
             transform: translateY(-2px);
             background: #ffffff;
             color: #333;
@@ -337,6 +354,55 @@
 
         .form-control:hover {
             border-color: #b8b8b8;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--blue-light);
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .password-toggle:hover {
+            color: var(--purple);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blue-dark), var(--blue-light));
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            color: white;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, var(--blue-light), var(--purple));
+            color: white;
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary i {
+            margin-right: 8px;
         }
 
         .alert {
@@ -374,11 +440,11 @@
         }
 
         a {
-            color: #4e73df;
+            color: var(--blue-light);
         }
 
         a:hover {
-            color: #224abe;
+            color: var(--purple);
         }
 
         /* Animasi Keyframes */
@@ -562,6 +628,80 @@
             color: white;
         }
 
+        /* Cloud Animation */
+        .clouds {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            animation: cloudMove 40s linear infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .cloud:before,
+        .cloud:after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .cloud:before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 20px;
+        }
+
+        .cloud:after {
+            width: 80px;
+            height: 80px;
+            top: -40px;
+            right: 20px;
+        }
+
+        .cloud1 {
+            width: 120px;
+            height: 40px;
+            top: 20%;
+            animation-duration: 50s;
+            animation-delay: 0s;
+        }
+
+        .cloud2 {
+            width: 160px;
+            height: 50px;
+            top: 30%;
+            animation-duration: 60s;
+            animation-delay: 10s;
+        }
+
+        .cloud3 {
+            width: 100px;
+            height: 30px;
+            top: 15%;
+            animation-duration: 45s;
+            animation-delay: 5s;
+        }
+
+        @keyframes cloudMove {
+            from {
+                left: -200px;
+            }
+            to {
+                left: 100%;
+            }
+        }
+
         /* Responsive adjustments */
         @media (max-width: 992px) {
             .login-left, .login-right {
@@ -621,13 +761,15 @@
             }
             
             .form-control {
-                padding: 8px 12px;
+                padding: 8px 12px 8px 35px;
                 font-size: 14px;
+                height: 44px;
             }
             
             .btn-primary {
-                padding: 8px;
+                padding: 10px;
                 font-size: 14px;
+                height: 44px;
             }
         }
     </style>
@@ -643,6 +785,13 @@
         <span></span>
     </div>
 
+    <!-- Cloud Animation -->
+    <div class="clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+    </div>
+
     <div class="login-container">
         <div class="row justify-content-center">
             <div class="col-12">
@@ -652,7 +801,7 @@
                         <div class="col-lg-5 d-flex align-items-center login-left">
                             <div class="login-left-content w-100">
                                 <div class="logo-container mb-3">
-                                    <i class="fas fa-landmark"></i>
+                                    <i class="fas fa-city"></i>
                                     <h3>SIPEDES</h3>
                                     <p><b>Sistem Informasi Pemerintahan Desa</b></p>
                                 </div>
@@ -668,12 +817,16 @@
 
                                 <div class="features-list">
                                     <div class="feature-item">
-                                        <i class="fas fa-check-circle text-success"></i>
+                                        <i class="fas fa-check-circle"></i>
                                         <span>Pelayanan publik berbasis digital</span>
                                     </div>
                                     <div class="feature-item">
-                                        <i class="fas fa-check-circle text-success"></i>
+                                        <i class="fas fa-check-circle"></i>
                                         <span>Mempermudah akses informasi warga</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Administrasi desa yang terintegrasi</span>
                                     </div>
                                 </div>
 
@@ -690,7 +843,7 @@
                         <!-- Bagian Kanan (Form Login) -->
                         <div class="col-lg-7 login-right">
                             <div class="login-header text-center mb-4">
-                                <h4><i class="fas fa-user-lock"></i> Login Akun</h4>
+                                <h4><i class="fas fa-user-shield"></i> Login Akun</h4>
                                 <p class="text-muted small">Masukkan email dan password Anda untuk melanjutkan ke sistem</p>
                             </div>
 
@@ -711,29 +864,50 @@
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
-                                <div class="mb-3">
-                                    <input type="email" class="form-control form-control-user"
-                                           name="email" value="{{ old('email') }}"
-                                           placeholder="Alamat Email" required autofocus>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Alamat Email</label>
+                                    <div class="input-group">
+                                        <i class="fas fa-at input-icon"></i>
+                                        <input type="email" class="form-control form-control-user" id="email"
+                                               name="email" value="{{ old('email') }}"
+                                               placeholder="nama@contoh.com" required autofocus>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control form-control-user"
-                                           name="password" placeholder="Kata Sandi" required>
+                                
+                                <div class="form-group">
+                                    <label for="password" class="form-label">Kata Sandi</label>
+                                    <div class="input-group">
+                                        <i class="fas fa-key input-icon"></i>
+                                        <input type="password" class="form-control form-control-user" id="password"
+                                               name="password" placeholder="Masukkan kata sandi" required>
+                                        <button type="button" class="password-toggle" id="togglePassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
                                 </div>
+                                
+                                <div class="form-group form-check mb-3">
+                                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                                    <label class="form-check-label small" for="remember">
+                                        <i class="fas fa-history"></i> Ingat saya
+                                    </label>
+                                </div>
+                                
                                 <button type="submit" class="btn btn-primary btn-user btn-block w-100 mb-3">
-                                    <i class="fas fa-sign-in-alt"></i> Masuk
+                                    <i class="fas fa-sign-in-alt"></i> Masuk ke Sistem
                                 </button>
                             </form>
 
-                            <div class="text-center mt-3">
+                            <div class="text-center mt-4">
                                 <small class="text-muted">
                                     <i class="fas fa-info-circle"></i> Gunakan akun yang diberikan oleh admin desa.
                                 </small>
                             </div>
 
-                            <hr>
+                            <hr class="my-4">
                             <div class="text-center">
-                                <a class="small" href="{{ route('register') }}">Belum punya akun? Daftar di sini</a>
+                                <a class="small" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> Belum punya akun? Daftar di sini</a>
                             </div>
                         </div>
                     </div>
@@ -753,6 +927,22 @@
     <script src="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.1.4/js/sb-admin-2.min.js"></script>
 
     <script>
+        // Toggle password visibility
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
         // Efek ripple untuk tombol login
         document.querySelector('.btn-primary').addEventListener('click', function(e) {
             // Hanya tambahkan efek jika tombol diklik (bukan submit form)
