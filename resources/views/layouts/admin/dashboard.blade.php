@@ -142,64 +142,22 @@
                 <div class="card-body">
                     <div class="quick-actions-grid">
                         <a href="{{ route('admin.warga.create') }}" class="btn btn-primary dashboard-btn">
-                            <i class="fas fa-user-plus"></i> Tambah Warga
+                            <i class="fas fa-user-plus"></i> Tambah Warga <br>
                         </a>
                         <a href="{{ route('admin.lembaga.create') }}" class="btn btn-success dashboard-btn">
-                            <i class="fas fa-plus-circle"></i> Tambah Lembaga
+                            <i class="fas fa-plus-circle"></i> Tambah Lembaga <br>
                         </a>
                         <a href="{{ route('admin.user.create') }}" class="btn btn-info dashboard-btn">
-                            <i class="fas fa-user-plus"></i> Tambah User
+                            <i class="fas fa-user-plus"></i> Tambah User <br>
                         </a>
                         @auth
-                        <a href="#" class="btn btn-danger dashboard-btn" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                        {{-- <a href="#" class="btn btn-danger dashboard-btn" data-bs-toggle="modal" data-bs-target="#logoutModal">
                             <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
+                        </a> --}}
                         @else
                         <a href="{{ route('login') }}" class="btn btn-primary dashboard-btn">
                             <i class="fas fa-sign-in-alt"></i> Login
                         </a>
-                        @endauth
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4 dashboard-card">
-                <div class="card-header py-3 dashboard-card-header">
-                    <h6 class="m-0 font-weight-bold">
-                        <i class="fas fa-info-circle"></i> Informasi Sistem
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <span class="badge badge-success dashboard-badge mr-2">Aktif</span>
-                        <span class="badge badge-warning dashboard-badge mr-2">Akan Berakhir</span>
-                        <span class="badge badge-danger dashboard-badge mr-2">Tidak Aktif</span>
-                    </div>
-                    <div class="mb-3">
-                        <span class="badge badge-primary dashboard-badge mr-2">Laki-laki</span>
-                        <span class="badge badge-pink dashboard-badge mr-2">Perempuan</span>
-                        <span class="badge badge-secondary dashboard-badge mr-2">Anggota</span>
-                    </div>
-                    <div>
-                        <span class="badge badge-success dashboard-badge mr-2">Ketua</span>
-                        <span class="badge badge-info dashboard-badge mr-2">Sekretaris</span>
-                        <span class="badge badge-warning dashboard-badge mr-2">Bendahara</span>
-                    </div>
-                    <hr>
-                    <div class="text-center">
-                        <p class="mb-1"><strong>Login sebagai:</strong></p>
-                        @auth
-                        <span class="badge badge-{{ Auth::user()->role == 'admin' ? 'success' : 'info' }} dashboard-badge">
-                            <i class="fas fa-user"></i> 
-                            {{ Auth::user()->name }} ({{ Auth::user()->role }})
-                        </span>
-                        @else
-                        <span class="badge badge-warning dashboard-badge">
-                            <i class="fas fa-user"></i> 
-                            Belum Login
-                        </span>
                         @endauth
                     </div>
                 </div>
@@ -246,38 +204,122 @@
 
 @section('scripts')
 <script>
-// JavaScript untuk interaksi dashboard
+// Enhanced 3D Dashboard Interactions
 document.addEventListener('DOMContentLoaded', function() {
-    // Animasi untuk cards saat scroll
+    // 3D Card Interactions with Mouse Move
     const cards = document.querySelectorAll('.dashboard-card');
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+    cards.forEach(card => {
+        // Mouse move effect for 3D tilt
+        card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) { // Only on desktop
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 20;
+                const rotateX = (centerY - y) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                card.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.6), 
+                                       0 0 30px rgba(59, 130, 246, 0.3)`;
             }
         });
-    }, { threshold: 0.1 });
+        
+        // Reset on mouse leave
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            card.style.boxShadow = 'var(--shadow-3d)';
+        });
+    });
 
-    cards.forEach(card => {
+    // Enhanced Button Effects
+    const buttons = document.querySelectorAll('.dashboard-btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            btn.style.setProperty('--mouse-x', `${x}px`);
+            btn.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    // Staggered Animation for Cards on Scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                }, index * 150);
+            }
+        });
+    }, observerOptions);
+
+    // Initial state for animation
+    cards.forEach((card, index) => {
         card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'all 0.6s ease-out';
+        card.style.transform = 'perspective(1000px) rotateX(10deg) rotateY(10deg) translateY(30px)';
+        card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         observer.observe(card);
     });
 
-    // Efek hover untuk badges
+    // Enhanced Badge Animations
     const badges = document.querySelectorAll('.dashboard-badge');
     badges.forEach(badge => {
         badge.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+            this.style.boxShadow = '0 6px 15px rgba(0, 0, 0, 0.3)';
         });
         
         badge.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
         });
     });
+
+    // User Session Items Animation
+    const sessionItems = document.querySelectorAll('.user-session-item');
+    sessionItems.forEach(item => {
+        item.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) {
+                const rect = item.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 30;
+                const rotateX = (centerY - y) / 30;
+                
+                item.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.02)`;
+            }
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Add floating animation to icons
+    const icons = document.querySelectorAll('.dashboard-icon');
+    icons.forEach(icon => {
+        icon.style.animation = 'float3D 3s ease-in-out infinite';
+    });
+
+    console.log('3D Dashboard initialized successfully');
 });
+
 </script>
 @endsection

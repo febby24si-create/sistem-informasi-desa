@@ -2,6 +2,7 @@
 @extends('layouts.admin.app')
 
 @section('title', 'Anggota Lembaga')
+@section('page_title', 'LEMBAGA SIPEDES')
 
 @section('content')
 <div class="container-fluid">
@@ -203,4 +204,5 @@
         </div>
     </div>
 </div>
+@endsection
 @endsection
