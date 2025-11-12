@@ -164,41 +164,66 @@
             </div>
         </div>
     </div>
+<!-- User Session Info - IMPROVED -->
+@auth
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow mb-4 user-session-container">
+            <div class="card-header py-3 user-session-header">
+                <h6 class="m-0 font-weight-bold">
+                    <i class="fas fa-user-clock"></i> Informasi Session
+                </h6>
+            </div>
 
-    <!-- User Session Info -->
-    @auth
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow mb-4 dashboard-card">
-                <div class="card-header py-3 dashboard-card-header">
-                    <h6 class="m-0 font-weight-bold">
-                        <i class="fas fa-user-clock"></i> Informasi Session
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="row text-center">
-                        <div class="col-md-4 user-session-item">
-                            <div class="user-session-value">{{ Auth::user()->name }}</div>
-                            <div class="user-session-label">Nama Pengguna</div>
+            <div class="card-body p-0">
+                <div class="user-session-grid">
+                    <!-- Nama Pengguna -->
+                    <div class="user-session-card">
+                        <div class="user-session-icon name">
+                            <i class="fas fa-user"></i>
                         </div>
-                        <div class="col-md-4 user-session-item">
-                            <div class="user-session-value">{{ Auth::user()->email }}</div>
-                            <div class="user-session-label">Email</div>
+                        <div class="user-session-value">
+                            {{ Auth::user()->name }}
                         </div>
-                        <div class="col-md-4 user-session-item">
-                            <div class="user-session-value">
-                                <span class="badge badge-{{ Auth::user()->role == 'admin' ? 'success' : 'info' }} dashboard-badge">
-                                    {{ Auth::user()->role }}
-                                </span>
-                            </div>
-                            <div class="user-session-label">Role</div>
+                        <div class="user-session-label">
+                            Nama Pengguna
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="user-session-card">
+                        <div class="user-session-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="user-session-value">
+                            {{ Auth::user()->email }}
+                        </div>
+                        <div class="user-session-label">
+                            Email
+                        </div>
+                    </div>
+
+                    <!-- Role -->
+                    <div class="user-session-card">
+                        <div class="user-session-icon role">
+                            <i class="fas fa-user-tag"></i>
+                        </div>
+                        <div class="user-session-value">
+                            <span class="badge user-session-badge badge-{{ Auth::user()->role == 'admin' ? 'success' : 'info' }}">
+                                {{ ucfirst(Auth::user()->role) }}
+                            </span>
+                        </div>
+                        <div class="user-session-label">
+                            Role
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @endauth
+</div>
+@endauth
+
 </div>
 @endsection
 

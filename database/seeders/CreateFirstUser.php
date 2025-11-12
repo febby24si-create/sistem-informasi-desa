@@ -19,5 +19,10 @@ class CreateFirstUser extends Seeder
             'email' => 'Reezyfbi@gmail.com',
             'password' => 'password123', // tidak perlu Hash::make       // tambahkan kalau kolom role ada
         ]);
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => 'admin123', // tidak perlu Hash::make       // tambahkan kalau kolom role ada
+        ]);
     }
 }
