@@ -15,23 +15,20 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- SB Admin 2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
-
     <style>
         :root {
-            --primary: #2c3e50;
-            --primary-dark: #1a252f;
-            --secondary: #3498db;
-            --accent: #9b59b6;
-            --dark: #2c3e50;
-            --light: #f8f9fc;
-            --gray: #6c757d;
-            --white: #ffffff;
-            --blue-dark: #2c3e50;
-            --blue-light: #3498db;
-            --purple: #9b59b6;
-            --teal: #1abc9c;
+            --primary: #9b59b6;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --dark-bg: #1a1a2e;
+            --dark-card: #16213e;
+            --dark-text: #e6e6e6;
+            --dark-border: #34495e;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --info: #3498db;
+            --gold: #f1c40f;
         }
 
         * {
@@ -39,14 +36,28 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a2a3a, #2c3e50, #34495e);
-            animation: backgroundShift 20s ease-in-out infinite;
+            background: linear-gradient(135deg, var(--dark-bg), #0f3460);
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow-x: hidden;
             padding: 15px;
+        }
+
+        /* Background dengan gambar kota Jepang */
+        .japan-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(26, 26, 46, 0.85), rgba(15, 52, 96, 0.9)),
+                url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            animation: backgroundPan 30s ease-in-out infinite;
         }
 
         /* Background Animation Elements */
@@ -65,7 +76,7 @@
             display: block;
             width: 20px;
             height: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(155, 89, 182, 0.2);
             animation: float 25s linear infinite;
             bottom: -150px;
             border-radius: 50%;
@@ -77,7 +88,6 @@
             height: 80px;
             animation-delay: 0s;
             animation-duration: 20s;
-            background: rgba(52, 152, 219, 0.2);
         }
 
         .bg-animation span:nth-child(2) {
@@ -86,7 +96,6 @@
             height: 20px;
             animation-delay: 2s;
             animation-duration: 12s;
-            background: rgba(155, 89, 182, 0.2);
         }
 
         .bg-animation span:nth-child(3) {
@@ -95,7 +104,6 @@
             height: 60px;
             animation-delay: 4s;
             animation-duration: 18s;
-            background: rgba(26, 188, 156, 0.2);
         }
 
         .bg-animation span:nth-child(4) {
@@ -104,58 +112,49 @@
             height: 60px;
             animation-delay: 0s;
             animation-duration: 18s;
-            background: rgba(52, 152, 219, 0.2);
-        }
-
-        .bg-animation span:nth-child(5) {
-            left: 65%;
-            width: 40px;
-            height: 40px;
-            animation-delay: 0s;
-            animation-duration: 15s;
-            background: rgba(155, 89, 182, 0.2);
         }
 
         .login-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .login-card {
-            border-radius: 18px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.3),
-                0 5px 15px rgba(0, 0, 0, 0.2);
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(22, 33, 62, 0.7);
             animation: cardEntrance 1s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--dark-border);
         }
 
         .login-card:hover {
             transform: translateY(-5px);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 10px 20px rgba(0, 0, 0, 0.25);
+                0 20px 40px rgba(0, 0, 0, 0.6),
+                0 10px 20px rgba(0, 0, 0, 0.4);
         }
 
         .login-left {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.9)), 
-                        url('https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+            background: 
+                linear-gradient(rgba(155, 89, 182, 0.8), rgba(44, 62, 80, 0.9)),
+                url('https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') no-repeat center center;
             background-size: cover;
-            position: relative;
-            color: #ffffff;
+            color: var(--dark-text);
             text-align: center;
             padding: 40px 25px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             overflow: hidden;
+            position: relative;
         }
 
         .login-left::before {
@@ -163,7 +162,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.8), rgba(52, 73, 94, 0.9));
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.7), rgba(44, 62, 80, 0.9));
             animation: overlayFade 1.5s ease-out 0.5s forwards;
             opacity: 0;
         }
@@ -193,20 +192,24 @@
             animation: logoFloat 4s ease-in-out infinite;
         }
 
-        .logo-container i {
-            font-size: 70px;
-            color: #ffffff;
-            filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.6));
+        /* Logo Rumah Gadang */
+        .rumah-gadang {
+            font-size: 80px;
+            color: var(--gold);
             margin-bottom: 12px;
             transition: all 0.5s ease;
-            background: linear-gradient(135deg, #3498db, #9b59b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+            position: relative;
         }
 
-        .logo-container:hover i {
-            transform: scale(1.1) rotate(5deg);
-            filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.8));
+        .rumah-gadang::before {
+            content: "🏠";
+            font-size: 80px;
+        }
+
+        .logo-container:hover .rumah-gadang {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.5));
         }
 
         .login-left h3 {
@@ -234,40 +237,13 @@
             font-size: 12px;
         }
 
-        .features-list {
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 6px 10px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            background: #ffffff1a;
-            font-size: 12px;
-            color: #ffffff;
-        }
-
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(5px);
-        }
-
-        .feature-item i {
-            margin-right: 8px;
-            font-size: 14px;
-            color: #3498db;
-        }
-
         .login-right {
             padding: 35px 30px;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--dark-card);
             display: flex;
             flex-direction: column;
             justify-content: center;
+            color: var(--dark-text);
         }
 
         .login-header {
@@ -277,7 +253,7 @@
 
         .login-header h4 {
             font-weight: 700;
-            color: var(--blue-dark);
+            color: var(--dark-text);
             margin-bottom: 6px;
             position: relative;
             display: inline-block;
@@ -292,12 +268,12 @@
             transform: translateX(-50%);
             width: 40px;
             height: 3px;
-            background: linear-gradient(to right, var(--blue-dark), var(--blue-light));
+            background: linear-gradient(to right, var(--primary), var(--accent));
             border-radius: 3px;
         }
 
         .login-header p {
-            color: #666;
+            color: #b8b8b8;
             font-size: 14px;
             margin-top: 15px;
         }
@@ -310,7 +286,7 @@
 
         .form-label {
             font-weight: 500;
-            color: var(--blue-dark);
+            color: var(--dark-text);
             margin-bottom: 0.5rem;
             display: block;
             font-size: 14px;
@@ -325,35 +301,35 @@
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--blue-light);
+            color: var(--primary);
             z-index: 5;
         }
 
         .form-control {
             transition: all 0.3s ease;
-            border: 2px solid #e0e0e0;
+            border: 2px solid var(--dark-border);
             border-radius: 8px;
             padding: 10px 12px 10px 40px;
-            background: #ffffff;
+            background: rgba(30, 40, 70, 0.7);
             font-size: 14px;
-            color: #333;
+            color: var(--dark-text);
             height: 48px;
         }
 
         .form-control::placeholder {
-            color: #999;
+            color: #8a8a8a;
         }
 
         .form-control:focus {
-            border-color: var(--blue-light);
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(155, 89, 182, 0.25);
             transform: translateY(-2px);
-            background: #ffffff;
-            color: #333;
+            background: rgba(40, 50, 80, 0.7);
+            color: var(--dark-text);
         }
 
         .form-control:hover {
-            border-color: #b8b8b8;
+            border-color: #5a6c7d;
         }
 
         .password-toggle {
@@ -363,17 +339,17 @@
             transform: translateY(-50%);
             background: none;
             border: none;
-            color: var(--blue-light);
+            color: var(--primary);
             cursor: pointer;
             z-index: 5;
         }
 
         .password-toggle:hover {
-            color: var(--purple);
+            color: var(--accent);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--blue-dark), var(--blue-light));
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             border: none;
             border-radius: 8px;
             padding: 12px;
@@ -382,7 +358,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             color: white;
             height: 48px;
             display: flex;
@@ -392,8 +368,8 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, var(--blue-light), var(--purple));
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, var(--accent), var(--primary));
             color: white;
         }
 
@@ -409,42 +385,42 @@
             padding: 10px 15px;
             font-size: 14px;
             margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: #333;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--dark-text);
             border-radius: 8px;
         }
 
         .alert-success {
-            background: rgba(40, 167, 69, 0.2);
-            border-color: rgba(40, 167, 69, 0.3);
-            color: #155724;
+            background: rgba(39, 174, 96, 0.2);
+            border-color: rgba(39, 174, 96, 0.3);
+            color: #a8e6b8;
         }
 
         .alert-danger {
-            background: rgba(220, 53, 69, 0.2);
-            border-color: rgba(220, 53, 69, 0.3);
-            color: #721c24;
+            background: rgba(231, 76, 60, 0.2);
+            border-color: rgba(231, 76, 60, 0.3);
+            color: #ffb8b8;
         }
 
         .text-muted {
-            color: #6c757d !important;
+            color: #8a8a8a !important;
         }
 
         .small {
-            color: #6c757d;
+            color: #8a8a8a;
         }
 
         hr {
-            border-color: rgba(0, 0, 0, 0.1);
+            border-color: var(--dark-border);
         }
 
         a {
-            color: var(--blue-light);
+            color: var(--primary);
         }
 
         a:hover {
-            color: var(--purple);
+            color: var(--accent);
         }
 
         /* Animasi Keyframes */
@@ -491,18 +467,6 @@
             }
         }
 
-        @keyframes backgroundShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
         @keyframes float {
             0% {
                 transform: translateY(0) rotate(0deg);
@@ -511,6 +475,18 @@
             100% {
                 transform: translateY(-1000px) rotate(720deg);
                 opacity: 0;
+            }
+        }
+
+        @keyframes backgroundPan {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
             }
         }
 
@@ -600,106 +576,118 @@
             }
         }
 
-        /* Additional styling */
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 15px 0;
-        }
-        
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        .divider span {
-            padding: 0 10px;
-            color: #6c757d;
-            font-size: 13px;
-        }
-
         .copyright {
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
             font-size: 13px;
             margin-top: 20px;
-            color: white;
+            color: #b8b8b8;
         }
 
-        /* Cloud Animation */
-        .clouds {
+        /* Sakura Animation */
+        .sakura {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            top: -50px;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 183, 197, 0.7);
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(45deg);
+            animation: sakuraFall 15s linear infinite;
             z-index: -1;
         }
 
-        .cloud {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 100px;
-            animation: cloudMove 40s linear infinite;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        .sakura:nth-child(1) {
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 20s;
         }
 
-        .cloud:before,
-        .cloud:after {
-            content: '';
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+        .sakura:nth-child(2) {
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 18s;
         }
 
-        .cloud:before {
-            width: 60px;
-            height: 60px;
-            top: -30px;
-            left: 20px;
+        .sakura:nth-child(3) {
+            left: 30%;
+            animation-delay: 4s;
+            animation-duration: 15s;
         }
 
-        .cloud:after {
+        .sakura:nth-child(4) {
+            left: 40%;
+            animation-delay: 6s;
+            animation-duration: 22s;
+        }
+
+        .sakura:nth-child(5) {
+            left: 50%;
+            animation-delay: 8s;
+            animation-duration: 17s;
+        }
+
+        .sakura:nth-child(6) {
+            left: 60%;
+            animation-delay: 10s;
+            animation-duration: 19s;
+        }
+
+        .sakura:nth-child(7) {
+            left: 70%;
+            animation-delay: 12s;
+            animation-duration: 21s;
+        }
+
+        .sakura:nth-child(8) {
+            left: 80%;
+            animation-delay: 14s;
+            animation-duration: 16s;
+        }
+
+        @keyframes sakuraFall {
+            0% {
+                top: -50px;
+                transform: rotate(45deg) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                transform: rotate(45deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Custom Rumah Gadang Icon */
+        .custom-rumah-gadang {
             width: 80px;
             height: 80px;
-            top: -40px;
-            right: 20px;
+            margin: 0 auto 15px;
+            position: relative;
+            background: linear-gradient(45deg, var(--gold), #e67e22);
+            clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .cloud1 {
-            width: 120px;
-            height: 40px;
-            top: 20%;
-            animation-duration: 50s;
-            animation-delay: 0s;
+        .custom-rumah-gadang::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: var(--dark-card);
+            clip-path: polygon(0% 100%, 50% 20%, 100% 100%);
         }
 
-        .cloud2 {
-            width: 160px;
-            height: 50px;
-            top: 30%;
-            animation-duration: 60s;
-            animation-delay: 10s;
-        }
-
-        .cloud3 {
-            width: 100px;
-            height: 30px;
-            top: 15%;
-            animation-duration: 45s;
-            animation-delay: 5s;
-        }
-
-        @keyframes cloudMove {
-            from {
-                left: -200px;
-            }
-            to {
-                left: 100%;
-            }
+        .custom-rumah-gadang::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 15px;
+            right: 15px;
+            height: 10px;
+            background: #8B4513;
+            border-radius: 5px;
         }
 
         /* Responsive adjustments */
@@ -744,8 +732,13 @@
                 padding: 20px 15px;
             }
             
-            .logo-container i {
-                font-size: 50px;
+            .rumah-gadang {
+                font-size: 60px;
+            }
+            
+            .custom-rumah-gadang {
+                width: 60px;
+                height: 60px;
             }
             
             .login-left h3 {
@@ -776,20 +769,27 @@
 </head>
 
 <body>
+    <!-- Background dengan gambar kota Jepang -->
+    <div class="japan-bg"></div>
+
+    <!-- Sakura Animation -->
+    <div class="sakura-container">
+        <div class="sakura"></div>
+        <div class="sakura"></div>
+        <div class="sakura"></div>
+        <div class="sakura"></div>
+        <div class="sakura"></div>
+        <div class="sakura"></div>
+        <div class="sakura"></div>
+        <div class="sakura"></div>
+    </div>
+
     <!-- Background Animation -->
     <div class="bg-animation">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
-        <span></span>
-    </div>
-
-    <!-- Cloud Animation -->
-    <div class="clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
     </div>
 
     <div class="login-container">
@@ -801,7 +801,8 @@
                         <div class="col-lg-5 d-flex align-items-center login-left">
                             <div class="login-left-content w-100">
                                 <div class="logo-container mb-3">
-                                    <i class="fas fa-city"></i>
+                                    <!-- Logo Rumah Gadang Custom -->
+                                    <div class="custom-rumah-gadang"></div>
                                     <h3>SIPEDES</h3>
                                     <p><b>Sistem Informasi Pemerintahan Desa</b></p>
                                 </div>
@@ -812,31 +813,6 @@
                                     <p><i class="fas fa-phone"></i> 088708230676 </p>
                                     <p><i class="fas fa-envelope"></i> desa.kotobaru@pemdes.go.id</p>
                                 </div>
-
-                                <hr class="border-light my-3">
-
-                                <div class="features-list">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Pelayanan publik berbasis digital</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Mempermudah akses informasi warga</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>Administrasi desa yang terintegrasi</span>
-                                    </div>
-                                </div>
-
-                                <hr class="border-light my-3">
-
-                                <p class="small text-center mt-2">
-                                    SIPEDES (Sistem Informasi Pemerintahan Desa) adalah platform digital yang membantu pemerintah desa
-                                    dalam mengelola administrasi, data warga, dan pelayanan publik secara efisien serta transparan.
-                                    Mendukung terwujudnya desa modern dan terintegrasi.
-                                </p>
                             </div>
                         </div>
 
@@ -913,8 +889,8 @@
                     </div>
                 </div>
 
-                <div class="text-center mt-3 text-white copyright">
-                    <span>© {{ date('Y') }} Pemerintah Desa Koto Baru III Jorong — SIPEDES (Sistem Informasi Pemerintahan Desa)</span>
+                <div class="text-center mt-3 copyright">
+                    <span>© {{ date('Y') }} Pemerintah Desa Koto Baru III Jorong — SIPEDES</span>
                 </div>
             </div>
         </div>
@@ -923,8 +899,6 @@
     <!-- Script -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/startbootstrap-sb-admin-2@4.1.4/js/sb-admin-2.min.js"></script>
 
     <script>
         // Toggle password visibility
