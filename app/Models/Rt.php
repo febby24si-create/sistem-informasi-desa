@@ -1,5 +1,5 @@
 <?php
-// app/Models/Rt.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,27 +9,45 @@ class Rt extends Model
 {
     use HasFactory;
 
+    protected $table = 'rts';
+    protected $primaryKey = 'id';
+
     protected $fillable = [
-        'rw_id',
+        'id_rw',
         'nomor_rt',
-        'ketua_rt_warga_id',
+        'nama_ketua_rt',
+        'kontak_rt',
+        'alamat_rt',
+        'status'
     ];
 
-    // Relasi ke RW
+    // Relasi dengan RW
     public function rw()
     {
-        return $this->belongsTo(Rw::class, 'rw_id');
+        return $this->belongsTo(Rw::class, 'rw_id', 'id');
     }
 
-    // Relasi ke ketua RT (warga)
-    public function ketua()
-    {
-        return $this->belongsTo(Warga::class, 'ketua_rt_warga_id');
-    }
-
-    // Relasi ke warga
+    // Relasi dengan Warga
     public function wargas()
     {
-        return $this->hasMany(Warga::class, 'rt_id');
+        return $this->hasMany(Warga::class, 'rt_id', 'id');
+    }
+
+    // Scope active
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'Aktif');
+    }
+
+    // Accessor untuk nomor RT dengan format
+    public function getNomorRtFormattedAttribute()
+    {
+        return 'RT ' . str_pad($this->nomor_rt, 3, '0', STR_PAD_LEFT);
+    }
+
+    // Accessor untuk nama lengkap dengan RW
+    public function getNamaLengkapAttribute()
+    {
+        return $this->nomor_rt_formatted . ' - ' . $this->rw->nomor_rw_formatted;
     }
 }

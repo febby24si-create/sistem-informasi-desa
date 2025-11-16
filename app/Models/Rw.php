@@ -1,5 +1,5 @@
 <?php
-// app/Models/Rw.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,26 +9,38 @@ class Rw extends Model
 {
     use HasFactory;
 
+    protected $table = 'rws';
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'nomor_rw',
-        'ketua_rw_warga_id',
+        'nama_ketua_rw',
+        'kontak_rw',
+        'alamat_rw',
+        'status'
     ];
 
-    // Relasi ke ketua RW (warga)
-    public function ketua()
-    {
-        return $this->belongsTo(Warga::class, 'ketua_rw_warga_id');
-    }
-
-    // Relasi ke RT
+    // Relasi dengan RT
     public function rts()
     {
-        return $this->hasMany(Rt::class, 'rw_id');
+        return $this->hasMany(Rt::class, 'rw_id', 'id');
     }
 
-    // Relasi ke warga
+    // Relasi dengan Warga
     public function wargas()
     {
-        return $this->hasMany(Warga::class, 'rw_id');
+        return $this->hasMany(Warga::class, 'rw_id', 'id');
+    }
+
+    // Scope active
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'Aktif');
+    }
+
+    // Accessor untuk nomor RW dengan format
+    public function getNomorRwFormattedAttribute()
+    {
+        return 'RW ' . str_pad($this->nomor_rw, 2, '0', STR_PAD_LEFT);
     }
 }

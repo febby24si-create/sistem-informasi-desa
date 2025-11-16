@@ -1378,3 +1378,43 @@
     opacity: 0.8;
     text-shadow: none;
 }
+
+:root {
+--bg-body: #f8f9fc;
+--bg-card: #ffffff;
+--text-color: #3a3b45;
+--header-bg: #ffffff;
+--sidebar-bg: #4e73df;
+--transition-speed: 0.35s;
+}
+
+
+/* Dark Mode Variables */
+body.dark-mode {
+--bg-body: #1a1c23;
+--bg-card: #242631;
+--text-color: #000000;
+--header-bg: #1f212b;
+--sidebar-bg: #2d2f3b;
+}
+
+
+/* Apply Theme */
+body {
+background: var(--bg-body) !important;
+color: var(--text-color) !important;
+transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+
+.card, .modal-content, .dropdown-menu, #content-wrapper, .navbar {
+background-color: var(--bg-card) !important;
+color: var(--text-color) !important;
+transition: background var(--transition-speed), color var(--transition-speed);
+}
+
+
+#accordionSidebar {
+background-color: var(--sidebar-bg) !important;
+transition: background var(--transition-speed);
+}

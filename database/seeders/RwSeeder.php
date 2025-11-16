@@ -4,34 +4,26 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Faker\Factory as Faker;
 
 class RwSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run()
     {
-        // Menggunakan DB::table('rws')->insert
+        $faker = Faker::create();
 
-        // Looping untuk membuat 5 RW (misalnya)
-        foreach (range(1, 5) as $i) {
-            // Konversi angka ke format 001, 002, dst.
-            $nomor = str_pad($i, 3, '0', STR_PAD_LEFT);
+        $data = [];
+        $rwNumbers = range(1, 5); // Buat 5 RW
 
-            DB::table('rws')->insert([
-                'id' => $i,
-
-                // KOLOM KOREKSI: Mengubah 'nama_rw' menjadi 'nomor_rw'
-                'nomor_rw' => 'RW ' . $nomor,
-
-                // Kolom ketua_rw_warga_id kita biarkan NULL dulu karena merujuk ke tabel 'wargas'
-                'ketua_rw_warga_id' => null,
-
+        foreach ($rwNumbers as $nomor) {
+            $data[] = [
+                'nomor_rw' => str_pad($nomor, 3, '0', STR_PAD_LEFT),
+                'ketua_rw_warga_id' => null, // Akan di-set setelah warga dibuat
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]);
+            ];
         }
+
+        DB::table('rws')->insert($data);
     }
 }

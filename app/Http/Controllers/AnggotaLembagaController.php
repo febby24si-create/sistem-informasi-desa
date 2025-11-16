@@ -17,7 +17,7 @@ class AnggotaLembagaController extends Controller
             ->where('lembaga_id', $lembaga_id)
             ->get();
 
-        return view('pages.lembaga.anggota_index', compact('lembaga', 'anggotas'));
+        return view('pages.anggota.anggota_index', compact('lembaga', 'anggotas'));
     }
 
     public function create($lembaga_id)
@@ -26,7 +26,7 @@ class AnggotaLembagaController extends Controller
         $wargas = Warga::all();
         $jabatans = JabatanLembaga::where('lembaga_id', $lembaga_id)->get();
 
-        return view('pages.lembaga.anggota_create', compact('lembaga', 'wargas', 'jabatans'));
+        return view('pages.anggota.anggota_create', compact('lembaga', 'wargas', 'jabatans'));
     }
 
     // public function store(Request $request, $lembaga_id)
@@ -94,7 +94,7 @@ class AnggotaLembagaController extends Controller
         $wargas = Warga::all();
         $jabatans = JabatanLembaga::where('lembaga_id', $lembaga_id)->get();
 
-        return view('pages.lembaga.anggota_edit', compact('lembaga', 'anggota', 'wargas', 'jabatans'));
+        return view('pages.anggota.anggota_edit', compact('lembaga', 'anggota', 'wargas', 'jabatans'));
     }
 
     // public function update(Request $request, $lembaga_id, $id)

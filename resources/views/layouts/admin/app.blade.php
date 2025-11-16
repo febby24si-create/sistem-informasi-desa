@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Sistem Informasi Pemerintahan Desa - SIPEDES">
+    <meta name="author" content="Tim SIPEDES">
     <title>SIPEDES - @yield('title')</title>
     
     @include('layouts.admin.css')
@@ -37,13 +37,12 @@
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-    </a>
+    </a><br>
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/628708230676?text=Halo%20Admin%20SIPEDES,%20saya%20ingin%20bertanya." 
         class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
         <i class="fab fa-whatsapp whatsapp-icon"></i>
     </a>
-
 
     <!-- Logout Modal-->
     @auth

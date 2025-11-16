@@ -5,8 +5,9 @@
 
 @section('content')
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">
-        <i class="fas fa-users-cog"></i> Manajemen User
+    
+    <h1 class="h3 mb-4" style="color: #ffffff;">
+       <i class="fas fa-user"></i> Manajemen User
     </h1>
 
     <div class="card shadow mb-4">

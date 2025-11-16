@@ -44,7 +44,7 @@ class JabatanLembagaController extends Controller
         $lembaga = LembagaDesa::findOrFail($lembaga_id);
         $jabatan = JabatanLembaga::findOrFail($id);
 
-        return view('jabatan_lembaga.edit', compact('lembaga', 'jabatan'));
+        return view('pages.lembaga.edit', compact('lembaga', 'jabatan'));
     }
 
     public function update(Request $request, $lembaga_id, $id)

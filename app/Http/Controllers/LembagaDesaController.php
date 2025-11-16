@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LembagaDesa;
 use Illuminate\Http\Request;
 use App\Models\JabatanLembaga;
+use Illuminate\Support\Facades\Storage;
 
 class LembagaDesaController extends Controller
 {
@@ -25,25 +26,17 @@ class LembagaDesaController extends Controller
             'nama_lembaga' => 'required|max:100',
             'deskripsi' => 'required',
             'kontak' => 'nullable|max:20',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        LembagaDesa::create($request->all());
+        $data = $request->all();
 
-        // BUAT JABATAN OTOMATIS saat lembaga dibuat
-        // $defaultJabatans = [
-        //     ['nama_jabatan' => 'Ketua', 'level' => 'Ketua'],
-        //     ['nama_jabatan' => 'Sekretaris', 'level' => 'Sekretaris'],
-        //     ['nama_jabatan' => 'Bendahara', 'level' => 'Bendahara'],
-        //     ['nama_jabatan' => 'Anggota', 'level' => 'Anggota'],
-        // ];
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('lembaga_desa', 'public');
+        }
 
-        // foreach ($defaultJabatans as $jabatan) {
-        //     JabatanLembaga::create([
-        //         'lembaga_id' => $lembaga->id,
-        //         'nama_jabatan' => $jabatan['nama_jabatan'],
-        //         'level' => $jabatan['level'],
-        //     ]);
-        // }
+        LembagaDesa::create($data);
+
         return redirect()->route('admin.lembaga.index')
             ->with('success', 'Lembaga desa berhasil ditambahkan.');
     }
@@ -54,9 +47,11 @@ class LembagaDesaController extends Controller
         return view('pages.lembaga.show', compact('lembaga'));
     }
 
+    // Tambahkan method edit yang ini di LembagaDesaController
     public function edit(LembagaDesa $lembaga)
     {
-        return view('pages.lembaga.anggota_edit', compact('lembaga'));
+        $lembaga->loadCount(['anggotas', 'jabatans']);
+        return view('pages.lembaga.edit', compact('lembaga'));
     }
 
     public function update(Request $request, LembagaDesa $lembaga)
@@ -65,16 +60,35 @@ class LembagaDesaController extends Controller
             'nama_lembaga' => 'required|max:100',
             'deskripsi' => 'required',
             'kontak' => 'nullable|max:20',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $lembaga->update($request->all());
+        $data = $request->except('remove_logo');
+
+        // Handle logo removal
+        if ($request->has('remove_logo') && $lembaga->logo) {
+            Storage::disk('public')->delete($lembaga->logo);
+            $data['logo'] = null;
+        }
+        // Handle new logo upload
+        if ($request->hasFile('logo')) {
+            if ($lembaga->logo) {
+                Storage::disk('public')->delete($lembaga->logo);
+            }
+            $data['logo'] = $request->file('logo')->store('lembaga_desa', 'public');
+        }
+
+        $lembaga->update($data);
 
         return redirect()->route('admin.lembaga.index')
             ->with('success', 'Lembaga desa berhasil diperbarui.');
     }
-
     public function destroy(LembagaDesa $lembaga)
     {
+        if ($lembaga->logo) {
+            Storage::disk('public')->delete($lembaga->logo);
+        }
+
         $lembaga->delete();
 
         return redirect()->route('admin.lembaga.index')

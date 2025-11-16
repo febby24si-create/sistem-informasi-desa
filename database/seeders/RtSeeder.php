@@ -4,27 +4,39 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class RtSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        $jumlah_rt = 10;
-        $jumlah_rw = 5;
+        $faker = Faker::create();
 
-        foreach (range(1, $jumlah_rt) as $i) {
-            $rw_id = ($i % $jumlah_rw) + 1;
-            $nomor = str_pad($i, 3, '0', STR_PAD_LEFT);
+        // Mengambil ID RW yang sudah dibuat
+        $rwIds = DB::table('rws')->pluck('id')->toArray();
 
-            DB::table('rts')->updateOrInsert(
-                ['nomor_rt' => 'RT ' . $nomor],
-                [
-                    'rw_id' => $rw_id,
-                    'ketua_rt_warga_id' => null,
-                    'updated_at' => now(),
-                    'created_at' => now(),
-                ]
-            );
+        if (empty($rwIds)) {
+            echo "Peringatan: Tabel rws kosong. Seeding RtSeeder dibatalkan.\n";
+            return;
         }
+
+        $data = [];
+
+        foreach ($rwIds as $rwId) {
+            // Setiap RW memiliki 3-5 RT
+            $jumlahRt = $faker->numberBetween(3, 5);
+
+            for ($i = 1; $i <= $jumlahRt; $i++) {
+                $data[] = [
+                    'rw_id' => $rwId,
+                    'nomor_rt' => str_pad($i, 3, '0', STR_PAD_LEFT),
+                    'ketua_rt_warga_id' => null, // Akan di-set setelah warga dibuat
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+        }
+
+        DB::table('rts')->insert($data);
     }
 }

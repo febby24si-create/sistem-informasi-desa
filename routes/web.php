@@ -1,13 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RtController;
+use App\Http\Controllers\RwController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LembagaDesaController;
+use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\AnggotaLembagaController;
 use App\Http\Controllers\JabatanLembagaController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
 // Public Routes (bisa diakses tanpa login)
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -24,6 +27,38 @@ Route::get('/', function () {
 // Protected Routes (harus login)
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    // PERANGKAT DESA - BARU
+    Route::prefix('perangkat-desa')->group(function () {
+        Route::get('/', [PerangkatDesaController::class, 'index'])->name('admin.perangkat_desa.index');
+        Route::get('/create', [PerangkatDesaController::class, 'create'])->name('admin.perangkat_desa.create');
+        Route::post('/', [PerangkatDesaController::class, 'store'])->name('admin.perangkat_desa.store');
+        Route::get('/{perangkatDesa}', [PerangkatDesaController::class, 'show'])->name('admin.perangkat_desa.show');
+        Route::get('/{perangkatDesa}/edit', [PerangkatDesaController::class, 'edit'])->name('admin.perangkat_desa.edit');
+        Route::put('/{perangkatDesa}', [PerangkatDesaController::class, 'update'])->name('admin.perangkat_desa.update');
+        Route::delete('/{perangkatDesa}', [PerangkatDesaController::class, 'destroy'])->name('admin.perangkat_desa.destroy');
+    });
+    // RW - BARU
+    Route::prefix('rw')->group(function () {
+        Route::get('/', [RwController::class, 'index'])->name('admin.rw.index');
+        Route::get('/create', [RwController::class, 'create'])->name('admin.rw.create');
+        Route::post('/', [RwController::class, 'store'])->name('admin.rw.store');
+        Route::get('/{rw}/edit', [RwController::class, 'edit'])->name('admin.rw.edit');
+        Route::put('/{rw}', [RwController::class, 'update'])->name('admin.rw.update');
+        Route::delete('/{rw}', [RwController::class, 'destroy'])->name('admin.rw.destroy');
+        Route::post('/{rw}/set-ketua', [RwController::class, 'setKetua'])->name('admin.rw.set_ketua');
+    });
+    // RT - BARU
+    Route::prefix('rt')->group(function () {
+        Route::get('/', [RtController::class, 'index'])->name('admin.rt.index');
+        Route::get('/create', [RtController::class, 'create'])->name('admin.rt.create');
+        Route::post('/', [RtController::class, 'store'])->name('admin.rt.store');
+        Route::get('/{rt}/edit', [RtController::class, 'edit'])->name('admin.rt.edit');
+        Route::put('/{rt}', [RtController::class, 'update'])->name('admin.rt.update');
+        Route::delete('/{rt}', [RtController::class, 'destroy'])->name('admin.rt.destroy');
+        Route::post('/{rt}/set-ketua', [RtController::class, 'setKetua'])->name('admin.rt.set_ketua');
+    });
+
 
     // Warga 
     Route::prefix('warga')->group(function () {
@@ -45,6 +80,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{lembaga}/edit', [LembagaDesaController::class, 'edit'])->name('admin.lembaga.edit');
         Route::put('/{lembaga}', [LembagaDesaController::class, 'update'])->name('admin.lembaga.update');
         Route::delete('/{lembaga}', [LembagaDesaController::class, 'destroy'])->name('admin.lembaga.destroy');
+        Route::get('/lembaga/{lembaga}/edit', [LembagaDesaController::class, 'edit'])->name('admin.lembaga.edit');
+        Route::put('/lembaga/{lembaga}', [LembagaDesaController::class, 'update'])->name('admin.lembaga.update');
 
         // Anggota Lembaga 
         Route::prefix('{lembaga_id}/anggota')->group(function () {
@@ -76,6 +113,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{user}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
         Route::put('/{user}', [UserController::class, 'update'])->name('admin.user.update');
         Route::delete('/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+    });
+    // Routes Wilayah
+    Route::prefix('wilayah')->name('admin.')->group(function () {
+        // RW Routes
+        Route::resource('rw', 'RwController')->except(['show']);
+        Route::get('rw/{id}', 'RwController@show')->name('rw.show');
+
+        // RT Routes  
+        Route::resource('rt', 'RtController')->except(['show']);
+        Route::get('rt/{id}', 'RtController@show')->name('rt.show');
+
+        // AJAX Routes
+        Route::get('rt/get-by-rw/{rwId}', 'RtController@getByRw')->name('rt.get-by-rw');
     });
 });
 

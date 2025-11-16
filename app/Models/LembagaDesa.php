@@ -13,6 +13,7 @@ class LembagaDesa extends Model
         'nama_lembaga',
         'deskripsi',
         'kontak',
+        'logo',
     ];
 
     // Relasi ke jabatan lembaga

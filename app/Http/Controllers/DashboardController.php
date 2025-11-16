@@ -2,11 +2,12 @@
 // app/Http/Controllers/DashboardController.php
 namespace App\Http\Controllers;
 
+use App\Models\Rt;
+use App\Models\Rw;
 use App\Models\Warga;
 use App\Models\LembagaDesa;
-use App\Models\Rw;
-use App\Models\Rt;
 use Illuminate\Http\Request;
+use App\Models\PerangkatDesa;
 
 class DashboardController extends Controller
 {
@@ -17,6 +18,7 @@ class DashboardController extends Controller
             'totalLembaga' => LembagaDesa::count(),
             'totalRw' => Rw::count(),
             'totalRt' => Rt::count(),
+            'totalPerangkat' => PerangkatDesa::count(),
         ];
 
         return view('layouts.admin.dashboard', $data);

@@ -10,51 +10,40 @@ class JabatanLembagaSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create('id_ID');
+        $faker = Faker::create();
 
-        // Mengambil ID Lembaga yang sudah ada (lebih aman)
+        // Mengambil ID lembaga yang sudah dibuat
         $lembagaIds = DB::table('lembaga_desas')->pluck('id')->toArray();
 
         if (empty($lembagaIds)) {
-            echo "Peringatan: Tabel 'lembaga_desas' kosong. Seeding JabatanLembagaSeeder dibatalkan.\n";
+            echo "Peringatan: Tabel lembaga_desas kosong. Seeding JabatanLembagaSeeder dibatalkan.\n";
             return;
         }
 
         $data = [];
-        $enumLevels = ['Ketua', 'Sekretaris', 'Bendahara', 'Anggota', 'Lainnya'];
 
-        // Daftar Jabatan umum yang akan dikombinasikan dengan ID Lembaga
-        $jabatanTemplates = [
-            // Jabatan Level Tinggi
-            ['nama' => 'Ketua Umum', 'level' => 'Ketua'],
-            ['nama' => 'Sekretaris Jenderal', 'level' => 'Sekretaris'],
-            ['nama' => 'Bendahara Umum', 'level' => 'Bendahara'],
-            
-            // Jabatan Anggota/Koordinator
-            ['nama' => 'Koordinator Bidang Pendidikan', 'level' => 'Anggota'],
-            ['nama' => 'Kepala Divisi Keuangan', 'level' => 'Bendahara'],
-            ['nama' => 'Wakil Ketua I', 'level' => 'Ketua'],
-            ['nama' => 'Humas & Publikasi', 'level' => 'Lainnya'],
-        ];
+        foreach ($lembagaIds as $lembagaId) {
+            // Jabatan default untuk setiap lembaga
+            $defaultJabatans = [
+                ['nama_jabatan' => 'Ketua', 'level' => 'Ketua'],
+                ['nama_jabatan' => 'Wakil Ketua', 'level' => 'Ketua'],
+                ['nama_jabatan' => 'Sekretaris', 'level' => 'Sekretaris'],
+                ['nama_jabatan' => 'Bendahara', 'level' => 'Bendahara'],
+                ['nama_jabatan' => 'Anggota', 'level' => 'Anggota'],
+                ['nama_jabatan' => 'Koordinator', 'level' => 'Lainnya'],
+            ];
 
-        // Buat kombinasi unik untuk mengisi jabatan di setiap Lembaga
-        foreach ($lembagaIds as $lembaga_id) {
-            
-            // Ambil 4-7 jabatan acak untuk setiap lembaga
-            $selectedTemplates = $faker->randomElements($jabatanTemplates, $faker->numberBetween(4, 7), true);
-
-            foreach ($selectedTemplates as $template) {
-                
+            foreach ($defaultJabatans as $jabatan) {
                 $data[] = [
-                    'lembaga_id' => $lembaga_id,
-                    'nama_jabatan' => $template['nama'],
-                    'level' => $template['level'],
+                    'lembaga_id' => $lembagaId,
+                    'nama_jabatan' => $jabatan['nama_jabatan'],
+                    'level' => $jabatan['level'],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
             }
         }
-        
+
         DB::table('jabatan_lembagas')->insert($data);
     }
 }

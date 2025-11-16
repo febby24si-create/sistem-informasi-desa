@@ -5,8 +5,8 @@
 @section('page_title', 'DATA SIPEDES')
 @section('content')
 
-    <h1 class="h3 mb-4 text-gray-800">
-        <i class="fas fa-users"></i> Data Warga
+    <h1 class="h3 mb-4" style="color: #ffffff;">
+       <i class="fas fa-users"></i> Data Warga
     </h1>
 
     <div class="card shadow mb-4">
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="card-body">
-            {{-- <!-- Form Pencarian -->
+            <!-- Form Pencarian -->
             <form action="{{ route('admin.warga.index') }}" method="GET" class="mb-4">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cari berdasarkan nama, NIK, atau alamat..." 
@@ -34,7 +34,7 @@
                         </button>
                     </div>
                 </div>
-            </form> --}}
+            </form>
 
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
