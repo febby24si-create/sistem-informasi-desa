@@ -11,7 +11,7 @@ class LembagaDesaController extends Controller
 {
     public function index()
     {
-        $lembagas = LembagaDesa::withCount(['anggotas', 'jabatans'])->with('anggotas', 'jabatans')->get();
+        $lembagas = LembagaDesa::withCount(['anggotas', 'jabatans'])->with('anggotas', 'jabatans')->paginate(8);
         return view('pages.lembaga.index', compact('lembagas'));
     }
 

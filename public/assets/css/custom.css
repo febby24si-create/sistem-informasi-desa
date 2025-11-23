@@ -1,0 +1,27 @@
+.table-hover tbody tr:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.table th {
+    font-weight: 600;
+}
+
+.btn-group .btn {
+    margin-right: 2px;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.badge {
+    font-size: 0.85rem;
+}
+
+img.rounded-circle {
+    border: 2px solid #e2e8f0;
+}

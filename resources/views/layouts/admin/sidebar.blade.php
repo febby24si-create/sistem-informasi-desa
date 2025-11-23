@@ -43,24 +43,6 @@
         </a>
     </li>
 
-    <!-- Nav Item - RW/RT - BARU -->
-    <li class="nav-item {{ request()->routeIs('admin.rw.*') || request()->routeIs('admin.rt.*') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseWilayah" 
-           aria-expanded="true" aria-controls="collapseWilayah">
-            <i class="fas fa-fw fa-map"></i>
-            <span>Wilayah</span>
-        </a>
-        <div id="collapseWilayah" class="collapse {{ request()->routeIs('admin.rw.*') || request()->routeIs('admin.rt.*') ? 'show' : '' }}" 
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ request()->routeIs('admin.rw.*') ? 'active' : '' }}" 
-                   href="{{ route('admin.rw.index') }}">Data RW</a>
-                <a class="collapse-item {{ request()->routeIs('admin.rt.*') ? 'active' : '' }}" 
-                   href="{{ route('admin.rt.index') }}">Data RT</a>
-            </div>
-        </div>
-    </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
 

@@ -4,112 +4,496 @@
 @section('title', 'Lembaga Desa')
 @section('page_title', 'Lembaga')
 @section('content')
-<div class="container-fluid">
+<style>
+/* === DARK GLASSMORPHISM STYLE === */
+.glass-card {
+    background: rgba(30, 30, 40, 0.7);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
 
-    <h1 class="h3 mb-4" style="color: #ffffff;">
-        <i class="fas fa-building"></i> Lembaga Desa
-    </h1>
+.glass-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <h6 class="h4 mb-0 text-gray-800">Daftar Lembaga Desa</h6>
+.glass-header {
+    background: rgba(40, 40, 50, 0.8) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px 16px 0 0 !important;
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.badge-glass {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.lembaga-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover .lembaga-img {
+    transform: scale(1.05);
+}
+
+.lembaga-card-body {
+    padding: 20px;
+}
+
+.lembaga-title {
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.lembaga-description {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.lembaga-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.lembaga-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 30px;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.empty-state h4 {
+    color: #ffffff !important;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.empty-state p {
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Search Form Styles */
+.search-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-input {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(59, 130, 246, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
+    color: #ffffff !important;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Button colors with glass effect */
+.btn-primary.btn-glass {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+.btn-primary.btn-glass:hover {
+    background: rgba(59, 130, 246, 0.5);
+    border-color: rgba(59, 130, 246, 0.7);
+}
+
+.btn-info.btn-glass {
+    background: rgba(6, 182, 212, 0.3);
+    border-color: rgba(6, 182, 212, 0.5);
+}
+
+.btn-info.btn-glass:hover {
+    background: rgba(6, 182, 212, 0.5);
+}
+
+.btn-success.btn-glass {
+    background: rgba(16, 185, 129, 0.3);
+    border-color: rgba(16, 185, 129, 0.5);
+}
+
+.btn-success.btn-glass:hover {
+    background: rgba(16, 185, 129, 0.5);
+}
+
+.btn-warning.btn-glass {
+    background: rgba(245, 158, 11, 0.3);
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+.btn-warning.btn-glass:hover {
+    background: rgba(245, 158, 11, 0.5);
+}
+
+.btn-danger.btn-glass {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.btn-danger.btn-glass:hover {
+    background: rgba(239, 68, 68, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .lembaga-stats {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    
+    .lembaga-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+    }
+    
+    .lembaga-actions .btn {
+        flex: 1;
+        min-width: 60px;
+        margin: 2px;
+    }
+    
+    .page-title {
+        font-size: 1.6rem;
+    }
+    
+    .empty-state {
+        padding: 40px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .lembaga-card-body {
+        padding: 16px;
+    }
+    
+    .lembaga-title {
+        font-size: 1.1rem;
+    }
+    
+    .lembaga-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lembaga-card {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.lembaga-card:nth-child(1) { animation-delay: 0.1s; }
+.lembaga-card:nth-child(2) { animation-delay: 0.2s; }
+.lembaga-card:nth-child(3) { animation-delay: 0.3s; }
+.lembaga-card:nth-child(4) { animation-delay: 0.4s; }
+.lembaga-card:nth-child(5) { animation-delay: 0.5s; }
+</style>
+
+<div class="container-fluid py-4">
+    <!-- Page Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5">
+        <div class="mb-3 mb-md-0">
+            <h1 class="page-title mb-2">
+                <i class="fas fa-building me-3"></i>Lembaga Desa
+            </h1>
+            <p class="text-muted mb-0">Kelola semua lembaga desa yang aktif</p>
+        </div>
+        <a href="{{ route('admin.lembaga.create') }}" class="btn btn-primary btn-glass shadow-lg px-4 py-2">
+            <i class="fas fa-plus-circle me-2"></i>Tambah Lembaga
+        </a>
+    </div>
+
+    <div class="search-form-container mb-4">
+        <form action="{{ route('admin.lembaga.index') }}" method="GET" class="card shadow-sm p-4">
+            <div class="input-group">
+                <div class="form-floating flex-grow-1">
+                    <input type="search" 
+                        class="form-control" 
+                        id="searchLembaga" 
+                        placeholder="Cari lembaga desa..." 
+                        name="search" 
+                        value="{{ request('search') }}"
+                        aria-label="Cari lembaga desa">
+                    <label for="searchLembaga">Cari Lembaga Desa...</label>
                 </div>
-                <div class="col-md-6 text-right">
-                    <a href="{{ route('admin.lembaga.create') }}" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus"></i> Tambah Lembaga
-                    </a>
+                <button class="btn btn-primary ms-2" type="submit">
+                    <i class="fas fa-search"></i>
+                    <span class="d-none d-sm-inline ms-1">Cari</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lembaga Cards Grid -->
+    <div class="row g-4">
+        @foreach($lembagas as $lembaga)
+        <div class="col-xl-4 col-lg-6 col-md-6">
+            <div class="card glass-card shadow h-100 lembaga-card">
+                <!-- Lembaga Logo/Image -->
+                <div class="position-relative overflow-hidden">
+                    @if($lembaga->logo)
+                        <img src="{{ asset('storage/' . $lembaga->logo) }}" 
+                             class="lembaga-img" 
+                             alt="{{ $lembaga->nama_lembaga }}"
+                             onerror="this.src='{{ asset('assets/img/default-lembaga.jpg') }}'">
+                    @else
+                        <img src="{{ asset('assets/img/default-lembaga.jpg') }}" 
+                             class="lembaga-img" 
+                             alt="Default Lembaga Image">
+                    @endif
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge-glass d-flex align-items-center">
+                            <i class="fas fa-users me-2"></i> 
+                            <span>{{ $lembaga->anggotas_count }} Anggota</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Card Content -->
+                <div class="lembaga-card-body">
+                    <h5 class="lembaga-title">{{ $lembaga->nama_lembaga }}</h5>
+                    <p class="lembaga-description">{{ Str::limit($lembaga->deskripsi, 120) }}</p>
+                    
+                    <!-- Lembaga Stats -->
+                    <div class="lembaga-stats">
+                        <span class="badge-glass d-flex align-items-center">
+                            <i class="fas fa-tag me-2"></i>
+                            <span>{{ $lembaga->jabatans_count }} Jabatan</span>
+                        </span>
+                        @if($lembaga->kontak)
+                        <span class="text-muted small d-flex align-items-center">
+                            <i class="fas fa-phone me-2"></i>
+                            <span>{{ $lembaga->kontak }}</span>
+                        </span>
+                        @endif
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="lembaga-actions">
+                        <a href="{{ route('admin.lembaga.show', $lembaga->id) }}" 
+                           class="btn btn-info btn-glass" 
+                           title="Detail Lembaga"
+                           data-bs-toggle="tooltip">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="{{ route('admin.lembaga.anggota.index', $lembaga->id) }}" 
+                           class="btn btn-success btn-glass" 
+                           title="Kelola Anggota"
+                           data-bs-toggle="tooltip">
+                            <i class="fas fa-users"></i>
+                        </a>
+                        <a href="{{ route('admin.lembaga.edit', $lembaga->id) }}" 
+                           class="btn btn-warning btn-glass" 
+                           title="Edit Lembaga"
+                           data-bs-toggle="tooltip">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form action="{{ route('admin.lembaga.destroy', $lembaga->id) }}" 
+                              method="POST" 
+                              class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" 
+                                    class="btn btn-danger btn-glass" 
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus lembaga {{ $lembaga->nama_lembaga }}?')"
+                                    title="Hapus Lembaga"
+                                    data-bs-toggle="tooltip">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <!-- Form Pencarian -->
-            <form action="{{ route('admin.lembaga.index') }}" method="GET" class="mb-4">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari berdasarkan nama lembaga atau deskripsi..." 
-                           name="search" value="{{ request('search') }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">
-                            <i class="fas fa-search"></i> Cari
-                        </button>
-                    </div>
-                </div>
-            </form>
+        @endforeach
+    </div>
 
-            <div class="row">
-                @foreach($lembagas as $lembaga)
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-{{ $loop->index % 3 == 0 ? 'primary' : ($loop->index % 3 == 1 ? 'success' : 'info') }} shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-{{ $loop->index % 3 == 0 ? 'primary' : ($loop->index % 3 == 1 ? 'success' : 'info') }} text-uppercase mb-1">
-                                        {{ $lembaga->nama_lembaga }}
-                                    </div>
-                                    <div class="mb-1 text-muted small">
-                                        {{ Str::limit($lembaga->deskripsi, 80) }}
-                                    </div>
-                                    <div class="mb-2">
-                                        <span class="badge badge-primary">
-                                            <i class="fas fa-users"></i> {{ $lembaga->anggotas_count }} Anggota
-                                        </span>
-                                        <span class="badge badge-secondary">
-                                            <i class="fas fa-tag"></i> {{ $lembaga->jabatans_count }} Jabatan
-                                        </span>
-                                    </div>
-                                    @if($lembaga->kontak)
-                                    <div class="mb-2">
-                                        <span class="badge badge-light">
-                                            <i class="fas fa-phone"></i> {{ $lembaga->kontak }}
-                                        </span>
-                                    </div>
-                                    @endif
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-building fa-2x text-gray-300"></i>
-                                </div>
-                            </div>
-                            <div class="mt-3 text-right">
-                                <a href="{{ route('admin.lembaga.show', $lembaga->id) }}" 
-                                   class="btn btn-info btn-sm" title="Detail">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <a href="{{ route('admin.lembaga.anggota.index', $lembaga->id) }}" 
-                                   class="btn btn-success btn-sm" title="Kelola Anggota">
-                                    <i class="fas fa-users"></i>
-                                </a>
-                                <a href="{{ route('admin.lembaga.edit', $lembaga->id) }}" 
-                                   class="btn btn-warning btn-sm" title="Edit">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form action="{{ route('admin.lembaga.destroy', $lembaga->id) }}" 
-                                      method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" 
-                                            onclick="return confirm('Hapus lembaga ini?')"
-                                            title="Hapus">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
-            @if($lembagas->isEmpty())
-            <div class="text-center py-4">
-                <i class="fas fa-building fa-3x text-muted mb-3"></i>
-                <p class="text-muted">Belum ada lembaga desa yang terdaftar.</p>
-                <a href="{{ route('admin.lembaga.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> Tambah Lembaga Pertama
-                </a>
-            </div>
-            @endif
+    <!-- Empty State -->
+    @if($lembagas->isEmpty())
+    <div class="card glass-card shadow-lg mt-4">
+        <div class="card-body empty-state">
+            <i class="fas fa-building"></i>
+            <h4>Belum Ada Lembaga Desa</h4>
+            <p>Mulai dengan menambahkan lembaga desa pertama Anda untuk mengelola organisasi desa</p>
+            <a href="{{ route('admin.lembaga.create') }}" class="btn btn-primary btn-glass px-4 py-2">
+                <i class="fas fa-plus-circle me-2"></i>Tambah Lembaga Pertama
+            </a>
         </div>
     </div>
+    @endif
+
+    <!-- Pagination (if needed) -->
+    @if($lembagas->hasPages())
+    <div class="d-flex justify-content-center mt-5">
+        <div class="glass-card p-3">
+            {{ $lembagas->links() }}
+        </div>
+    </div>
+    @endif
 </div>
+
+<!-- JavaScript for enhanced interactions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Add loading animation to cards
+    const cards = document.querySelectorAll('.lembaga-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${(index % 5) * 0.1}s`;
+    });
+
+    // Enhanced hover effects
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Search form enhancement
+    const searchForm = document.querySelector('form');
+    const searchInput = document.querySelector('input[name="search"]');
+    
+    if (searchInput) {
+        searchInput.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+    }
+});
+
+// Add custom styles for pagination
+const style = document.createElement('style');
+style.textContent = `
+    .pagination .page-link {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        backdrop-filter: blur(10px);
+    }
+    
+    .pagination .page-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+    }
+    
+    .pagination .page-item.active .page-link {
+        background: rgba(59, 130, 246, 0.5);
+        border-color: rgba(59, 130, 246, 0.7);
+    }
+    
+    .input-group.focused {
+        transform: scale(1.02);
+        transition: transform 0.3s ease;
+    }
+`;
+document.head.appendChild(style);
+</script>
 @endsection
