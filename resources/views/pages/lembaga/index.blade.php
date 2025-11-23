@@ -8,7 +8,7 @@
 /* === DARK GLASSMORPHISM STYLE === */
 .glass-card {
     background: rgba(30, 30, 40, 0.7);
-    border-radius: 16px;
+    border-radius: 40px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -23,10 +23,10 @@
 
 .glass-header {
     background: rgba(40, 40, 50, 0.8) !important;
-    color: #ffffff !important;
+    color: #000000 !important;
     backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px 16px 0 0 !important;
+    border-radius: 40px 40px 0 0 !important;
 }
 
 .btn-glass {
@@ -144,32 +144,40 @@ body {
     color: rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Search Form Styles */
+/* === IMPROVED SEARCH & FILTER STYLE === */
+
 .search-container {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 5px;
+    border-radius: 18px !important;
 }
 
+/* Input lebih besar, elegan */
 .search-input {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: #ffffff !important;
-    border-radius: 10px !important;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    height: 55px !important;
+    font-size: 1.05rem !important;
+    padding-left: 20px !important;
 }
 
 .search-input:focus {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-color: rgba(59, 130, 246, 0.6) !important;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important;
-    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.35) !important;
+    color: #000 !important;
 }
 
 .search-input::placeholder {
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Tombol lebih proporsional */
+.btn-search {
+    height: 55px !important;
+    border-radius: 14px !important;
+}
+
+.btn-search:hover {
+    background: rgba(59, 130, 246, 0.55);
+    border-color: rgba(59, 130, 246, 0.8);
 }
 
 /* Button colors with glass effect */
@@ -298,27 +306,44 @@ body {
             <i class="fas fa-plus-circle me-2"></i>Tambah Lembaga
         </a>
     </div>
+    <!-- Search & Filter -->
+<div class="search-container mb-5">
+    <form method="GET" action="{{ route('admin.lembaga.index') }}">
+        <div class="row g-4 align-items-center">
 
-    <div class="search-form-container mb-4">
-        <form action="{{ route('admin.lembaga.index') }}" method="GET" class="card shadow-sm p-4">
-            <div class="input-group">
-                <div class="form-floating flex-grow-1">
-                    <input type="search" 
-                        class="form-control" 
-                        id="searchLembaga" 
-                        placeholder="Cari lembaga desa..." 
-                        name="search" 
-                        value="{{ request('search') }}"
-                        aria-label="Cari lembaga desa">
-                    <label for="searchLembaga">Cari Lembaga Desa...</label>
-                </div>
-                <button class="btn btn-primary ms-2" type="submit">
-                    <i class="fas fa-search"></i>
-                    <span class="d-none d-sm-inline ms-1">Cari</span>
+            <!-- Search Input -->
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <input type="text"
+                       name="search"
+                       class="form-control search-input"
+                       placeholder="Cari lembaga..."
+                       value="{{ request('search') }}">
+            </div>
+
+            <!-- Filter -->
+            <div class="col-xl-4 col-lg-4 col-md-4">
+                <select name="filter" class="form-control search-input">
+                    <option value="">Semua Lembaga</option>
+                    <option value="banyak_anggota" {{ request('filter')=='banyak_anggota' ? 'selected':'' }}>
+                        Anggota Terbanyak
+                    </option>
+                    <option value="sedikit_anggota" {{ request('filter')=='sedikit_anggota' ? 'selected':'' }}>
+                        Anggota Tersedikit
+                    </option>
+                </select>
+            </div>
+
+            <!-- Button Cari -->
+            <div class="col-xl-2 col-lg-2 col-md-2 d-grid">
+                <button class="btn btn-primary btn-search">
+                    <i class="fas fa-search me-2"></i> Cari
                 </button>
             </div>
-        </form>
-    </div>
+
+        </div>
+    </form>
+</div>
+
 
     <!-- Lembaga Cards Grid -->
     <div class="row g-4">
@@ -419,13 +444,14 @@ body {
     @endif
 
     <!-- Pagination (if needed) -->
-    @if($lembagas->hasPages())
+@if($lembagas->hasPages())
     <div class="d-flex justify-content-center mt-5">
-        <div class="glass-card p-3">
-            {{ $lembagas->links() }}
+        <div class="glass-card p-3 shadow-sm rounded">
+            {!! $lembagas->links('pagination::bootstrap-5') !!}
         </div>
     </div>
-    @endif
+@endif
+
 </div>
 
 <!-- JavaScript for enhanced interactions -->

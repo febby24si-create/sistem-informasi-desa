@@ -9,16 +9,36 @@ use Illuminate\Support\Facades\DB;
 
 class RtController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        $filter_rw = $request->filter_rw;
+        $filter_status = $request->filter_status;
+
         $rts = Rt::with(['rw', 'wargas'])
             ->withCount('wargas')
+            ->when($search, function ($q) use ($search) {
+                $q->where('nomor_rt', 'LIKE', "%$search%")
+                    ->orWhere('nama_ketua_rt', 'LIKE', "%$search%")
+                    ->orWhereHas('rw', function ($rw) use ($search) {
+                        $rw->where('nomor_rw', 'LIKE', "%$search%");
+                    });
+            })
+            ->when($filter_rw, function ($q) use ($filter_rw) {
+                $q->where('rw_id', $filter_rw);
+            })
+            ->when($filter_status, function ($q) use ($filter_status) {
+                $q->where('status', $filter_status);
+            })
             ->orderBy('rw_id')
             ->orderBy('nomor_rt')
-            ->get();
+            ->paginate(10); // PAGINATION
 
-        return view('pages.wilayah.rt.index', compact('rts'));
+        $rws = \App\Models\Rw::orderBy('nomor_rw')->get();
+
+        return view('pages.wilayah.rt.index', compact('rts', 'rws'));
     }
+
 
     public function create()
     {

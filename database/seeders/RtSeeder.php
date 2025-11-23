@@ -30,7 +30,11 @@ class RtSeeder extends Seeder
                 $data[] = [
                     'rw_id' => $rwId,
                     'nomor_rt' => str_pad($i, 3, '0', STR_PAD_LEFT),
-                    'ketua_rt_warga_id' => null, // Akan di-set setelah warga dibuat
+                    'nama_ketua_rt' => $faker->name,
+                    'kontak_rt' => $faker->phoneNumber,
+                    'alamat_rt' => $faker->address,
+                    'status' => 'Aktif',
+                    'ketua_rt_warga_id' => null,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];

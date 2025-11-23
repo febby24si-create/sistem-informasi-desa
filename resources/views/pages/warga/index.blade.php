@@ -23,21 +23,76 @@
             </div>
         </div>
         <div class="card-body">
-            <!-- Form Pencarian -->
+            <!-- Form Pencarian dan Filter -->
             <form action="{{ route('admin.warga.index') }}" method="GET" class="mb-4">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari berdasarkan nama, NIK, atau alamat..." 
-                           name="search" value="{{ request('search') }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">
-                            <i class="fas fa-search"></i> Cari
+                <div class="row">
+                    <!-- Search Input -->
+                    <div class="col-md-3 mb-2">
+                        <input type="text" class="form-control" placeholder="Cari nama, NIK, alamat..." 
+                               name="search" value="{{ request('search') }}">
+                    </div>
+                    
+                    <!-- RW Filter -->
+                    <div class="col-md-2 mb-2">
+                        <select name="rw_filter" class="form-control">
+                            <option value="">Semua RW</option>
+                            @foreach($rws as $rw)
+                                <option value="{{ $rw->id }}" {{ request('rw_filter') == $rw->id ? 'selected' : '' }}>
+                                    {{ $rw->nomor_rw_formatted }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <!-- RT Filter -->
+                    <div class="col-md-2 mb-2">
+                        <select name="rt_filter" class="form-control">
+                            <option value="">Semua RT</option>
+                            @foreach($rts as $rt)
+                                <option value="{{ $rt->id }}" {{ request('rt_filter') == $rt->id ? 'selected' : '' }}>
+                                    {{ $rt->nomor_rt_formatted }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <!-- Jenis Kelamin Filter -->
+                    <div class="col-md-2 mb-2">
+                        <select name="jk_filter" class="form-control">
+                            <option value="">Semua JK</option>
+                            <option value="Laki-laki" {{ request('jk_filter') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ request('jk_filter') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Status Filter -->
+                    <div class="col-md-2 mb-2">
+                        <select name="status_filter" class="form-control">
+                            <option value="">Semua Status</option>
+                            <option value="ketua" {{ request('status_filter') == 'ketua' ? 'selected' : '' }}>Ketua RT/RW</option>
+                            <option value="warga" {{ request('status_filter') == 'warga' ? 'selected' : '' }}>Warga Biasa</option>
+                        </select>
+                    </div>
+
+                    <!-- Tombol Aksi -->
+                    <div class="col-md-1 mb-2">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-filter"></i>
                         </button>
+                    </div>
+                </div>
+                
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <a href="{{ route('admin.warga.index') }}" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-redo"></i> Reset Filter
+                        </a>
                     </div>
                 </div>
             </form>
 
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <table class="table table-bordered" width="50%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
                             <th>NIK</th>
@@ -131,7 +186,7 @@
             @if($wargas->hasPages())
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    Showing {{ $wargas->firstItem() }} to {{ $wargas->lastItem() }} of {{ $wargas->total() }} results
+                    Menampilkan {{ $wargas->firstItem() }} hingga {{ $wargas->lastItem() }} dari {{ $wargas->total() }} results
                 </div>
                 {{ $wargas->links('pagination::bootstrap-5') }}
             </div>

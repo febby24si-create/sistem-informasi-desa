@@ -20,6 +20,10 @@ class WargaController extends Controller
     public function index(Request $request)
     {
         $search = $request->get('search');
+        $rw_filter = $request->get('rw_filter');
+        $rt_filter = $request->get('rt_filter');
+        $jk_filter = $request->get('jk_filter');
+        $status_filter = $request->get('status_filter');
 
         $wargas = Warga::with(['rw', 'rt'])
             ->when($search, function ($query) use ($search) {
@@ -27,10 +31,40 @@ class WargaController extends Controller
                     ->orWhere('nik', 'like', "%{$search}%")
                     ->orWhere('alamat', 'like', "%{$search}%");
             })
+            ->when($rw_filter, function ($query) use ($rw_filter) {
+                $query->where('rw_id', $rw_filter);
+            })
+            ->when($rt_filter, function ($query) use ($rt_filter) {
+                $query->where('rt_id', $rt_filter);
+            })
+            ->when($jk_filter, function ($query) use ($jk_filter) {
+                $query->where('jenis_kelamin', $jk_filter);
+            })
+            ->when($status_filter, function ($query) use ($status_filter) {
+                if ($status_filter == 'ketua') {
+                    // Cek apakah warga adalah ketua RT atau RW berdasarkan nama
+                    $query->whereHas('rt', function ($q) {
+                        $q->whereColumn('nama_ketua_rt', 'wargas.nama');
+                    })->orWhereHas('rw', function ($q) {
+                        $q->whereColumn('nama_ketua_rw', 'wargas.nama');
+                    });
+                } else if ($status_filter == 'warga') {
+                    // Bukan ketua RT atau RW
+                    $query->whereDoesntHave('rt', function ($q) {
+                        $q->whereColumn('nama_ketua_rt', 'wargas.nama');
+                    })->whereDoesntHave('rw', function ($q) {
+                        $q->whereColumn('nama_ketua_rw', 'wargas.nama');
+                    });
+                }
+            })
             ->orderBy('nama')
             ->paginate(10);
 
-        return view('pages.warga.index', compact('wargas'));
+        // Ambil data RW dan RT untuk dropdown filter
+        $rws = Rw::all();
+        $rts = Rt::all();
+
+        return view('pages.warga.index', compact('wargas', 'rws', 'rts'));
     }
 
     public function create()

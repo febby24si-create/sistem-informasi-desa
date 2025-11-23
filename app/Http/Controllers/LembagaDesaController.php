@@ -9,9 +9,27 @@ use Illuminate\Support\Facades\Storage;
 
 class LembagaDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $lembagas = LembagaDesa::withCount(['anggotas', 'jabatans'])->with('anggotas', 'jabatans')->paginate(8);
+        $query = LembagaDesa::withCount(['anggotas', 'jabatans']);
+
+        // SEARCH
+        if ($request->search) {
+            $query->where('nama_lembaga', 'like', '%' . $request->search . '%')
+                ->orWhere('deskripsi', 'like', '%' . $request->search . '%');
+        }
+
+        // FILTER BY JUMLAH ANGGOTA
+        if ($request->filter == 'banyak_anggota') {
+            $query->orderBy('anggotas_count', 'desc');
+        } elseif ($request->filter == 'sedikit_anggota') {
+            $query->orderBy('anggotas_count', 'asc');
+        }
+
+        // PAGINATION
+        $lembagas = $query->paginate(6)->appends($request->query());
+
+        return view('pages.lembaga.index', compact('lembagas'));
         return view('pages.lembaga.index', compact('lembagas'));
     }
 

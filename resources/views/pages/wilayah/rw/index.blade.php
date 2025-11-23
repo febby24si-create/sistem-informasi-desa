@@ -22,6 +22,36 @@
             </h6>
         </div>
         <div class="card-body">
+            <form method="GET" class="mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" name="search" class="form-control"
+                            placeholder="Cari RW / Nama Ketua"
+                            value="{{ request('search') }}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <select name="status" class="form-control">
+                            <option value="Semua">-- Semua Status --</option>
+                            <option value="Aktif" {{ request('status')=='Aktif' ? 'selected' : '' }}>Aktif</option>
+                            <option value="Nonaktif" {{ request('status')=='Nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="{{ route('admin.rw.index') }}" class="btn btn-secondary btn-block">
+                            Reset
+                        </a>
+                    </div>
+                </div>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -88,6 +118,7 @@
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
 
             @if($rws->isEmpty())
@@ -97,6 +128,15 @@
                 <a href="{{ route('admin.rw.create') }}" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Tambah RW Pertama
                 </a>
+            </div>
+            @endif
+    {{-- Pagination --}}
+            @if($rws->hasPages())
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    Menampilkan {{ $rws->firstItem() }} hingga {{ $rws->lastItem() }} dari {{ $rws->total() }} hasil
+                </div>
+                {{ $rws->links('pagination::bootstrap-5') }}
             </div>
             @endif
         </div>

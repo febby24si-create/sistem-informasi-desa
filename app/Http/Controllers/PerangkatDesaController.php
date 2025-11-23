@@ -9,10 +9,43 @@ use Illuminate\Support\Facades\Storage;
 
 class PerangkatDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $perangkats = PerangkatDesa::with('warga')->get();
-        return view('pages.perangkat_desa.index', compact('perangkats'));
+        $search = $request->get('search');
+        $jabatan_filter = $request->get('jabatan_filter');
+        $status_filter = $request->get('status_filter');
+
+        $perangkats = PerangkatDesa::with('warga')
+            ->when($search, function ($query) use ($search) {
+                $query->whereHas('warga', function ($q) use ($search) {
+                    $q->where('nama', 'like', "%{$search}%")
+                        ->orWhere('nik', 'like', "%{$search}%");
+                })->orWhere('jabatan', 'like', "%{$search}%")
+                    ->orWhere('nip', 'like', "%{$search}%")
+                    ->orWhere('kontak', 'like', "%{$search}%");
+            })
+            ->when($jabatan_filter, function ($query) use ($jabatan_filter) {
+                $query->where('jabatan', $jabatan_filter);
+            })
+            ->when($status_filter, function ($query) use ($status_filter) {
+                if ($status_filter == 'aktif') {
+                    $query->where(function ($q) {
+                        $q->whereNull('periode_selesai')
+                            ->orWhere('periode_selesai', '>=', now());
+                    });
+                } else if ($status_filter == 'tidak_aktif') {
+                    $query->where('periode_selesai', '<', now());
+                }
+            })
+            ->orderByRaw("CASE WHEN periode_selesai IS NULL OR periode_selesai >= CURDATE() THEN 0 ELSE 1 END")
+            ->orderBy('jabatan')
+            ->orderBy('periode_mulai', 'desc')
+            ->paginate(10);
+
+        // Ambil daftar jabatan unik untuk filter
+        $jabatan_list = PerangkatDesa::distinct()->pluck('jabatan');
+
+        return view('pages.perangkat_desa.index', compact('perangkats', 'jabatan_list'));
     }
 
     public function create()

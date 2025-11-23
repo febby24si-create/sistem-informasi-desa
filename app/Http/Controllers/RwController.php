@@ -9,11 +9,24 @@ use Illuminate\Support\Facades\DB;
 
 class RwController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $rws = Rw::withCount(['rts', 'wargas'])
-            ->orderBy('nomor_rw')
-            ->get();
+        $query = Rw::query()->withCount(['rts', 'wargas']);
+
+        // Search berdasarkan nomor RW atau nama ketua RW
+        if ($request->search) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nomor_rw', 'LIKE', "%{$request->search}%")
+                    ->orWhere('nama_ketua_rw', 'LIKE', "%{$request->search}%");
+            });
+        }
+
+        // Filter status
+        if ($request->status && $request->status != 'Semua') {
+            $query->where('status', $request->status);
+        }
+
+        $rws = $query->orderBy('nomor_rw')->paginate(10);
 
         return view('pages.wilayah.rw.index', compact('rws'));
     }

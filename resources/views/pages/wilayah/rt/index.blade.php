@@ -22,6 +22,46 @@
             </h6>
         </div>
         <div class="card-body">
+            <form method="GET" class="mb-3">
+
+                <div class="row">
+
+                    <!-- Search -->
+                    <div class="col-md-4">
+                        <input type="text" name="search" value="{{ request('search') }}"
+                            class="form-control" placeholder="Cari RT / Ketua RT / RW...">
+                    </div>
+
+                    <!-- Filter RW -->
+                    <div class="col-md-3">
+                        <select name="filter_rw" class="form-control">
+                            <option value="">-- Filter RW --</option>
+                            @foreach($rws as $rw)
+                            <option value="{{ $rw->id }}" {{ request('filter_rw') == $rw->id ? 'selected' : '' }}>
+                                RW {{ $rw->nomor_rw }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Filter Status -->
+                    <div class="col-md-3">
+                        <select name="filter_status" class="form-control">
+                            <option value="">-- Filter Status --</option>
+                            <option value="Aktif" {{ request('filter_status') == "Aktif" ? 'selected' : '' }}>Aktif</option>
+                            <option value="Nonaktif" {{ request('filter_status') == "Nonaktif" ? 'selected' : '' }}>Nonaktif</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -93,6 +133,16 @@
                 </a>
             </div>
             @endif
+            {{-- Pagination --}}
+                @if($rts->hasPages())
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                        Menampilkan {{ $rts->firstItem() }} hingga {{ $rts->lastItem() }} dari {{ $rts->total() }} hasil
+                    </div>
+                    {{ $rts->withQueryString()->links('pagination::bootstrap-5') }}
+                </div>
+                @endif
+
         </div>
     </div>
 </div>

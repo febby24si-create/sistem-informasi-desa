@@ -88,7 +88,52 @@ body {
         </div>
 
         <div class="card-body">
+ <!-- Filter Section -->
+            <div class="filter-section">
+                <form action="{{ route('admin.perangkat_desa.index') }}" method="GET" class="mb-0">
+                    <div class="row">
+                        <!-- Search Input -->
+                        <div class="col-md-4 mb-2">
+                            <input type="text" class="form-control form-control-glass" 
+                                   placeholder="Cari nama, NIK, jabatan, NIP, kontak..." 
+                                   name="search" value="{{ request('search') }}">
+                        </div>
+                        
+                        <!-- Jabatan Filter -->
+                        <div class="col-md-3 mb-2">
+                            <select name="jabatan_filter" class="form-control form-control-glass">
+                                <option value="">Semua Jabatan</option>
+                                @foreach($jabatan_list as $jabatan)
+                                    <option value="{{ $jabatan }}" {{ request('jabatan_filter') == $jabatan ? 'selected' : '' }}>
+                                        {{ $jabatan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
+                        <!-- Status Filter -->
+                        <div class="col-md-3 mb-2">
+                            <select name="status_filter" class="form-control form-control-glass">
+                                <option value="">Semua Status</option>
+                                <option value="aktif" {{ request('status_filter') == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                                <option value="tidak_aktif" {{ request('status_filter') == 'tidak_aktif' ? 'selected' : '' }}>Tidak Aktif</option>
+                            </select>
+                        </div>
 
+                        <!-- Action Buttons -->
+                        <div class="col-md-2 mb-2">
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-primary btn-glass flex-fill">
+                                    <i class="fas fa-filter"></i> Filter
+                                </button>
+                                <a href="{{ route('admin.perangkat_desa.index') }}" class="btn btn-secondary btn-glass">
+                                    <i class="fas fa-redo"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover table-striped text-center glass-table align-middle">
                     <thead>
@@ -179,9 +224,16 @@ body {
                         </tr>
                         @endforelse
                     </tbody>
-
-                </table>
             </div>
+            </table>
+</div> {{-- table-responsive --}}
+
+{{-- pagination di luar table --}}
+@if($perangkats->hasPages())
+<div class="d-flex justify-content-end mt-3">
+    {{ $perangkats->links('pagination::bootstrap-5') }}
+</div>
+@endif
 
         </div>
     </div>

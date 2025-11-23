@@ -22,7 +22,7 @@ class PerangkatDesaSeeder extends Seeder
 
         $data = [];
         $usedWargaIds = [];
-        $targetCount = 10; // Target 10 perangkat desa
+        $targetCount = 100; // Target 10 perangkat desa
 
         $jabatanList = [
             'Kepala Desa',

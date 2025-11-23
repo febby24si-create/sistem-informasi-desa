@@ -157,6 +157,12 @@
                         <a href="{{ route('admin.user.create') }}" class="btn btn-info dashboard-btn">
                             <i class="fas fa-user-plus"></i> Tambah User
                         </a>
+                        <a href="{{ route('admin.rw.create') }}" class="btn btn-info dashboard-btn">
+                            <i class="fas fa-fw fa-map-signs"></i> Tambah RW
+                        </a>
+                        <a href="{{ route('admin.rt.create') }}" class="btn btn-info dashboard-btn">
+                            <i class="fas fa-fw fa-map-marker-alt"></i> Tambah RT
+                        </a>
                     </div>
                 </div>
             </div>

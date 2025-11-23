@@ -13,12 +13,16 @@ class RwSeeder extends Seeder
         $faker = Faker::create();
 
         $data = [];
-        $rwNumbers = range(1, 5); // Buat 5 RW
+        $rwNumbers = range(1, 5);
 
         foreach ($rwNumbers as $nomor) {
             $data[] = [
                 'nomor_rw' => str_pad($nomor, 3, '0', STR_PAD_LEFT),
-                'ketua_rw_warga_id' => null, // Akan di-set setelah warga dibuat
+                'nama_ketua_rw' => $faker->name,
+                'kontak_rw' => $faker->phoneNumber,
+                'alamat_rw' => $faker->address,
+                'status' => 'Aktif',
+                'ketua_rw_warga_id' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

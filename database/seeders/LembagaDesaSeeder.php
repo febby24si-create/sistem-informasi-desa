@@ -2,57 +2,47 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\LembagaDesa;
 use Faker\Factory as Faker;
 
 class LembagaDesaSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $faker = Faker::create('id_ID');
 
-        $lembagaData = [
-            [
-                'nama_lembaga' => 'Badan Permusyawaratan Desa (BPD)',
-                'deskripsi' => 'Lembaga yang melaksanakan fungsi pemerintahan di bidang legislatif dan pengawasan dalam penyelenggaraan pemerintahan desa.',
-                'kontak' => '081234567890',
-                'logo' => null,
-            ],
-            [
-                'nama_lembaga' => 'Pemberdayaan Kesejahteraan Keluarga (PKK)',
-                'deskripsi' => 'Lembaga kemasyarakatan yang memberdayakan perempuan untuk turut berpartisipasi dalam pembangunan desa.',
-                'kontak' => '081234567891',
-                'logo' => null,
-            ],
-            [
-                'nama_lembaga' => 'Karang Taruna',
-                'deskripsi' => 'Organisasi kepemudaan di tingkat desa yang bergerak di bidang sosial, ekonomi, dan budaya.',
-                'kontak' => '081234567892',
-                'logo' => null,
-            ],
-            [
-                'nama_lembaga' => 'Lembaga Pemberdayaan Masyarakat (LPM)',
-                'deskripsi' => 'Lembaga yang menampung dan mewujudkan aspirasi masyarakat dalam perencanaan pembangunan desa.',
-                'kontak' => '081234567893',
-                'logo' => null,
-            ],
-            [
-                'nama_lembaga' => 'Kelompok Tani',
-                'deskripsi' => 'Kelompok masyarakat yang bergerak di bidang pertanian untuk meningkatkan produktivitas dan kesejahteraan petani.',
-                'kontak' => '081234567894',
-                'logo' => null,
-            ],
+        $lembagaList = [
+            'Lembaga Pemberdayaan Masyarakat',
+            'Badan Permusyawaratan Desa',
+            'Kelompok Tani',
+            'Kelompok Nelayan',
+            'Pemberdayaan Kesejahteraan Keluarga',
+            'Karang Taruna',
+            'Lembaga Adat',
+            'Kelompok Pengajian',
+            'Koperasi Desa',
+            'Satuan Pamong Praja',
+            'Kelompok Sadar Wisata',
+            'Forum Komunikasi Pemuda',
+            'Lembaga Keuangan Mikro',
+            'Kelompok Perempuan',
+            'Komite Sekolah',
+            'Paguyuban Petani',
+            'Kelompok Peternak',
+            'Lembaga Konsultasi Kewirausahaan',
+            'Forum RT/RW',
+            'Komunitas Peduli Lingkungan'
         ];
 
-        $data = [];
-        foreach ($lembagaData as $lembaga) {
-            $data[] = array_merge($lembaga, [
-                'created_at' => now(),
-                'updated_at' => now(),
+        for ($i = 0; $i < 50; $i++) {
+            LembagaDesa::create([
+                'nama_lembaga' => $lembagaList[array_rand($lembagaList)] . ' ' . $faker->city(),
+                'deskripsi' => $faker->paragraph(3),
+                'kontak' => $faker->phoneNumber(),
+                'logo' => $faker->optional(0.3)->imageUrl(100, 100, 'business', true)
             ]);
         }
-
-        DB::table('lembaga_desas')->insert($data);
     }
 }
