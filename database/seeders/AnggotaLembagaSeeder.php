@@ -41,6 +41,7 @@ class AnggotaLembagaSeeder extends Seeder
 
             // Pastikan kombinasi unik
             if (!in_array($key, $uniqueCombinations)) {
+                
 
                 // Tanggal mulai 1-5 tahun lalu
                 $startDate = $faker->dateTimeBetween('-5 years', '-1 years');
