@@ -10,49 +10,58 @@ class AnggotaLembagaSeeder extends Seeder
 {
     public function run()
     {
+        // Hapus data lama
+        DB::table('anggota_lembagas')->truncate();
+
         $faker = Faker::create();
 
-        // Mengambil ID yang sudah ada dari tabel parent (AMAN)
+        // Ambil ID parent
         $lembagaIds = DB::table('lembaga_desas')->pluck('id')->toArray();
         $wargaIds = DB::table('wargas')->pluck('id')->toArray();
         $jabatanIds = DB::table('jabatan_lembagas')->pluck('id')->toArray();
 
-        // Pengecekan Ketersediaan Data
+        // Cek parent tidak kosong
         if (empty($lembagaIds) || empty($wargaIds) || empty($jabatanIds)) {
-            echo "Peringatan: Tabel parent (lembaga_desas, wargas, atau jabatan_lembagas) kosong. Seeding AnggotaLembagaSeeder dibatalkan.\n";
+            echo "Parent table kosong. Seeder dibatalkan.\n";
             return;
         }
 
         $data = [];
         $uniqueCombinations = [];
-        $targetCount = 50; // Target 50 entri anggota
-        $maxIterations = 200;
+        $targetCount = 50;
+        $maxIterations = 300;
 
-        // Membuat entri unik hingga mencapai target count
         while (count($data) < $targetCount && $maxIterations > 0) {
 
             $lembaga_id = $faker->randomElement($lembagaIds);
             $warga_id = $faker->randomElement($wargaIds);
 
-            $combination = $lembaga_id . '-' . $warga_id;
+            $key = $lembaga_id . '-' . $warga_id;
 
-            // Memastikan unique(['lembaga_id', 'warga_id'])
-            if (!in_array($combination, $uniqueCombinations)) {
+            // Pastikan kombinasi unik
+            if (!in_array($key, $uniqueCombinations)) {
 
-                $tgl_mulai = $faker->dateTimeBetween('-5 years', '-1 years')->format('Y-m-d');
-                $tgl_selesai = $faker->randomElement([null, $faker->dateTimeBetween($tgl_mulai, 'now')->format('Y-m-d')]);
+                // Tanggal mulai 1-5 tahun lalu
+                $startDate = $faker->dateTimeBetween('-5 years', '-1 years');
+
+                // tgl_selesai (boleh null)
+                $endDate = $faker->boolean(40)
+                    ? null
+                    : $faker->dateTimeBetween($startDate, 'now');
 
                 $data[] = [
                     'lembaga_id' => $lembaga_id,
                     'warga_id' => $warga_id,
                     'jabatan_id' => $faker->randomElement($jabatanIds),
-                    'tgl_mulai' => $tgl_mulai,
-                    'tgl_selesai' => $tgl_selesai,
+                    'tgl_mulai' => $startDate->format('Y-m-d'),
+                    'tgl_selesai' => $endDate ? $endDate->format('Y-m-d') : null,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
-                $uniqueCombinations[] = $combination;
+
+                $uniqueCombinations[] = $key;
             }
+
             $maxIterations--;
         }
 
