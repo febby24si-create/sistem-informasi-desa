@@ -10,8 +10,9 @@ class AnggotaLembagaSeeder extends Seeder
 {
     public function run()
     {
-        // Hapus data lama
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('anggota_lembagas')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = Faker::create();
 
