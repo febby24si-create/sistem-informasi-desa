@@ -24,18 +24,36 @@
             </div>
         </div>
         <div class="card-body">
-            {{-- <!-- Form Pencarian -->
+            <!-- Form Pencarian & Filter -->
             <form action="{{ route('admin.user.index') }}" method="GET" class="mb-4">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari berdasarkan nama atau email..." 
-                           name="search" value="{{ request('search') }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" 
+                            class="form-control" 
+                            placeholder="Cari nama atau email..."
+                            name="search" 
+                            value="{{ request('search') }}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <select name="role" class="form-control">
+                            <option value="">-- Filter Role --</option>
+                            <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="operator" {{ request('role') == 'operator' ? 'selected' : '' }}>Operator</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn btn-primary">
                             <i class="fas fa-search"></i> Cari
                         </button>
+
+                        <a href="{{ route('admin.user.index') }}" class="btn btn-secondary">
+                            Reset
+                        </a>
                     </div>
                 </div>
-            </form> --}}
+            </form>
 
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
@@ -121,7 +139,7 @@
                 <div>
                     Menampilkan {{ $users->firstItem() }} sampai {{ $users->lastItem() }} dari {{ $users->total() }} user
                 </div>
-                {{ $users->links() }}
+                {{ $users->appends(request()->query())->links() }}
             </div>
             @endif
         </div>

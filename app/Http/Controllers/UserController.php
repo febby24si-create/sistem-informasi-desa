@@ -10,15 +10,26 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('name')->paginate(10);
-        return view('pages.user.index', compact('users'));
-    }
+        $query = User::query();
 
-    public function create()
-    {
-        return view('pages.user.create');
+        // Pencarian berdasarkan nama atau email
+        if ($request->search) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('email', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        // Filter berdasarkan role
+        if ($request->role) {
+            $query->where('role', $request->role);
+        }
+
+        $users = $query->orderBy('name')->paginate(10);
+
+        return view('pages.user.index', compact('users'));
     }
 
     public function store(Request $request)
