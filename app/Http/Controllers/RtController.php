@@ -13,7 +13,7 @@ class RtController extends Controller
     {
         $rts = Rt::with(['rw', 'wargas'])
             ->withCount('wargas')
-            ->orderBy('id_rw')
+            ->orderBy('rw_id')
             ->orderBy('nomor_rt')
             ->get();
 
@@ -29,7 +29,7 @@ class RtController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_rw' => 'required|exists:rw,id_rw',
+            'rw_id' => 'required|exists:rws,id',
             'nomor_rt' => 'required|integer|min:1|max:999',
             'nama_ketua_rt' => 'required|string|max:100',
             'kontak_rt' => 'nullable|string|max:20',
@@ -38,7 +38,7 @@ class RtController extends Controller
         ]);
 
         // Cek duplikasi nomor RT dalam RW yang sama
-        $existingRt = Rt::where('id_rw', $request->id_rw)
+        $existingRt = Rt::where('rw_id', $request->rw_id)
             ->where('nomor_rt', $request->nomor_rt)
             ->first();
 
@@ -87,8 +87,8 @@ class RtController extends Controller
         $rt = Rt::findOrFail($id);
 
         $request->validate([
-            'id_rw' => 'required|exists:rw,id_rw',
-            'nomor_rt' => 'required|integer|min:1|max:999',
+            'rw_id' => 'required|exists:rws,id',
+            'nomor_rt' => 'required|min:1|max:999',
             'nama_ketua_rt' => 'required|string|max:100',
             'kontak_rt' => 'nullable|string|max:20',
             'alamat_rt' => 'nullable|string',
@@ -96,9 +96,9 @@ class RtController extends Controller
         ]);
 
         // Cek duplikasi nomor RT dalam RW yang sama (kecuali data saat ini)
-        $existingRt = Rt::where('id_rw', $request->id_rw)
+        $existingRt = Rt::where('rw_id', $request->rw_id)
             ->where('nomor_rt', $request->nomor_rt)
-            ->where('id_rt', '!=', $id)
+            ->where('id', '!=', $id)
             ->first();
 
         if ($existingRt) {
@@ -153,11 +153,18 @@ class RtController extends Controller
     // Get RT by RW (untuk AJAX)
     public function getByRw($rwId)
     {
-        $rts = Rt::where('id_rw', $rwId)
+        $rts = Rt::where('rw_id', $rwId)
             ->active()
             ->orderBy('nomor_rt')
             ->get();
 
         return response()->json($rts);
+    }
+    public function setKetua($id)
+    {
+        // Logic untuk set ketua RT
+        $rt = Rt::findOrFail($id);
+        // ... logic set ketua
+        return redirect()->back()->with('success', 'Ketua RT berhasil ditetapkan.');
     }
 }

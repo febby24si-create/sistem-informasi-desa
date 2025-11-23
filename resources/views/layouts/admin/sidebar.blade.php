@@ -42,6 +42,21 @@
             <span>Lembaga Desa</span>
         </a>
     </li>
+        <!-- Nav Item - Data RW -->
+    <li class="nav-item {{ request()->routeIs('admin.rw.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.rw.index') }}">
+            <i class="fas fa-fw fa-map-signs"></i>
+            <span>Data RW</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Data RT -->
+    <li class="nav-item {{ request()->routeIs('admin.rt.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.rt.index') }}">
+            <i class="fas fa-fw fa-map-marker-alt"></i>
+            <span>Data RT</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

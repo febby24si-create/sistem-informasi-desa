@@ -3,78 +3,81 @@
 @section('title', 'Data RW')
 
 @section('content')
-<div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">
-        <i class="fas fa-map-signs"></i> Data RW
-    </h1>
+<div class="container-fluid dashboard-body">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 dashboard-header">
+            <i class="fas fa-map-signs"></i> Data RW
+        </h1>
+        <a href="{{ route('admin.rw.create') }}" class="btn btn-primary dashboard-btn">
+            <i class="fas fa-plus"></i> Tambah RW
+        </a>
+    </div>
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <h6 class="m-0 font-weight-bold text-primary">Daftar RW</h6>
-                </div>
-                <div class="col-md-6 text-right">
-                    <a href="{{ route('admin.rw.create') }}" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus"></i> Tambah RW
-                    </a>
-                </div>
-            </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 dashboard-card">
+        <div class="card-header py-3 dashboard-card-header">
+            <h6 class="m-0 font-weight-bold">
+                <i class="fas fa-list"></i> Daftar RW
+            </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
-                    <thead class="thead-light">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
                         <tr>
+                            <th>No</th>
                             <th>Nomor RW</th>
                             <th>Ketua RW</th>
+                            <th>Kontak</th>
                             <th>Jumlah RT</th>
                             <th>Jumlah Warga</th>
-                            <th width="20%">Aksi</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($rws as $rw)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>
                                 <strong class="text-primary">RW {{ $rw->nomor_rw }}</strong>
                             </td>
                             <td>
-                                @if($rw->ketua)
-                                    {{ $rw->ketua->nama }}
-                                    <br>
-                                    <small class="text-muted">NIK: {{ $rw->ketua->nik }}</small>
-                                @else
+                                {{ $rw->nama_ketua_rw }} <!-- GUNAKAN FIELD LANGSUNG -->
+                                @if(!$rw->nama_ketua_rw)
                                     <span class="badge badge-warning">Belum Ada Ketua</span>
                                 @endif
                             </td>
+                            <td>{{ $rw->kontak_rw ?? '-' }}</td>
                             <td>
-                                <span class="badge badge-info">{{ $rw->rts_count ?? 0 }} RT</span>
+                                <span class="badge badge-info">{{ $rw->rts_count }} RT</span>
                             </td>
                             <td>
-                                <span class="badge badge-success">{{ $rw->wargas_count ?? 0 }} Warga</span>
+                                <span class="badge badge-success">{{ $rw->wargas_count }} Warga</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-{{ $rw->status == 'Aktif' ? 'success' : 'danger' }}">
+                                    {{ $rw->status }}
+                                </span>
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.rw.show', $rw->id) }}" 
+                                       class="btn btn-info btn-sm" title="Detail">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                     <a href="{{ route('admin.rw.edit', $rw->id) }}" 
                                        class="btn btn-warning btn-sm" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('admin.rw.set_ketua', $rw->id) }}" 
-                                          method="POST" class="d-inline">
-                                        @csrf
-                                        <button type="submit" class="btn btn-info btn-sm" 
-                                                onclick="return confirm('Tetapkan ketua RW?')"
-                                                title="Set Ketua">
-                                            <i class="fas fa-user-tie"></i>
-                                        </button>
-                                    </form>
+                                    {{-- HAPUS FORM SET_KETUA KARENA TIDAK ADA ROUTENYA --}}
                                     <form action="{{ route('admin.rw.destroy', $rw->id) }}" 
                                           method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" 
-                                                onclick="return confirm('Hapus RW ini?')"
+                                                onclick="return confirm('Hapus data RW?')"
                                                 title="Hapus">
                                             <i class="fas fa-trash"></i>
                                         </button>

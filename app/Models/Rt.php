@@ -13,7 +13,7 @@ class Rt extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id_rw',
+        'rw_id',
         'nomor_rt',
         'nama_ketua_rt',
         'kontak_rt',

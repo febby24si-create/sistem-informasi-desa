@@ -26,7 +26,7 @@ class RwController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomor_rw' => 'required|integer|min:1|max:99|unique:rw,nomor_rw',
+            'nomor_rw' => 'required|min:1|max:99|unique:rws,nomor_rw',
             'nama_ketua_rw' => 'required|string|max:100',
             'kontak_rw' => 'nullable|string|max:20',
             'alamat_rw' => 'nullable|string',
@@ -72,7 +72,7 @@ class RwController extends Controller
         $rw = Rw::findOrFail($id);
 
         $request->validate([
-            'nomor_rw' => 'required|integer|min:1|max:99|unique:rw,nomor_rw,' . $id . ',id_rw',
+            'nomor_rw' => 'required|min:1|max:99|unique:rws,nomor_rw,' . $id . ',id',
             'nama_ketua_rw' => 'required|string|max:100',
             'kontak_rw' => 'nullable|string|max:20',
             'alamat_rw' => 'nullable|string',
@@ -126,5 +126,12 @@ class RwController extends Controller
             return redirect()->back()
                 ->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
+    }
+    public function setKetua($id)
+    {
+        // Logic untuk set ketua RW
+        $rw = Rw::findOrFail($id);
+        // ... logic set ketua
+        return redirect()->back()->with('success', 'Ketua RW berhasil ditetapkan.');
     }
 }
