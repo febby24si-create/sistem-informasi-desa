@@ -11,7 +11,8 @@ class AnggotaLembagaSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('anggota_lembagas')->truncate();
+        DB::table('anggota_lembagas')->delete();
+        DB::statement('ALTER TABLE anggota_lembagas AUTO_INCREMENT = 1;');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = Faker::create();
@@ -40,8 +41,12 @@ class AnggotaLembagaSeeder extends Seeder
             $key = $lembaga_id . '-' . $warga_id;
 
             // Pastikan kombinasi unik
-            if (!in_array($key, $uniqueCombinations)) {
-                
+            $exists = DB::table('anggota_lembagas')
+                ->where('lembaga_id', $lembaga_id)
+                ->where('warga_id', $warga_id)
+                ->exists();
+
+            if (!in_array($key, $uniqueCombinations) && !$exists) {
 
                 // Tanggal mulai 1-5 tahun lalu
                 $startDate = $faker->dateTimeBetween('-5 years', '-1 years');
