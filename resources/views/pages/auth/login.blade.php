@@ -21,7 +21,7 @@
             --secondary: #2c3e50;
             --accent: #e74c3c;
             --dark-bg: #1a1a2e;
-            --dark-card: #16213e;
+            --dark-card: rgba(22, 33, 62, 0.85);
             --dark-text: #e6e6e6;
             --dark-border: #34495e;
             --success: #27ae60;
@@ -53,7 +53,7 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(26, 26, 46, 0.85), rgba(15, 52, 96, 0.9)),
+                linear-gradient(rgba(26, 26, 46, 0.7), rgba(15, 52, 96, 0.8)),
                 url('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
             background-size: cover;
             z-index: -1;
@@ -76,7 +76,7 @@
             display: block;
             width: 20px;
             height: 20px;
-            background: rgba(155, 89, 182, 0.2);
+            background: rgba(155, 89, 182, 0.15);
             animation: float 25s linear infinite;
             bottom: -150px;
             border-radius: 50%;
@@ -116,7 +116,7 @@
 
         .login-container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -126,8 +126,8 @@
             box-shadow: 
                 0 15px 35px rgba(0, 0, 0, 0.5),
                 0 5px 15px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            background: rgba(22, 33, 62, 0.7);
+            backdrop-filter: blur(5px);
+            background: var(--dark-card);
             animation: cardEntrance 1s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
@@ -144,12 +144,12 @@
 
         .login-left {
             background: 
-                linear-gradient(rgba(155, 89, 182, 0.8), rgba(44, 62, 80, 0.9)),
+                linear-gradient(rgba(155, 89, 182, 0.7), rgba(44, 62, 80, 0.8)),
                 url('https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80') no-repeat center center;
             background-size: cover;
             color: var(--dark-text);
             text-align: center;
-            padding: 40px 25px;
+            padding: 50px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -162,7 +162,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(155, 89, 182, 0.7), rgba(44, 62, 80, 0.9));
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.6), rgba(44, 62, 80, 0.8));
             animation: overlayFade 1.5s ease-out 0.5s forwards;
             opacity: 0;
         }
@@ -188,15 +188,15 @@
         }
 
         .logo-container {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             animation: logoFloat 4s ease-in-out infinite;
         }
 
         /* Logo Rumah Gadang */
         .rumah-gadang {
-            font-size: 80px;
+            font-size: 90px;
             color: var(--gold);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             transition: all 0.5s ease;
             filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
             position: relative;
@@ -204,7 +204,7 @@
 
         .rumah-gadang::before {
             content: "🏠";
-            font-size: 80px;
+            font-size: 90px;
         }
 
         .logo-container:hover .rumah-gadang {
@@ -215,30 +215,31 @@
         .login-left h3 {
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             letter-spacing: 0.5px;
-            font-size: 24px;
+            font-size: 28px;
         }
 
         .login-left p {
             color: #ffffff;
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 5px;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
         }
 
         .village-info {
-            margin: 15px 0;
+            margin: 20px 0;
         }
 
         .village-info p {
-            margin-bottom: 6px;
-            font-size: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .login-right {
-            padding: 35px 30px;
+            padding: 50px 40px;
             background: var(--dark-card);
             display: flex;
             flex-direction: column;
@@ -248,48 +249,48 @@
 
         .login-header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .login-header h4 {
             font-weight: 700;
             color: var(--dark-text);
-            margin-bottom: 6px;
+            margin-bottom: 10px;
             position: relative;
             display: inline-block;
-            font-size: 22px;
+            font-size: 26px;
         }
 
         .login-header h4::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 3px;
+            width: 50px;
+            height: 4px;
             background: linear-gradient(to right, var(--primary), var(--accent));
             border-radius: 3px;
         }
 
         .login-header p {
             color: #b8b8b8;
-            font-size: 14px;
-            margin-top: 15px;
+            font-size: 16px;
+            margin-top: 18px;
         }
 
-        /* Form styling improvements */
+        /* Form styling improvements - Diperbesar */
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             position: relative;
         }
 
         .form-label {
             font-weight: 500;
             color: var(--dark-text);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
             display: block;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .input-group {
@@ -298,33 +299,35 @@
 
         .input-icon {
             position: absolute;
-            left: 12px;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--primary);
             z-index: 5;
+            font-size: 18px;
         }
 
         .form-control {
             transition: all 0.3s ease;
             border: 2px solid var(--dark-border);
-            border-radius: 8px;
-            padding: 10px 12px 10px 40px;
-            background: rgba(30, 40, 70, 0.7);
-            font-size: 14px;
+            border-radius: 10px;
+            padding: 14px 15px 14px 50px;
+            background: rgba(30, 40, 70, 0.8);
+            font-size: 16px;
             color: var(--dark-text);
-            height: 48px;
+            height: 55px;
         }
 
         .form-control::placeholder {
             color: #8a8a8a;
+            font-size: 15px;
         }
 
         .form-control:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(155, 89, 182, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(155, 89, 182, 0.25);
             transform: translateY(-2px);
-            background: rgba(40, 50, 80, 0.7);
+            background: rgba(40, 50, 80, 0.8);
             color: var(--dark-text);
         }
 
@@ -334,7 +337,7 @@
 
         .password-toggle {
             position: absolute;
-            right: 12px;
+            right: 15px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
@@ -342,6 +345,7 @@
             color: var(--primary);
             cursor: pointer;
             z-index: 5;
+            font-size: 18px;
         }
 
         .password-toggle:hover {
@@ -351,16 +355,16 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--accent));
             border: none;
-            border-radius: 8px;
-            padding: 12px;
+            border-radius: 10px;
+            padding: 15px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 17px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             color: white;
-            height: 48px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -378,28 +382,29 @@
         }
 
         .btn-primary i {
-            margin-right: 8px;
+            margin-right: 10px;
+            font-size: 18px;
         }
 
         .alert {
-            padding: 10px 15px;
-            font-size: 14px;
-            margin-bottom: 15px;
+            padding: 12px 18px;
+            font-size: 15px;
+            margin-bottom: 18px;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--dark-text);
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
         .alert-success {
-            background: rgba(39, 174, 96, 0.2);
-            border-color: rgba(39, 174, 96, 0.3);
+            background: rgba(39, 174, 96, 0.3);
+            border-color: rgba(39, 174, 96, 0.4);
             color: #a8e6b8;
         }
 
         .alert-danger {
-            background: rgba(231, 76, 60, 0.2);
-            border-color: rgba(231, 76, 60, 0.3);
+            background: rgba(231, 76, 60, 0.3);
+            border-color: rgba(231, 76, 60, 0.4);
             color: #ffb8b8;
         }
 
@@ -409,14 +414,17 @@
 
         .small {
             color: #8a8a8a;
+            font-size: 14px;
         }
 
         hr {
             border-color: var(--dark-border);
+            margin: 25px 0;
         }
 
         a {
             color: var(--primary);
+            font-size: 15px;
         }
 
         a:hover {
@@ -493,7 +501,7 @@
         /* Animasi untuk alert */
         .alert {
             animation: alertPop 0.5s ease-out;
-            border-radius: 8px;
+            border-radius: 10px;
             border: none;
         }
 
@@ -578,8 +586,8 @@
 
         .copyright {
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            font-size: 13px;
-            margin-top: 20px;
+            font-size: 14px;
+            margin-top: 25px;
             color: #b8b8b8;
         }
 
@@ -589,7 +597,7 @@
             top: -50px;
             width: 15px;
             height: 15px;
-            background: rgba(255, 183, 197, 0.7);
+            background: rgba(255, 183, 197, 0.5);
             border-radius: 50% 0 50% 50%;
             transform: rotate(45deg);
             animation: sakuraFall 15s linear infinite;
@@ -659,9 +667,9 @@
 
         /* Custom Rumah Gadang Icon */
         .custom-rumah-gadang {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
             position: relative;
             background: linear-gradient(45deg, var(--gold), #e67e22);
             clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
@@ -671,10 +679,10 @@
         .custom-rumah-gadang::before {
             content: "";
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
             background: var(--dark-card);
             clip-path: polygon(0% 100%, 50% 20%, 100% 100%);
         }
@@ -682,28 +690,42 @@
         .custom-rumah-gadang::after {
             content: "";
             position: absolute;
-            bottom: -5px;
-            left: 15px;
-            right: 15px;
-            height: 10px;
+            bottom: -6px;
+            left: 18px;
+            right: 18px;
+            height: 12px;
             background: #8B4513;
-            border-radius: 5px;
+            border-radius: 6px;
         }
 
-        /* Responsive adjustments */
+        /* Responsive adjustments - Diperbaiki untuk semua perangkat */
+        @media (max-width: 1200px) {
+            .login-container {
+                max-width: 1000px;
+            }
+        }
+
         @media (max-width: 992px) {
             .login-left, .login-right {
-                padding: 30px 20px;
+                padding: 40px 25px;
             }
             
             .login-container {
-                max-width: 700px;
+                max-width: 800px;
+            }
+            
+            .login-left h3 {
+                font-size: 24px;
+            }
+            
+            .login-header h4 {
+                font-size: 22px;
             }
         }
 
         @media (max-width: 768px) {
             .login-left, .login-right {
-                padding: 25px 15px;
+                padding: 30px 20px;
             }
             
             .login-header h4 {
@@ -725,20 +747,64 @@
             .login-left {
                 min-height: 300px;
             }
+            
+            .form-control {
+                height: 50px;
+                font-size: 15px;
+            }
+            
+            .btn-primary {
+                height: 50px;
+                font-size: 16px;
+            }
         }
 
         @media (max-width: 576px) {
             .login-left, .login-right {
-                padding: 20px 15px;
+                padding: 25px 15px;
             }
             
             .rumah-gadang {
-                font-size: 60px;
+                font-size: 70px;
             }
             
             .custom-rumah-gadang {
-                width: 60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
+            }
+            
+            .login-left h3 {
+                font-size: 22px;
+            }
+            
+            .login-header h4 {
+                font-size: 20px;
+            }
+            
+            .login-header p {
+                font-size: 14px;
+            }
+            
+            .form-control {
+                padding: 12px 12px 12px 45px;
+                font-size: 15px;
+                height: 48px;
+            }
+            
+            .btn-primary {
+                padding: 12px;
+                font-size: 15px;
+                height: 48px;
+            }
+            
+            .input-icon, .password-toggle {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .login-left, .login-right {
+                padding: 20px 12px;
             }
             
             .login-left h3 {
@@ -749,20 +815,33 @@
                 font-size: 18px;
             }
             
-            .login-header p {
-                font-size: 13px;
-            }
-            
             .form-control {
-                padding: 8px 12px 8px 35px;
+                padding: 10px 10px 10px 40px;
                 font-size: 14px;
-                height: 44px;
+                height: 45px;
             }
             
             .btn-primary {
                 padding: 10px;
                 font-size: 14px;
-                height: 44px;
+                height: 45px;
+            }
+        }
+
+        /* Tambahan untuk perangkat dengan tinggi kecil */
+        @media (max-height: 700px) {
+            body {
+                padding: 10px 15px;
+                align-items: flex-start;
+            }
+            
+            .login-container {
+                margin: 20px auto;
+            }
+            
+            .login-card {
+                max-height: 95vh;
+                overflow-y: auto;
             }
         }
     </style>
@@ -950,6 +1029,24 @@
                 }
             });
         });
+
+        // Responsif untuk perangkat mobile - sesuaikan tinggi card
+        function adjustCardHeight() {
+            const card = document.querySelector('.login-card');
+            const windowHeight = window.innerHeight;
+            
+            if (windowHeight < 700) {
+                card.style.maxHeight = (windowHeight - 40) + 'px';
+                card.style.overflowY = 'auto';
+            } else {
+                card.style.maxHeight = 'none';
+                card.style.overflowY = 'visible';
+            }
+        }
+
+        // Panggil fungsi saat load dan resize
+        window.addEventListener('load', adjustCardHeight);
+        window.addEventListener('resize', adjustCardHeight);
     </script>
 </body>
 </html>

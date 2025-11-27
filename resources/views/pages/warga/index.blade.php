@@ -90,9 +90,8 @@
                     </div>
                 </div>
             </form>
-
             <div class="table-responsive">
-                <table class="table table-bordered" width="50%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-light">
                         <tr>
                             <th>NIK</th>
@@ -116,7 +115,7 @@
                                 <small class="text-muted">{{ Str::limit($warga->alamat, 50) }}</small>
                             </td>
                             <td>
-                                <span class="badge badge-light">
+                                <span class="badge badge-dark">
                                     {{ $warga->tgl_lahir->format('d/m/Y') }}
                                 </span>
                                 <br>
@@ -136,7 +135,7 @@
                             <td>
                                 @if($warga->rt && $warga->rw)
                                     <span class="badge badge-info">RT {{ $warga->rt->nomor_rt }}</span>
-                                    <span class="badge badge-secondary">RW {{ $warga->rw->nomor_rw }}</span>
+                                    <span class="badge badge-dark">RW {{ $warga->rw->nomor_rw }}</span>
                                 @else
                                     <span class="badge badge-warning">Belum Ditentukan</span>
                                 @endif
@@ -151,7 +150,7 @@
                                         <i class="fas fa-star"></i> Ketua
                                     </span>
                                 @else
-                                    <span class="badge badge-light">Warga</span>
+                                    <span class="badge badge-dark">Warga</span>
                                 @endif
                             </td>
                             <td>

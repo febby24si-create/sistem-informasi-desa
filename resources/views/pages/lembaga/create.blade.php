@@ -2,49 +2,54 @@
 @extends('layouts.admin.app')
 
 @section('title', 'Tambah Lembaga Desa')
+@section('page_title', 'Tambah Lembaga')
 
 @section('content')
-<div class="container-fluid">
-    <!-- Header dengan breadcrumb -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <div>
-            <h1 class="h3 mb-0 text-gray-800">
-                <i class="fas fa-plus-circle text-primary"></i> Tambah Lembaga Desa
+<div class="container-fluid py-4">
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <h1 class="dashboard-page-title mb-2">
+                <i class="fas fa-plus-circle text-primary me-3"></i>Tambah Lembaga Desa
             </h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent p-0 mb-0">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}" class="text-decoration-none text-gray-600">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.lembaga.index') }}" class="text-decoration-none text-gray-600">Lembaga Desa</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah</li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.dashboard') }}" class="text-decoration-none text-muted">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.lembaga.index') }}" class="text-decoration-none text-muted">Lembaga Desa</a>
+                    </li>
+                    <li class="breadcrumb-item active text-primary" aria-current="page">Tambah</li>
                 </ol>
             </nav>
         </div>
-        <a href="{{ route('admin.lembaga.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-outline-secondary shadow-sm">
-            <i class="fas fa-arrow-left fa-sm"></i> Kembali ke Daftar Lembaga
+        <a href="{{ route('admin.lembaga.index') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i> Kembali
         </a>
     </div>
 
     <!-- Card Form -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 bg-white">
-            <h6 class="m-0 font-weight-bold text-primary">
-                <i class="fas fa-info-circle mr-1"></i> Form Data Lembaga Desa
+    <div class="card dashboard-card shadow mb-4">
+        <div class="card-header">
+            <h6 class="m-0 font-weight-bold text-white">
+                <i class="fas fa-info-circle me-2"></i>Form Data Lembaga Desa
             </h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.lembaga.store') }}" method="POST" id="formLembaga">
+            <form action="{{ route('admin.lembaga.store') }}" method="POST" id="formLembaga" enctype="multipart/form-data">
                 @csrf
                 
-                <!-- Nama Lembaga -->
-                <div class="form-group row">
-                    <label for="nama_lembaga" class="col-md-3 col-form-label text-md-right font-weight-bold">
-                        Nama Lembaga <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-md-9">
+                <div class="row">
+                    <!-- Nama Lembaga -->
+                    <div class="col-md-6 mb-3">
+                        <label for="nama_lembaga" class="form-label fw-bold">
+                            Nama Lembaga <span class="text-danger">*</span>
+                        </label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-building"></i></span>
-                            </div>
+                            <span class="input-group-text bg-primary text-white">
+                                <i class="fas fa-building"></i>
+                            </span>
                             <input type="text" class="form-control @error('nama_lembaga') is-invalid @enderror" 
                                    id="nama_lembaga" name="nama_lembaga" value="{{ old('nama_lembaga') }}" 
                                    placeholder="Masukkan nama lembaga desa" required>
@@ -52,78 +57,124 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <small class="form-text text-muted">Contoh: Badan Permusyawaratan Desa, Lembaga Pemberdayaan Masyarakat, dll.</small>
-                    </div>
-                </div>
-
-                <!-- Deskripsi -->
-                <div class="form-group row">
-                    <label for="deskripsi" class="col-md-3 col-form-label text-md-right font-weight-bold">
-                        Deskripsi <span class="text-danger">*</span>
-                    </label>
-                    <div class="col-md-9">
-                        <textarea class="form-control @error('deskripsi') is-invalid @enderror" 
-                                  id="deskripsi" name="deskripsi" rows="5" 
-                                  placeholder="Jelaskan tentang lembaga desa, tugas, dan fungsinya" required>{{ old('deskripsi') }}</textarea>
-                        <div class="d-flex justify-content-between mt-1">
-                            <small class="form-text text-muted">Minimal 50 karakter</small>
-                            <small id="deskripsi-counter" class="form-text text-muted">0 karakter</small>
+                        <div class="form-text text-muted">
+                            Contoh: Badan Permusyawaratan Desa, Lembaga Pemberdayaan Masyarakat, dll.
                         </div>
-                        @error('deskripsi')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
                     </div>
-                </div>
 
-                <!-- Kontak -->
-                <div class="form-group row">
-                    <label for="kontak" class="col-md-3 col-form-label text-md-right font-weight-bold">
-                        Kontak
-                    </label>
-                    <div class="col-md-9">
+                    <!-- Kontak -->
+                    <div class="col-md-6 mb-3">
+                        <label for="kontak" class="form-label fw-bold">
+                            Kontak
+                        </label>
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                            </div>
+                            <span class="input-group-text bg-info text-white">
+                                <i class="fas fa-phone"></i>
+                            </span>
                             <input type="text" class="form-control @error('kontak') is-invalid @enderror" 
                                    id="kontak" name="kontak" value="{{ old('kontak') }}" 
-                                   placeholder="Nomor telepon, email, atau kontak lainnya">
+                                   placeholder="Nomor telepon atau email">
                             @error('kontak')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <small class="form-text text-muted">Bisa berupa nomor telepon, email, atau media komunikasi lainnya.</small>
+                        <div class="form-text text-muted">
+                            Bisa berupa nomor telepon, email, atau media komunikasi lainnya.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo Lembaga -->
+                <div class="mb-3">
+                    <label for="logo" class="form-label fw-bold">
+                        Logo Lembaga
+                    </label>
+                    <div class="input-group">
+                        <input type="file" class="form-control @error('logo') is-invalid @enderror" 
+                               id="logo" name="logo" accept="image/*">
+                        @error('logo')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-text text-muted">
+                        Format: JPG, PNG, JPEG. Maksimal 2MB. Ukuran disarankan 300x300px.
+                    </div>
+                    
+                    <!-- Preview Logo -->
+                    <div id="logo-preview" class="mt-3 text-center" style="display: none;">
+                        <img id="preview-image" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-sm btn-danger" onclick="removeLogoPreview()">
+                                <i class="fas fa-times me-1"></i> Hapus Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deskripsi -->
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label fw-bold">
+                        Deskripsi <span class="text-danger">*</span>
+                    </label>
+                    <textarea class="form-control @error('deskripsi') is-invalid @enderror" 
+                              id="deskripsi" name="deskripsi" rows="6" 
+                              placeholder="Jelaskan tentang lembaga desa, tugas, dan fungsinya" required>{{ old('deskripsi') }}</textarea>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div class="form-text text-muted">Minimal 50 karakter</div>
+                        <div id="deskripsi-counter" class="form-text text-muted">0 karakter</div>
+                    </div>
+                    @error('deskripsi')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Status -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Status</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" id="status_aktif" 
+                               value="aktif" {{ old('status', 'aktif') == 'aktif' ? 'checked' : '' }}>
+                        <label class="form-check-label text-success fw-medium" for="status_aktif">
+                            <i class="fas fa-check-circle me-1"></i>Aktif
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" id="status_nonaktif" 
+                               value="nonaktif" {{ old('status') == 'nonaktif' ? 'checked' : '' }}>
+                        <label class="form-check-label text-muted" for="status_nonaktif">
+                            <i class="fas fa-times-circle me-1"></i>Nonaktif
+                        </label>
+                    </div>
+                    <div class="form-text text-muted">
+                        Pilih status keaktifan lembaga. Lembaga nonaktif tidak akan ditampilkan di halaman publik.
                     </div>
                 </div>
 
                 <!-- Tombol Aksi -->
-                <div class="form-group row mb-0">
-                    <div class="col-md-9 offset-md-3">
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('admin.lembaga.index') }}" class="btn btn-outline-secondary mr-2">
-                                <i class="fas fa-times"></i> Batal
-                            </a>
-                            <button type="submit" class="btn btn-primary" id="btnSubmit">
-                                <i class="fas fa-save"></i> Simpan Lembaga
-                            </button>
-                        </div>
-                    </div>
+                <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+                    <a href="{{ route('admin.lembaga.index') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-times me-2"></i>Batal
+                    </a>
+                    <button type="submit" class="btn btn-primary" id="btnSubmit">
+                        <i class="fas fa-save me-2"></i>Simpan Lembaga
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Informasi Tambahan -->
-    <div class="card border-left-info shadow mb-4">
-        <div class="card-body py-3">
+    <div class="card dashboard-card border-left-info mb-4">
+        <div class="card-body">
             <div class="row align-items-center">
                 <div class="col-auto">
                     <i class="fas fa-info-circle fa-2x text-info"></i>
                 </div>
-                <div class="col ml-3">
-                    <div class="text-xs font-weight-bold text-info text-uppercase">Tips</div>
-                    <div class="mb-0 text-gray-800">
-                        Pastikan data yang dimasukkan sudah sesuai dan lengkap. Nama lembaga harus unik dan tidak boleh sama dengan lembaga yang sudah ada.
+                <div class="col">
+                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tips</div>
+                    <div class="text-gray-800 small">
+                        Pastikan data yang dimasukkan sudah sesuai dan lengkap. Nama lembaga harus unik dan tidak boleh sama dengan lembaga yang sudah ada. 
+                        Deskripsi harus jelas dan informatif untuk memahami tujuan dan fungsi lembaga.
                     </div>
                 </div>
             </div>
@@ -134,81 +185,196 @@
 
 @push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Karakter counter untuk deskripsi
-        const deskripsiTextarea = document.getElementById('deskripsi');
-        const deskripsiCounter = document.getElementById('deskripsi-counter');
-        
-        if (deskripsiTextarea && deskripsiCounter) {
-            deskripsiTextarea.addEventListener('input', function() {
-                const count = this.value.length;
-                deskripsiCounter.textContent = count + ' karakter';
-                
-                // Validasi minimal karakter
-                if (count < 50) {
-                    deskripsiCounter.classList.remove('text-success');
-                    deskripsiCounter.classList.add('text-danger');
-                } else {
-                    deskripsiCounter.classList.remove('text-danger');
-                    deskripsiCounter.classList.add('text-success');
-                }
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    // Karakter counter untuk deskripsi
+    const deskripsiTextarea = document.getElementById('deskripsi');
+    const deskripsiCounter = document.getElementById('deskripsi-counter');
+    
+    if (deskripsiTextarea && deskripsiCounter) {
+        deskripsiTextarea.addEventListener('input', function() {
+            const count = this.value.length;
+            deskripsiCounter.textContent = count + ' karakter';
             
-            // Trigger input event untuk inisialisasi
-            deskripsiTextarea.dispatchEvent(new Event('input'));
-        }
+            // Validasi minimal karakter
+            if (count < 50) {
+                deskripsiCounter.classList.remove('text-success');
+                deskripsiCounter.classList.add('text-danger');
+            } else {
+                deskripsiCounter.classList.remove('text-danger');
+                deskripsiCounter.classList.add('text-success');
+            }
+        });
         
-        // Validasi form sebelum submit
-        const form = document.getElementById('formLembaga');
-        const btnSubmit = document.getElementById('btnSubmit');
+        // Trigger input event untuk inisialisasi
+        deskripsiTextarea.dispatchEvent(new Event('input'));
+    }
+
+    // Preview logo
+    const logoInput = document.getElementById('logo');
+    const logoPreview = document.getElementById('logo-preview');
+    const previewImage = document.getElementById('preview-image');
+    
+    if (logoInput) {
+        logoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    logoPreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Validasi form sebelum submit
+    const form = document.getElementById('formLembaga');
+    const btnSubmit = document.getElementById('btnSubmit');
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            // Validasi minimal karakter deskripsi
+            const deskripsi = document.getElementById('deskripsi').value;
+            if (deskripsi.length < 50) {
+                e.preventDefault();
+                showAlert('Deskripsi harus minimal 50 karakter!', 'warning');
+                document.getElementById('deskripsi').focus();
+                return false;
+            }
+            
+            // Ubah tombol submit menjadi loading
+            if (btnSubmit) {
+                btnSubmit.disabled = true;
+                btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Menyimpan...';
+            }
+            
+            return true;
+        });
+    }
+});
+
+function removeLogoPreview() {
+    const logoInput = document.getElementById('logo');
+    const logoPreview = document.getElementById('logo-preview');
+    
+    if (logoInput) logoInput.value = '';
+    if (logoPreview) logoPreview.style.display = 'none';
+}
+
+function showAlert(message, type = 'info') {
+    // Buat alert element
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    // Tambahkan alert di atas form
+    const form = document.getElementById('formLembaga');
+    if (form) {
+        form.parentNode.insertBefore(alertDiv, form);
         
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                // Validasi minimal karakter deskripsi
-                const deskripsi = document.getElementById('deskripsi').value;
-                if (deskripsi.length < 50) {
-                    e.preventDefault();
-                    alert('Deskripsi harus minimal 50 karakter!');
-                    document.getElementById('deskripsi').focus();
-                    return false;
-                }
-                
-                // Ubah tombol submit menjadi loading
-                if (btnSubmit) {
-                    btnSubmit.disabled = true;
-                    btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menyimpan...';
-                }
-                
-                return true;
-            });
-        }
-    });
+        // Auto remove setelah 5 detik
+        setTimeout(() => {
+            if (alertDiv.parentNode) {
+                alertDiv.remove();
+            }
+        }, 5000);
+    }
+}
 </script>
 @endpush
 
-@push('styles')
 <style>
-    .form-control:focus {
-        border-color: #4e73df;
-        box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+.form-label {
+    color: var(--text-primary) !important;
+    margin-bottom: 0.5rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25) !important;
+}
+
+.input-group-text {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+    border-color: var(--primary-dark) !important;
+    color: #ffffff !important;
+}
+
+.input-group-text.bg-info {
+    background: linear-gradient(135deg, var(--accent), #7c3aed) !important;
+    border-color: #7c3aed !important;
+}
+
+.breadcrumb {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.breadcrumb-item a {
+    color: var(--text-muted) !important;
+    text-decoration: none !important;
+    transition: color var(--transition-speed) ease !important;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--primary) !important;
+}
+
+.breadcrumb-item.active {
+    color: var(--primary) !important;
+}
+
+.border-left-info {
+    border-left: 4px solid var(--accent) !important;
+}
+
+.text-xs {
+    font-size: 0.7rem !important;
+}
+
+.fw-medium {
+    font-weight: 500 !important;
+}
+
+.alert {
+    border-radius: 12px !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.img-thumbnail {
+    border-radius: 12px !important;
+    border: 2px solid #e2e8f0 !important;
+    transition: all var(--transition-speed) ease !important;
+}
+
+.img-thumbnail:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+@media (max-width: 768px) {
+    .d-flex.flex-md-row {
+        flex-direction: column !important;
     }
     
-    .input-group-text {
-        background-color: #f8f9fc;
-        border: 1px solid #d1d3e2;
+    .btn {
+        width: 100% !important;
+        margin-bottom: 0.5rem;
     }
     
-    .breadcrumb {
-        background-color: transparent;
-        padding: 0;
+    .d-flex.justify-content-end.gap-2 {
+        flex-direction: column;
     }
-    
-    .breadcrumb-item a {
-        color: #6e707e;
-    }
-    
-    .breadcrumb-item.active {
-        color: #4e73df;
-    }
+}
 </style>
-@endpush

@@ -2,9 +2,6 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard') }}">
-        <div class="sidebar-brand-icon">
-            <i class="fas fa-city"></i>
-        </div>
         <div class="sidebar-brand-text mx-3">SIPEDES</div>
     </a>
 
