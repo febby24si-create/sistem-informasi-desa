@@ -21,7 +21,66 @@
                     </a>
                 </div>
             </div>
-
+            <!-- Quick Stats -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card border-left-primary h-100">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <i class="fas fa-users fa-2x text-primary"></i>
+                                </div>
+                                <div class="col-9">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total Users
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ $users->total() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-left-success h-100">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <i class="fas fa-crown fa-2x text-success"></i>
+                                </div>
+                                <div class="col-9">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Administrator
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ $users->where('role', 'admin')->count() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card border-left-info h-100">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-3">
+                                    <i class="fas fa-user fa-2x text-info"></i>
+                                </div>
+                                <div class="col-9">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Operator
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ $users->where('role', 'operator')->count() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Main Card -->
             <div class="card shadow-lg mb-4">
                 <div class="card-header py-3">
@@ -205,67 +264,6 @@
                         </div>
                     </div>
                     @endif
-                </div>
-            </div>
-
-            <!-- Quick Stats -->
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card border-left-primary h-100">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-3">
-                                    <i class="fas fa-users fa-2x text-primary"></i>
-                                </div>
-                                <div class="col-9">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Total Users
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        {{ $users->total() }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card border-left-success h-100">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-3">
-                                    <i class="fas fa-crown fa-2x text-success"></i>
-                                </div>
-                                <div class="col-9">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Administrator
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        {{ $users->where('role', 'admin')->count() }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card border-left-info h-100">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-3">
-                                    <i class="fas fa-user fa-2x text-info"></i>
-                                </div>
-                                <div class="col-9">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                        Operator
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        {{ $users->where('role', 'operator')->count() }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
