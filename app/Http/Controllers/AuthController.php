@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
     public function showLoginForm()
     {
         // Jika sudah login, redirect ke dashboard
@@ -33,6 +34,22 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
+        // Debug: Cek apakah user ada
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Email tidak ditemukan.',
+            ])->onlyInput('email');
+        }
+
+        // Debug: Cek password
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors([
+                'email' => 'Password tidak valid.',
+            ])->onlyInput('email');
+        }
 
         // Coba login dengan credentials
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

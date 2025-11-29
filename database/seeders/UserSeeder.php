@@ -14,27 +14,31 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('password123'),
+                'password' => 'password123', // Password plain, akan di-hash oleh mutator (jika ada) atau Auth
                 'role' => 'admin',
             ],
             [
                 'name' => 'Rezy',
                 'email' => 'rezy@gmail.com',
-                'password' => Hash::make('password123'),
+                'password' => 'password123',
                 'role' => 'admin',
             ],
             [
                 'name' => 'Stefanny',
                 'email' => 'fanny@gmail.com',
-                'password' => Hash::make('password123'),
+                'password' => 'password123',
                 'role' => 'admin',
             ]
         ];
 
         foreach ($users as $user) {
             User::updateOrCreate(
-                ['email' => $user['email']],   // cek duplikat berdasarkan email
-                $user                           // jika sudah ada → update, jika belum → create
+                ['email' => $user['email']],
+                [
+                    'name' => $user['name'],
+                    'password' => Hash::make($user['password']), // Hash di sini
+                    'role' => $user['role'],
+                ]
             );
         }
     }

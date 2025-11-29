@@ -16,9 +16,10 @@
                     <h6 class="h4 mb-0 text-gray-800">Daftar Warga</h6>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a href="{{ route('admin.warga.create') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('admin.warga.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> Tambah Warga
                     </a>
+
                 </div>
             </div>
         </div>
@@ -90,9 +91,10 @@
                     </div>
                 </div>
             </form>
+
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="thead-light">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead class="thead-dark">
                         <tr>
                             <th>NIK</th>
                             <th>Nama</th>
@@ -135,7 +137,7 @@
                             <td>
                                 @if($warga->rt && $warga->rw)
                                     <span class="badge badge-info">RT {{ $warga->rt->nomor_rt }}</span>
-                                    <span class="badge badge-dark">RW {{ $warga->rw->nomor_rw }}</span>
+                                    <span class="badge badge-secondary">RW {{ $warga->rw->nomor_rw }}</span>
                                 @else
                                     <span class="badge badge-warning">Belum Ditentukan</span>
                                 @endif
