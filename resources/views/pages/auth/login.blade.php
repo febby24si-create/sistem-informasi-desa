@@ -56,8 +56,7 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.9)),
-                url('https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=2070') center/cover no-repeat;
+                url('{{ asset('assets/img/nature.jpg') }}') center/cover no-repeat;            
             z-index: 0;
             animation: subtleZoom 20s ease-in-out infinite alternate;
         }
@@ -175,8 +174,7 @@
 
         .login-left {
             background: 
-                linear-gradient(rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3)),
-                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2032') center/cover no-repeat;
+                url('{{ asset('assets/img/nature.jpg') }}') center/cover no-repeat;            
             padding: 60px 40px;
             display: flex;
             flex-direction: column;
@@ -303,10 +301,13 @@
             color: var(--accent);
         }
 
-        .login-right {
-            padding: 60px 50px;
-            background: rgba(30, 41, 59, 0.8);
-        }
+    .login-right {
+        padding: 60px 50px;
+        background: url('{{ asset('assets/img/dark.jpg') }}') center/cover no-repeat;
+        backdrop-filter: blur(15px) saturate(150%);
+        -webkit-backdrop-filter: blur(15px) saturate(150%);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
         .login-header {
             text-align: center;
