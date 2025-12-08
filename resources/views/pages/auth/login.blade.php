@@ -6,18 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login - SIPEDES</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #8b5cf6;
+            --primary: #ffc107;
             --primary-dark: #7c3aed;
             --secondary: #ec4899;
             --accent: #06b6d4;
@@ -55,8 +52,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                url('{{ asset('assets/img/nature.jpg') }}') center/cover no-repeat;            
+            background:
+                url('{{ asset('assets/img/nature.jpg') }}') center/cover no-repeat;
             z-index: 0;
             animation: subtleZoom 20s ease-in-out infinite alternate;
         }
@@ -154,7 +151,7 @@
             backdrop-filter: blur(20px);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 
+            box-shadow:
                 0 25px 50px -12px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(139, 92, 246, 0.1);
             animation: slideUp 0.6s ease-out;
@@ -173,8 +170,8 @@
         }
 
         .login-left {
-            background: 
-                url('{{ asset('assets/img/nature.jpg') }}') center/cover no-repeat;            
+            background:
+                url('{{ asset('assets/img/nature.jpg') }}') center/cover no-repeat;
             padding: 60px 40px;
             display: flex;
             flex-direction: column;
@@ -193,7 +190,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(236, 72, 153, 0.4));
+            background: linear-gradient(135deg, rgb(200, 255, 0), rgba(236, 72, 153, 0.4));
             z-index: 0;
         }
 
@@ -240,6 +237,18 @@
             animation: logoFloat 3s ease-in-out infinite;
             box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
         }
+
+        /* ======================================================= */
+        /* 💡 ATURAN BARU UNTUK GAMBAR LOGO */
+        /* ======================================================= */
+        .logo-icon .logo-img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+            object-fit: contain; /* Memastikan seluruh gambar terlihat di dalam wadah */
+        }
+        /* ======================================================= */
 
         .logo-icon i {
             font-size: 50px;
@@ -451,7 +460,7 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 8px 30px rgb(217, 255, 1);
         }
 
         .btn-primary:active {
@@ -509,7 +518,7 @@
         .copyright {
             text-align: center;
             margin-top: 30px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(233, 226, 12, 0.8);
             font-size: 14px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -524,7 +533,7 @@
             position: absolute;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent);
+            background: radial-gradient(circle, rgba(212, 255, 0, 0.15), transparent);
             border-radius: 50%;
             filter: blur(40px);
             animation: glow 8s ease-in-out infinite;
@@ -611,10 +620,8 @@
 </head>
 
 <body>
-    <!-- Background Image -->
     <div class="bg-image"></div>
 
-    <!-- Animated Background Particles -->
     <div class="bg-decoration">
         <span></span>
         <span></span>
@@ -626,19 +633,18 @@
     <div class="login-container">
         <div class="glow"></div>
         <div class="glow"></div>
-        
+
         <div class="card login-card">
             <div class="row g-0">
-                <!-- Left Side -->
                 <div class="col-lg-5 login-left">
                     <div class="logo-container">
                         <div class="logo-icon">
-                            <i class="fas fa-home"></i>
+                            <img src="/assets/img/logo3.png" alt="Logo SIPEDES" class="logo-img">
                         </div>
                         <h2>SIPEDES</h2>
                         <p>Sistem Informasi Pemerintahan Desa</p>
                     </div>
-                    
+
                     <div class="village-info">
                         <p><i class="fas fa-map-marker-alt"></i> Desa Koto Baru III Jorong</p>
                         <p><i class="fas fa-location-dot"></i> Kec. Baso, Kab. Agam</p>
@@ -647,7 +653,6 @@
                     </div>
                 </div>
 
-                <!-- Right Side -->
                 <div class="col-lg-7 login-right">
                     <div class="login-header">
                         <h4>Selamat Datang</h4>
@@ -671,36 +676,36 @@
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        
+
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
                             <div class="input-wrapper">
                                 <i class="fas fa-envelope input-icon"></i>
                                 <input type="email" class="form-control" id="email"
-                                       name="email" value="{{ old('email') }}"
-                                       placeholder="nama@contoh.com" required autofocus>
+                                        name="email" value="{{ old('email') }}"
+                                        placeholder="nama@contoh.com" required autofocus>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="password" class="form-label">Password</label>
                             <div class="input-wrapper">
                                 <i class="fas fa-lock input-icon"></i>
                                 <input type="password" class="form-control" id="password"
-                                       name="password" placeholder="Masukkan password" required>
+                                        name="password" placeholder="Masukkan password" required>
                                 <button type="button" class="password-toggle" id="togglePassword">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="remember" name="remember">
                             <label class="form-check-label" for="remember">
                                 Ingat saya
                             </label>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-sign-in-alt"></i> Masuk
                         </button>
@@ -723,7 +728,6 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -731,7 +735,7 @@
         document.getElementById('togglePassword').addEventListener('click', function() {
             const passwordInput = document.getElementById('password');
             const icon = this.querySelector('i');
-            
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 icon.classList.remove('fa-eye');

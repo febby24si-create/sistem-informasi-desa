@@ -134,40 +134,51 @@
         </div>
     </div>
 
-    <!-- Quick Actions - UPDATE DENGAN PERANGKAT DESA -->
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card shadow mb-4 dashboard-card">
-                <div class="card-header py-3 dashboard-card-header">
-                    <h4 class="m-0 font-weight-bold">
-                        <i class="fas fa-bolt"></i> Aksi Cepat
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="quick-actions-grid">
-                        <a href="{{ route('admin.warga.create') }}" class="btn btn-primary dashboard-btn">
-                            <i class="fas fa-user-plus"></i> Tambah Warga
+<div class="row">
+    <div class="col-lg-8 mb-4">
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <i class="fas fa-bolt me-2"></i> Aksi Cepat
+                </h6>
+            </div>
+            <div class="card-body p-3">
+                <div class="row g-2">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="{{ route('admin.warga.create') }}" class="btn btn-primary btn-sm w-100 d-flex align-items-center justify-content-center py-2">
+                            <i class="fas fa-user-plus me-1"></i> Warga
                         </a>
-                        <a href="{{ route('admin.lembaga.create') }}" class="btn btn-success dashboard-btn">
-                            <i class="fas fa-plus-circle"></i> Tambah Lembaga
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="{{ route('admin.lembaga.create') }}" class="btn btn-success btn-sm w-100 d-flex align-items-center justify-content-center py-2">
+                            <i class="fas fa-building me-1"></i> Lembaga
                         </a>
-                        <a href="{{ route('admin.perangkat_desa.create') }}" class="btn btn-warning dashboard-btn">
-                            <i class="fas fa-user-tie"></i> Tambah Perangkat
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="{{ route('admin.perangkat_desa.create') }}" class="btn btn-warning btn-sm w-100 d-flex align-items-center justify-content-center py-2">
+                            <i class="fas fa-user-tie me-1"></i> Perangkat
                         </a>
-                        <a href="{{ route('admin.user.create') }}" class="btn btn-info dashboard-btn">
-                            <i class="fas fa-user-plus"></i> Tambah User
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="{{ route('admin.user.create') }}" class="btn btn-info btn-sm w-100 d-flex align-items-center justify-content-center py-2">
+                            <i class="fas fa-user-plus me-1"></i> User
                         </a>
-                        <a href="{{ route('admin.rw.create') }}" class="btn btn-info dashboard-btn">
-                            <i class="fas fa-fw fa-map-signs"></i> Tambah RW
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="{{ route('admin.rw.create') }}" class="btn btn-secondary btn-sm w-100 d-flex align-items-center justify-content-center py-2">
+                            <i class="fas fa-map-signs me-1"></i> RW
                         </a>
-                        <a href="{{ route('admin.rt.create') }}" class="btn btn-info dashboard-btn">
-                            <i class="fas fa-fw fa-map-marker-alt"></i> Tambah RT
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="{{ route('admin.rt.create') }}" class="btn btn-dark btn-sm w-100 d-flex align-items-center justify-content-center py-2">
+                            <i class="fas fa-map-marker-alt me-1"></i> RT
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <!-- User Session Info -->
     @auth
     <div class="row">
