@@ -19,39 +19,43 @@
   </a>
 </p>
 
-# 🚀 Tentang Laravel
+# 💜 Laravel: The PHP Framework for Web Artisans
 
-Laravel adalah sebuah **web application framework** dengan sintaks yang ekspresif dan elegan. Kami percaya bahwa pengembangan harus menjadi pengalaman yang menyenangkan dan kreatif agar benar-benar memuaskan.
-
-Laravel menghilangkan kerumitan dari pengembangan dengan mempermudah tugas-tugas umum yang digunakan di banyak proyek web, seperti:
-
-* **[Mesin Routing yang Cepat dan Sederhana](https://laravel.com/docs/routing)**
-* **[Container Dependency Injection yang Kuat](https://laravel.com/docs/container)**
-* Berbagai *back-end* untuk penyimpanan **[sesi](https://laravel.com/docs/session)** dan **[cache](https://laravel.com/docs/cache)**.
-* **[ORM database](https://laravel.com/docs/eloquent)** yang intuitif dan ekspresif (Eloquent).
-* **[Migrasi skema database](https://laravel.com/docs/migrations)** yang agnostik terhadap jenis database.
-* **[Pemrosesan Job Latar Belakang](https://laravel.com/docs/queues)** yang tangguh.
-* **[Event Broadcasting Real-time](https://laravel.com/docs/broadcasting)**.
-
-Laravel mudah diakses, kuat, dan menyediakan alat yang diperlukan untuk membangun aplikasi yang besar dan kokoh.
+> Laravel adalah *framework* aplikasi web dengan sintaks yang ekspresif dan elegan. Kami percaya pengembangan harus menjadi pengalaman yang menyenangkan, kreatif, dan memuaskan.
 
 ---
 
-# 📚 Belajar Laravel
+## 🛠️ Fitur Inti & Keunggulan
 
-Laravel memiliki **[dokumentasi](https://laravel.com/docs)** dan perpustakaan tutorial video yang paling ekstensif dan menyeluruh dari semua framework aplikasi web modern, membuatnya sangat mudah untuk memulai.
+Laravel menghilangkan kerumitan dari pengembangan dengan menyediakan alat siap pakai untuk tugas-tugas umum.
 
-Anda juga dapat mencoba **[Laravel Bootcamp](https://bootcamp.laravel.com)**, di mana Anda akan dipandu membangun aplikasi Laravel modern dari awal.
+| Fitur | Deskripsi Singkat | Dokumentasi |
+| :--- | :--- | :---: |
+| **Routes** | Mesin routing yang sederhana, cepat, dan *clean*. | [🔗 Docs](https://laravel.com/docs/routing) |
+| **Dependency Injection** | Container Injeksi Dependensi yang kuat dan mudah digunakan. | [🔗 Docs](https://laravel.com/docs/container) |
+| **Eloquent ORM** | ORM database yang ekspresif dan intuitif. | [🔗 Docs](https://laravel.com/docs/eloquent) |
+| **Migrations** | Migrasi skema database yang agnostik (tidak terikat) pada jenis database. | [🔗 Docs](https://laravel.com/docs/migrations) |
+| **Queues** | Pemrosesan job latar belakang yang tangguh untuk tugas berat. | [🔗 Docs](https://laravel.com/docs/queues) |
+| **Broadcasting** | Penyiaran event secara *real-time* untuk antarmuka yang dinamis. | [🔗 Docs](https://laravel.com/docs/broadcasting) |
+| **Caching & Sessions**| Multiple *back-ends* yang fleksibel untuk manajemen sesi dan cache. | [🔗 Docs](https://laravel.com/docs/cache) |
 
-Jika Anda kurang suka membaca, **[Laracasts](https://laracasts.com)** dapat membantu. Laracasts berisi ribuan tutorial video tentang berbagai topik termasuk Laravel, PHP modern, unit testing, dan JavaScript. Tingkatkan keterampilan Anda dengan mempelajari perpustakaan video komprehensif kami.
+Laravel dirancang agar **mudah diakses, kuat**, dan menyediakan semua yang Anda butuhkan untuk membangun aplikasi yang **besar dan kokoh**.
 
 ---
 
-# 💖 Sponsor Laravel
+## 🎓 Mulai Belajar
 
-Kami ingin mengucapkan terima kasih kepada para sponsor berikut karena telah mendanai pengembangan Laravel. Jika Anda tertarik untuk menjadi sponsor, silakan kunjungi **[program Laravel Partners](https://partners.laravel.com)**.
+Laravel memiliki **[dokumentasi](https://laravel.com/docs)** yang paling ekstensif dan tutorial video terlengkap, menjadikannya *framework* yang paling mudah dipelajari.
 
-## Mitra Premium
+* **📚 Dokumentasi Resmi:** Kunjungi **[laravel.com/docs](https://laravel.com/docs)** untuk panduan *step-by-step* yang komprehensif.
+* **🏗️ Laravel Bootcamp:** Ikuti panduan praktis untuk membangun aplikasi modern dari awal di **[bootcamp.laravel.com](https://bootcamp.laravel.com)**.
+* **🎥 Laracasts:** Ribuan tutorial video mendalam tentang Laravel, PHP, testing, dan JavaScript. **[Laracasts.com](https://laracasts.com)** adalah teman terbaik Anda.
+
+---
+
+## 💸 Mitra Premium & Sponsor
+
+Terima kasih sebesar-besarnya kami sampaikan kepada para sponsor berikut atas dukungan pendanaan mereka untuk pengembangan Laravel. Tertarik bergabung? Kunjungi **[Laravel Partners program](https://partners.laravel.com)**.
 
 * **[Vehikl](https://vehikl.com)**
 * **[Tighten Co.](https://tighten.co)**
@@ -64,18 +68,20 @@ Kami ingin mengucapkan terima kasih kepada para sponsor berikut karena telah men
 
 ---
 
-# 🤝 Berkontribusi
+## 📣 Kontribusi & Keamanan
 
-Terima kasih telah mempertimbangkan untuk berkontribusi pada framework Laravel! Panduan kontribusi dapat ditemukan di **[dokumentasi Laravel](https://laravel.com/docs/contributions)**.
+### 🚀 Berkontribusi
 
-## Kode Etik (Code of Conduct)
+Kami menyambut kontribusi Anda! Panduan lengkap dapat ditemukan di **[Dokumentasi Kontribusi Laravel](https://laravel.com/docs/contributions)**.
 
-Untuk memastikan bahwa komunitas Laravel ramah bagi semua, harap tinjau dan patuhi **[Kode Etik](https://laravel.com/docs/contributions#code-of-conduct)**.
+### 📜 Kode Etik
 
-## Kerentanan Keamanan (Security Vulnerabilities)
+Pastikan komunitas Laravel tetap ramah dan inklusif. Harap tinjau dan patuhi **[Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct)** kami.
 
-Jika Anda menemukan kerentanan keamanan di dalam Laravel, mohon kirimkan e-mail kepada Taylor Otwell melalui **[taylor@laravel.com](mailto:taylor@laravel.com)**. Semua kerentanan keamanan akan segera ditangani.
+### 🛡️ Pelaporan Kerentanan Keamanan
 
-## Lisensi
+Jika Anda menemukan kerentanan, segera laporkan dengan mengirimkan e-mail kepada Taylor Otwell di **[taylor@laravel.com](mailto:taylor@laravel.com)**. Semua laporan keamanan akan ditangani dengan cepat.
 
-Framework Laravel adalah perangkat lunak *open-sourced* yang dilisensikan di bawah **[lisensi MIT](https://opensource.org/licenses/MIT)**.
+### 📄 Lisensi
+
+Laravel adalah perangkat lunak *open-source* yang dilisensikan di bawah **[Lisensi MIT](https://opensource.org/licenses/MIT)**.
